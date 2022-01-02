@@ -11,7 +11,7 @@ Level: Easy
 Start time: 1 January 2021, 8:13pm
 
 
-End time: 2 January 2021, 12:15am
+End time: 2 January 2021, 2:15pm
 
 
 Actual play time: 4 hours 26 minutes
