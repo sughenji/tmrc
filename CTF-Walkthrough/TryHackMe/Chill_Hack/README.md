@@ -138,5 +138,38 @@ We got some results:
 /server-status        (Status: 403) [Size: 277]
 ```
 
+We open /secret folder and we found a very simple form:
+
+
+![chillhack2](https://user-images.githubusercontent.com/42389836/147880283-bb625692-cfed-4f7a-a4d4-646cc567dc2e.png)
+
+
+Let's take a look on HTML source code:
+
+
+![chillhack3](https://user-images.githubusercontent.com/42389836/147880303-6d4da8a1-1dd1-45bb-9df9-f038cd2e50e0.png)
+
+
+Let's try if command execution is actually working (id):
+
+
+![chillhack4](https://user-images.githubusercontent.com/42389836/147880333-39f871e2-9fee-4b8b-8823-1322e2ced624.png)
+
+
+We got a response, and we know now that webserver is running as www-data user.
+
+
+Let's try with a different command (ls):
+
+
+![chillhack5](https://user-images.githubusercontent.com/42389836/147880354-7f9f1a4f-d707-46e0-96e9-e229b8a0e768.png)
+
+
+This time we got no luck, we are facing some "string filtering" as stated before.
+
+
+Since our goal is to get a reverse shell, we must find a way to evade that protection.
+
+
 
 
