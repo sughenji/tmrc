@@ -19,15 +19,15 @@ Actual play time: 4 hours 26 minutes
 
 ## Walkthrough
 
-## Enumeration
+### Enumeration
 
 
-### NMAP
+#### NMAP
 
 
-## FTP
+### FTP
 
 
-## HTTP
+### HTTP
 
 
