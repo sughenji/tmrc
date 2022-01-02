@@ -1112,4 +1112,4 @@ Login form is actually vulnerable to SQLi, so you can bypass it with very basic 
 
 
 
-
+Thanks to my colleague Riccardo that suggested me this very funny box :)
