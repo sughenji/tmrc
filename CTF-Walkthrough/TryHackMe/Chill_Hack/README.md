@@ -122,4 +122,21 @@ We check target with our browser:
 ![chillhack1](https://user-images.githubusercontent.com/42389836/147879826-f1fafa42-e605-456b-a890-3bc76d04100b.png)
 
 
+"Login" and "Register" buttons aren't working, and we see some "Lorem Ipsum" stuff here and there, so we fire up our gobuster:
+
+
+```gobuster dir -u http://10.10.183.96 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o 04_gobuster```
+
+We got some results:
+
+
+```/images               (Status: 301) [Size: 313] [--> http://10.10.183.96/images/]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.183.96/css/]
+/js                   (Status: 301) [Size: 309] [--> http://10.10.183.96/js/]
+/fonts                (Status: 301) [Size: 312] [--> http://10.10.183.96/fonts/]
+/secret               (Status: 301) [Size: 313] [--> http://10.10.183.96/secret/]
+/server-status        (Status: 403) [Size: 277]
+```
+
+
 
