@@ -117,3 +117,9 @@ We got a note from Anurodh about some strings filtering mechanism in action. We 
 ### HTTP
 
 
+We check target with our browser:
+
+![chillhack1](https://user-images.githubusercontent.com/42389836/147879826-f1fafa42-e605-456b-a890-3bc76d04100b.png)
+
+
+
