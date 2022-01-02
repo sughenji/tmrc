@@ -78,6 +78,14 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Sat Jan  1 20:14:21 2022 -- 1 IP address (1 host up) scanned in 22.55 seconds
 ```
 
+According to Apache and OpenSSH version, chances are we are facing an Ubuntu "bionic" 18.04 LTS box:
+
+https://packages.ubuntu.com/search?keywords=apache2
+
+
+https://packages.ubuntu.com/search?keywords=openssh
+
+
 ### FTP
 
 Since we see that anonymous FTP is allowed, we grab the note.txt file:
