@@ -27,7 +27,7 @@ Actual play time: 4 hours 26 minutes
 
 Let's start with a basic nmap scan:
 
-
+```
 # Nmap 7.91 scan initiated Sat Jan  1 20:12:21 2022 as: nmap -T4 -p- -oN 01_nmap 10.10.183.96
 Nmap scan report for 10.10.183.96
 Host is up (0.059s latency).
@@ -38,10 +38,11 @@ PORT   STATE SERVICE
 80/tcp open  http
 
 # Nmap done at Sat Jan  1 20:13:12 2022 -- 1 IP address (1 host up) scanned in 50.68 seconds
+```
 
 We got 3 open ports. Let's check again with service detection (-sV) and default script (-sC):
 
-
+```
 # Nmap 7.91 scan initiated Sat Jan  1 20:13:58 2022 as: nmap -T4 -p21,22,80 -sV -sC -oN 02_nmap 10.10.183.96
 Nmap scan report for 10.10.183.96
 Host is up (0.057s latency).
@@ -75,6 +76,7 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Sat Jan  1 20:14:21 2022 -- 1 IP address (1 host up) scanned in 22.55 seconds
+```
 
 
 
