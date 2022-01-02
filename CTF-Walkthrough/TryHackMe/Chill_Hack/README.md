@@ -78,13 +78,40 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Sat Jan  1 20:14:21 2022 -- 1 IP address (1 host up) scanned in 22.55 seconds
 ```
 
-
-
-
-
-
-
 ### FTP
+
+Since we see that anonymous FTP is allowed, we grab the note.txt file:
+
+```
+# ftp 10.10.183.96
+Connected to 10.10.183.96.
+220 (vsFTPd 3.0.3)
+Name (10.10.183.96:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001           90 Oct 03  2020 note.txt
+226 Directory send OK.
+ftp> get note.txt
+local: note.txt remote: note.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for note.txt (90 bytes).
+226 Transfer complete.
+90 bytes received in 0.00 secs (122.4103 kB/s)
+ftp> quit
+221 Goodbye.
+
+
+# cat note.txt
+Anurodh told me that there is some filtering on strings being put in the command -- Apaar
+```
+
+We got a note from Anurodh about some strings filtering mechanism in action. We will see it soon. 
 
 
 ### HTTP
