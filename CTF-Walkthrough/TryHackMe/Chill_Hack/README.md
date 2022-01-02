@@ -17,3 +17,17 @@ End time: 2 January 2021, 2:15pm GMT+1
 Actual play time: 4 hours 26 minutes
 
 
+**Walkthrough**
+
+## Enumeration
+
+
+### NMAP
+
+
+## FTP
+
+
+## HTTP
+
+
