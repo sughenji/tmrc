@@ -86,5 +86,134 @@ We check again web server, we obtain another page:
 
 ![Screenshot_2022-01-22_16-41-12](https://user-images.githubusercontent.com/42389836/150674604-5aa175bf-3fa6-474a-bdbf-fb38760fd94f.png)
 
+Nothing interesting in HTML source code:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Cronos</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-center position-ref full-height">
+
+            <div class="content">
+                <div class="title m-b-md">
+                    Cronos
+                </div>
+
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+```
+
+So, we assume that there is another virtual host with other stuff. Let's focus again on DNS.
+
+We try zone transfer (AXFR) and we get more DNS records:
+
+```
+root@kaligra:/opt/htb/Cronos# dig axfr @10.10.10.13 cronos.htb
+
+; <<>> DiG 9.17.19-1-Debian <<>> axfr @10.10.10.13 cronos.htb
+; (1 server found)
+;; global options: +cmd
+cronos.htb.             604800  IN      SOA     cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+cronos.htb.             604800  IN      NS      ns1.cronos.htb.
+cronos.htb.             604800  IN      A       10.10.10.13
+admin.cronos.htb.       604800  IN      A       10.10.10.13
+ns1.cronos.htb.         604800  IN      A       10.10.10.13
+www.cronos.htb.         604800  IN      A       10.10.10.13
+cronos.htb.             604800  IN      SOA     cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+;; Query time: 136 msec
+;; SERVER: 10.10.10.13#53(10.10.10.13) (TCP)
+;; WHEN: Sat Jan 22 16:40:06 CET 2022
+;; XFR size: 7 records (messages 1, bytes 203)
+```
+
+So, we need to also add admin.cronos.htb on our /etc/hosts file.
+
+Let's check web page:
+
+![Screenshot_2022-01-22_16-41-49](https://user-images.githubusercontent.com/42389836/150674731-6d2311c5-0519-4123-b931-38ab41218c70.png)
+
+We get a basic login page.
+
+We try a very basic SQLi string:
+
+![Screenshot_2022-01-22_17-53-20](https://user-images.githubusercontent.com/42389836/150674756-b5a9b790-8e7e-4e2a-ba77-67ffe22a49e3.png)
+
+
+And we get access.
+
+![Screenshot_2022-01-22_16-43-18](https://user-images.githubusercontent.com/42389836/150674781-498194a8-4539-497b-82ae-ccc506a00d56.png)
 
 
