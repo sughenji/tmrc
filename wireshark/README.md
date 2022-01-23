@@ -55,3 +55,13 @@ This is case insensitive:
 frame matches google
 ```
 
+- Resolved addresses
+
+Statistics -> resolved addresses -> Host
+
+- How to assign a descriptive name to a private address:
+
+
+![dns1](https://user-images.githubusercontent.com/42389836/150691352-62c1cbb0-ffc9-4353-bf77-bdd1dd9f4d0d.JPG)
+
+
