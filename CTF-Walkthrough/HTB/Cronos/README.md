@@ -178,7 +178,7 @@ Nothing interesting in HTML source code:
 
 So, we assume that there is another virtual host with other stuff. Let's focus again on DNS.
 
-We try zone transfer (AXFR) and we get more DNS records:
+We try *zone transfer* (AXFR) and we get more DNS records:
 
 ```
 root@kaligra:/opt/htb/Cronos# dig axfr @10.10.10.13 cronos.htb
@@ -199,7 +199,7 @@ cronos.htb.             604800  IN      SOA     cronos.htb. admin.cronos.htb. 3 
 ;; XFR size: 7 records (messages 1, bytes 203)
 ```
 
-So, we need to also add admin.cronos.htb on our /etc/hosts file.
+So, we need to also add `admin.cronos.htb` on our /etc/hosts file.
 
 Let's check web page:
 
