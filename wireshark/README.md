@@ -19,3 +19,39 @@ C:\Users\sugo>dumpcap -D
 ```
 C:\Users\sugo>dumpcap -i 5 -w d:\wireshark_capture\test.pcapng -b filesize:500000 -b files:10
 ```
+- conversation filter (between two IPs)
+
+![filter1](https://user-images.githubusercontent.com/42389836/150690077-f47711a5-c127-496b-9630-518ba00417bb.JPG)
+
+or:
+
+```
+ip.addr eq 46.252.144.172 and ip.addr eq 192.168.88.14
+```
+
+only TCP:
+
+```
+(ip.addr eq 46.252.144.172 and ip.addr eq 192.168.88.14) and tcp
+```
+
+Port can be one of...:
+
+```
+tcp.port in {80 443 8080}
+```
+
+- Search for string
+
+This is case sensitive:
+
+```
+frame contains Google
+```
+
+This is case insensitive:
+
+```
+frame matches google
+```
+
