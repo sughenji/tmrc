@@ -64,4 +64,6 @@ Statistics -> resolved addresses -> Host
 
 ![dns1](https://user-images.githubusercontent.com/42389836/150691352-62c1cbb0-ffc9-4353-bf77-bdd1dd9f4d0d.JPG)
 
+- View delta time in context (in same TCP stream)
 
+![streamtcp](https://user-images.githubusercontent.com/42389836/151020481-6817afba-c0a6-46a1-b0ec-d1c9aacddfa9.JPG)
