@@ -322,6 +322,9 @@ nt authority\system
 
 From there, we can grab user and root flags from "Bob" and "Administrator" desktop.
 
+reference:
+
+https://redteamzone.com/EternalBlue/
 
 
 
