@@ -1,5 +1,9 @@
 # Wireshark cheat sheet
 
+Some tips`n`tricks from Chris Greer Masterclass https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ and more!
+
+
+
 - list interfaces
 
 ```
