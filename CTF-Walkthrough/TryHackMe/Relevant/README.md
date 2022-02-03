@@ -98,6 +98,7 @@ Host script results:
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Tue Feb  1 23:14:32 2022 -- 1 IP address (1 host up) scanned in 136.51 seconds
+```
 
 ```
 # gobuster dir -u http://relevant.thm -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o 04_gobuster
