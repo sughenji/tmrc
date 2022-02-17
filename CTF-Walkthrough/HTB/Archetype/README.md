@@ -545,7 +545,8 @@ Impacket v0.9.25.dev1+20220105.151306.10e53952 - Copyright 2021 SecureAuth Corpo
 [!] Press help for extra shell commands                                                                                                                                                      Microsoft Windows [Version 10.0.17763.2061]
 (c) 2018 Microsoft Corporation. All rights reserved.
 
-C:\Windows\system32> whoami                                                                                                                                                                  nt authority\system
+C:\Windows\system32>
+nt authority\system
 
 C:\Windows\system32>
 ```
