@@ -77,7 +77,8 @@ We grab `.htpasswd`:
 mike:Sheffield19
 ```
 
-and of course `/etc/passwd```
+and of course `/etc/passwd`
+```
 mike:Sheffield19
 ```
 
