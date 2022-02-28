@@ -12,6 +12,7 @@
 - [WP-CLI](#wpcli)
 - [Clamscan](#clamscan)
 - [Check with grep](#grep)
+- [Online resources](#online)
 
 ## WAF
 
@@ -55,6 +56,8 @@ disable xmlrpc (with .htaccess)
 ## admin
 
 rename 'admin' user to something else (even better: remove user '1' (see mte90 backdoor))
+
+https://github.com/mattiasgeniar/php-exploit-scripts/blob/master/found_on_wordpress/backdoor_admin_access.php
 
 ## backend 
 
@@ -107,6 +110,16 @@ Check with grep for suspicious strings
 ```
 egrep -Rn "(passthru|exec|eval|shell_exec|assert|str_rot13|system|phpinfo|base64_decode|chmod|mkdir|fopen|fclose|readfile)" *.php
 ```
+
+
+## Online
+
+https://sitecheck.sucuri.net/
+
+https://observatory.mozilla.org/
+
+https://firstsiteguide.com/wordpress-security-online-scanner/
+
 
 
 
