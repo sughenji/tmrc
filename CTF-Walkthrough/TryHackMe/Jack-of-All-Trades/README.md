@@ -15,6 +15,7 @@ Actual play time: 3 hours 10 minutes
 - [Enumeration](#enumeration)
 - [User flag](#user-flag)
 - [Privesc](#privesc)
+- [Privesc2](#privesc2)
 
 # Enumeration
 
@@ -443,4 +444,31 @@ uid=0(root) gid=0(root) groups=0(root),1001(dev)
 ```
 
 
+# Privesc2
 
+We noticed that port 25/TCP is listening only on localhost:
+
+```
+jack@jack-of-all-trades:~$ netstat -natlp
+(No info could be read for "-p": geteuid()=1000 but you should be root.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -
+tcp        0    476 10.10.172.49:80         10.8.147.132:35296      ESTABLISHED -
+tcp6       0      0 :::80                   :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 ::1:25                  :::*                    LISTEN      -
+```
+
+```
+jack@jack-of-all-trades:~$ telnet localhost 25
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+220 jack-of-all-trades ESMTP Exim 4.84 Tue, 01 Mar 2022 22:13:45 +0000
+```
+
+Maybe we could also try this:
+
+https://www.exploit-db.com/exploits/39549	
