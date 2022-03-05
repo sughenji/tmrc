@@ -164,6 +164,8 @@ Network Card(s):           1 NIC(s) Installed.
                                  [01]: 10.10.10.9
 ```
 
+# Privesc
+
 We look for some privesc paths with `windows-exploit-suggester.py`:
 
 ```
