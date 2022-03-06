@@ -191,6 +191,8 @@ Through `netstat -natlp` we discover that port 631/TCP is listening only on loca
 
 We want to access web interface of CUPS service, we use `chisel` (since we have no SSH access).
 
+https://github.com/jpillora/chisel/releases
+
 On our attacker machine:
 
 ```
