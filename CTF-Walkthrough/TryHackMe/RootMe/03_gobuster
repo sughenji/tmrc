@@ -1,0 +1,5 @@
+/uploads              (Status: 301) [Size: 314] [--> http://10.10.38.138/uploads/]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.38.138/css/]
+/js                   (Status: 301) [Size: 309] [--> http://10.10.38.138/js/]
+/panel                (Status: 301) [Size: 312] [--> http://10.10.38.138/panel/]
+/server-status        (Status: 403) [Size: 277]
