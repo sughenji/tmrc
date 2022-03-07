@@ -1,0 +1,2 @@
+root@kali:/opt/TryHackMe/brainpan1# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 700 -q 35724134
+[*] Exact match at offset 524

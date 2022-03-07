@@ -1,0 +1,16 @@
+
+puck@brainpan:/$ sudo /home/anansi/bin/anansi_util /bin/bash
+sudo /home/anansi/bin/anansi_util /bin/bash
+'unknown': unknown terminal type.
+puck@brainpan:/$ sudo /home/anansi/bin/anansi_util od
+sudo /home/anansi/bin/anansi_util od
+'unknown': unknown terminal type.
+
+
+
+per fixare:
+
+puck@brainpan:/$ export TERM=linux
+export TERM=linux
+
+

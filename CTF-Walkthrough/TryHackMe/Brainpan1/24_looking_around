@@ -1,0 +1,126 @@
+
+id
+uid=1002(puck) gid=1002(puck) groups=1002(puck)
+python -c 'import pty; pty.spawn("/bin/bash")'
+puck@brainpan:/home/puck$ ls
+ls
+checksrv.sh  web
+puck@brainpan:/home/puck$ cd ..
+cd ..
+puck@brainpan:/home$ ls
+ls
+anansi  puck  reynard
+puck@brainpan:/home$ cd an
+cd anansi/
+bash: cd: anansi/: Permission denied
+puck@brainpan:/home$ cd anansi
+cd anansi
+bash: cd: anansi: Permission denied
+puck@brainpan:/home$ cd reynard
+cd reynard
+bash: cd: reynard: Permission denied
+puck@brainpan:/home$ ls
+ls
+anansi  puck  reynard
+puck@brainpan:/home$ cd ..
+cd ..
+puck@brainpan:/$ ls
+ls
+bin   etc         initrd.img.old  media  proc  sbin     sys  var
+boot  home        lib             mnt    root  selinux  tmp  vmlinuz
+dev   initrd.img  lost+found      opt    run   srv      usr  vmlinuz.old
+puck@brainpan:/$ cd root
+cd root
+bash: cd: root: Permission denied
+puck@brainpan:/$ ls
+ls
+bin   etc         initrd.img.old  media  proc  sbin     sys  var
+boot  home        lib             mnt    root  selinux  tmp  vmlinuz
+dev   initrd.img  lost+found      opt    run   srv      usr  vmlinuz.old
+puck@brainpan:/$ crontab -l
+crontab -l
+# Edit this file to introduce tasks to be run by cron.
+#
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+#
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').#
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+#
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+#
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+#
+# For more information see the manual pages of crontab(5) and cron(8)
+#
+# m h  dom mon dow   command
+* * * * * /home/puck/checksrv.sh
+puck@brainpan:/$ cd /home/puck
+cd /home/puck
+puck@brainpan:/home/puck$ ls -la
+ls -la
+total 48
+drwx------ 7 puck puck 4096 Mar  6  2013 .
+drwxr-xr-x 5 root root 4096 Mar  4  2013 ..
+-rw------- 1 puck puck    0 Mar  5  2013 .bash_history
+-rw-r--r-- 1 puck puck  220 Mar  4  2013 .bash_logout
+-rw-r--r-- 1 puck puck 3637 Mar  4  2013 .bashrc
+drwx------ 3 puck puck 4096 Mar  4  2013 .cache
+drwxrwxr-x 3 puck puck 4096 Mar  4  2013 .config
+-rw------- 1 puck puck   55 Mar  5  2013 .lesshst
+drwxrwxr-x 3 puck puck 4096 Mar  4  2013 .local
+-rw-r--r-- 1 puck puck  675 Mar  4  2013 .profile
+drwxrwxr-x 4 puck puck 4096 Jan 24 03:53 .wine
+-rwxr-xr-x 1 root root  513 Mar  6  2013 checksrv.sh
+drwxrwxr-x 3 puck puck 4096 Mar  4  2013 web
+puck@brainpan:/home/puck$ cat checksrv.sh
+cat checksrv.sh
+#!/bin/bash
+# run brainpan.exe if it stops
+lsof -i:9999
+if [[ $? -eq 1 ]]; then
+        pid=`ps aux | grep brainpan.exe | grep -v grep`
+        if [[ ! -z $pid ]]; then
+                kill -9 $pid
+                killall wineserver
+                killall winedevice.exe
+        fi
+        /usr/bin/wine /home/puck/web/bin/brainpan.exe &
+fi
+
+# run SimpleHTTPServer if it stops
+lsof -i:10000
+if [[ $? -eq 1 ]]; then
+        pid=`ps aux | grep SimpleHTTPServer | grep -v grep`
+        if [[ ! -z $pid ]]; then
+                kill -9 $pid
+        fi
+        cd /home/puck/web
+        /usr/bin/python -m SimpleHTTPServer 10000
+fi
+puck@brainpan:/home/puck$ cd ..
+cd ..
+puck@brainpan:/home$ cd ..
+cd ..
+puck@brainpan:/$ ls
+ls
+bin   etc         initrd.img.old  media  proc  sbin     sys  var
+boot  home        lib             mnt    root  selinux  tmp  vmlinuz
+dev   initrd.img  lost+found      opt    run   srv      usr  vmlinuz.old
+puck@brainpan:/$ sudo -l
+sudo -l
+Matching Defaults entries for puck on this host:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User puck may run the following commands on this host:
+    (root) NOPASSWD: /home/anansi/bin/anansi_util
+
+

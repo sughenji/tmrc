@@ -1,0 +1,21 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sun Dec 27 09:16:29 2020
+Invocation: foremost -i soss-infographic-final.png 
+Output directory: /opt/TryHackMe/brainpan1/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: soss-infographic-final.png
+Start: Sun Dec 27 09:16:29 2020
+Length: 796 KB (815472 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+Finish: Sun Dec 27 09:16:29 2020
+
+0 FILES EXTRACTED
+	
+------------------------------------------------------------------
+
+Foremost finished at Sun Dec 27 09:16:29 2020

@@ -1,0 +1,14 @@
+bisogna vedere se ci sono dei "bad chars"..
+
+prendo la lista qui
+
+https://github.com/gh0x0st/Buffer_Overflow
+
+
+invio:
+
+524 bytes
+4 bytes con "B"
+e tutti i badchars
+
+RICORDATI DI TOGLIERE \x00 !

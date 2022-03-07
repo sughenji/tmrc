@@ -1,0 +1,13 @@
+
+all'interno del modulo di cui al punto .11
+dobbiamo trovare l'opcode relativo all'istruzione "JMP ESP"
+
+vediamo il codice relativo a "JMP ESP"
+
+root@kali:/opt/TryHackMe/brainpan1# /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+nasm > JMP ESP
+00000000  FFE4              jmp esp
+nasm >
+
+
+

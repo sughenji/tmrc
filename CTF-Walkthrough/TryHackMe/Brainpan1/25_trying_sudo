@@ -1,0 +1,25 @@
+
+puck@brainpan:/$ sudo -l
+sudo -l
+Matching Defaults entries for puck on this host:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User puck may run the following commands on this host:
+    (root) NOPASSWD: /home/anansi/bin/anansi_util
+puck@brainpan:/$ sudo /home/anansi/bin/anansi_util
+
+
+
+
+sudo /home/anansi/bin/anansi_util
+Usage: /home/anansi/bin/anansi_util [action]
+Where [action] is one of:
+  - network
+  - proclist
+  - manual [command]
+
+
+
+..ovviamente vogliamo una shell :)
+

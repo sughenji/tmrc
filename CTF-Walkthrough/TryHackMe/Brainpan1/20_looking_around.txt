@@ -1,0 +1,52 @@
+Z:\home\puck\web>cd ..
+
+Z:\home\puck>dir
+Volume in drive Z has no label.
+Volume Serial Number is 0000-0000
+
+Directory of Z:\home\puck
+
+  3/6/2013   2:23 PM  <DIR>         .
+  3/4/2013  10:49 AM  <DIR>         ..
+  3/6/2013   2:23 PM           513  checksrv.sh
+  3/4/2013   1:45 PM  <DIR>         web
+       1 file                       513 bytes
+       3 directories     13,850,206,208 bytes free
+
+
+Z:\home\puck>edit checksrv.sh
+File not found.
+
+
+Z:\home\puck>type checksrv.sh
+#!/bin/bash
+# run brainpan.exe if it stops
+lsof -i:9999
+if [[ $? -eq 1 ]]; then
+        pid=`ps aux | grep brainpan.exe | grep -v grep`
+        if [[ ! -z $pid ]]; then
+                kill -9 $pid
+                killall wineserver
+                killall winedevice.exe
+        fi
+        /usr/bin/wine /home/puck/web/bin/brainpan.exe &
+fi
+
+# run SimpleHTTPServer if it stops
+lsof -i:10000
+if [[ $? -eq 1 ]]; then
+        pid=`ps aux | grep SimpleHTTPServer | grep -v grep`
+        if [[ ! -z $pid ]]; then
+                kill -9 $pid
+        fi
+        cd /home/puck/web
+        /usr/bin/python -m SimpleHTTPServer 10000
+fi
+
+
+
+
+.......sembra quindi che il sistema sia in realta' LINUX, ma noi abbiamo exploitato un exe emulato con wine
+
+
+....ricreiamo un altro shellcode, stavolta per piattaforma LINUX, è necessario terminare/riattivare la VM

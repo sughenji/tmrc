@@ -1,0 +1,36 @@
+su immunity debugger lancio il processo brainpan.exe,
+nella console digito
+
+!mona modules
+
+
+vedo questo:
+
+....
+....
+....
+0BADF00D   -----------------------------------------------------------------------------------------------------------------------------------------
+0BADF00D    Module info :
+0BADF00D   -----------------------------------------------------------------------------------------------------------------------------------------
+0BADF00D    Base       | Top        | Size       | Rebase | SafeSEH | ASLR  | NXCompat | OS Dll | Version, Modulename & Path
+0BADF00D   -----------------------------------------------------------------------------------------------------------------------------------------
+0BADF00D    0x76cb0000 | 0x76ec4000 | 0x00214000 | True   | True    | True  |  False   | True   | 10.0.19041.662 [KERNELBASE.dll] (C:\Windows\System32\KERNELBASE.dll)
+0BADF00D    0x6cf70000 | 0x6d00f000 | 0x0009f000 | True   | True    | True  |  False   | True   | 10.0.19041.1 [apphelp.dll] (C:\Windows\SYSTEM32\apphelp.dll)
+0BADF00D    0x769c0000 | 0x76ab0000 | 0x000f0000 | True   | True    | True  |  False   | True   | 10.0.19041.662 [KERNEL32.DLL] (C:\Windows\System32\KERNEL32.DLL)
+0BADF00D    0x75a20000 | 0x75adf000 | 0x000bf000 | True   | True    | True  |  False   | True   | 7.0.19041.546 [msvcrt.dll] (C:\Windows\System32\msvcrt.dll)
+0BADF00D    0x76f40000 | 0x770e3000 | 0x001a3000 | True   | True    | True  |  False   | True   | 10.0.19041.662 [ntdll.dll] (C:\Windows\SYSTEM32\ntdll.dll)
+0BADF00D    0x31170000 | 0x31176000 | 0x00006000 | False  | False   | False |  False   | False  | -1.0- [brainpan.exe] (C:\Users\sugo\Downloads\brainpan.exe)
+0BADF00D    0x74fa0000 | 0x75060000 | 0x000c0000 | True   | True    | True  |  False   | True   | 10.0.19041.1 [RPCRT4.dll] (C:\Windows\System32\RPCRT4.dll)
+0BADF00D    0x76410000 | 0x76473000 | 0x00063000 | True   | True    | True  |  False   | True   | 10.0.19041.1 [WS2_32.DLL] (C:\Windows\System32\WS2_32.DLL)
+0BADF00D   -----------------------------------------------------------------------------------------------------------------------------------------
+0BADF00D
+0BADF00D
+0BADF00D   [+] This mona.py action took 0:00:00.719000
+
+
+la riga che ci interessa è questa:
+
+
+0BADF00D    0x31170000 | 0x31176000 | 0x00006000 | False  | False   | False |  False   | False  | -1.0- [brainpan.exe] (C:\Users\sugo\Downloads\brainpan.exe)
+
+in cui tutte le protezioni sono su "False"

@@ -1,0 +1,17 @@
+dobbiamo trovare \xff\xe4 all'interno di brainpan.exe
+
+
+comando:
+
+!mona find -s "\xff\xe4" -m brainpan.exe
+
+
+troviamo questo:
+
+Log data, item 3
+ Address=311712F3
+ Message=  0x311712f3 : "\xff\xe4" |  {PAGE_EXECUTE_READ} [brainpan.exe] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\sugo\Downloads\brainpan.exe)
+
+quello che ci interessa e':
+
+311712f3

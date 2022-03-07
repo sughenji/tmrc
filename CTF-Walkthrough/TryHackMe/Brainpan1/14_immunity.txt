@@ -1,0 +1,19 @@
+aprire immunity debugger
+
+aprire il processo "brainpan.exe" (NON ancora in running)
+
+sul menu CPU, cliccare sulla settima icona dopo quella del "play"
+
+compare "enter expression to follow"
+scriverci dentro: 311712F3
+
+premere OK
+
+nella schermata "CPU" evidenziare l'indirizzo di cui sopra e premere F2
+
+ora si puo' mandare in play brainpan.exe
+
+
+far partire lo script in python
+
+brainpan.exe crashera', e l'eip sarà sovrascritto con 311712F3
