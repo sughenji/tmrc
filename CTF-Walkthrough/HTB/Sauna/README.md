@@ -8,6 +8,10 @@ Date 17 Jul 2020
 
 ## Walkthrough
 
+- [Enumeration](#enumeration)
+- [User flag](#user-flag)
+- [Privesc](#privesc)
+
 ## NMAP
 
 We run `nmap` and we found lots of open ports.
