@@ -1,0 +1,2 @@
+root:$6$VbvnbWCV$F7SSCrKm6JJdUsdcWK3hx47ARJdWvkFuW.JVRfUHSj/od3J34WkMKDJws0558oP0l8Ux2.ZDlpg6KSe5SCoYI0:0:0:root:/root:/bin/bash
+bill:$6$0Ab1ttYa$PjLYB5poGT2Hz/pwXwpIKEi3ptJ.UZAqqYGmcCGuzCtnJX9u1aYnkd/6NSH4HS4vbtQUp/pwSXXu.XCsuHHlD/:1000:1000:,,,:/home/bill:/bin/bash

