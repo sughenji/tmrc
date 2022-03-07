@@ -1,0 +1,20 @@
+skyfuck@ubuntu:~$ gpg --import tryhackme.asc
+gpg: key C6707170: secret key imported
+gpg: key C6707170: public key "tryhackme <stuxnet@tryhackme.com>" imported
+gpg: key C6707170: "tryhackme <stuxnet@tryhackme.com>" not changed
+gpg: Total number processed: 2
+gpg:               imported: 1
+gpg:              unchanged: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+skyfuck@ubuntu:~$ gpg --decrypt credential.pgp
+
+You need a passphrase to unlock the secret key for
+user: "tryhackme <stuxnet@tryhackme.com>"
+1024-bit ELG-E key, ID 6184FBCC, created 2020-03-11 (main key ID C6707170)
+
+gpg: gpg-agent is not available in this session
+gpg: WARNING: cipher algorithm CAST5 not found in recipient preferences
+gpg: encrypted with 1024-bit ELG-E key, ID 6184FBCC, created 2020-03-11
+      "tryhackme <stuxnet@tryhackme.com>"
+merlin:asuyusdoiuqoilkda312j31k2j123j1g23g12k3g12kj3gk12jg3k12j3kj123j

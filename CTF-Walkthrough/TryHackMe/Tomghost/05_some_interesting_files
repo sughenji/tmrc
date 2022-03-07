@@ -1,0 +1,4 @@
+skyfuck@ubuntu:~$ ls -l
+total 12
+-rw-rw-r-- 1 skyfuck skyfuck  394 Mar 10  2020 credential.pgp
+-rw-rw-r-- 1 skyfuck skyfuck 5144 Mar 10  2020 tryhackme.asc

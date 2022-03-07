@@ -1,0 +1,17 @@
+root@kali:/opt/TryHackMe/tomghost# gpg2john tryhackme.asc > 06_tryhackme
+
+File tryhackme.asc
+root@kali:/opt/TryHackMe/tomghost# cat 06_tryhackme
+tryhackme:$gpg$*17*54*3072*713ee3f57cc950f8f89155679abe2476c62bbd286ded0e049f886d32d2b9eb06f482e9770c710abc2903f1ed70af6fcc22f5608760be*3*254*2*9*16*0c99d5dae8216f2155ba2abfcc71f818*65536*c8f277d2faf97480:::tryhackme <stuxnet@tryhackme.com>::tryhackme.asc
+root@kali:/opt/TryHackMe/tomghost# john --wordlist=/usr/share/wordlists/rockyou.txt 06_tryhackme
+Using default input encoding: UTF-8
+Loaded 1 password hash (gpg, OpenPGP / GnuPG Secret Key [32/64])
+Cost 1 (s2k-count) is 65536 for all loaded hashes
+Cost 2 (hash algorithm [1:MD5 2:SHA1 3:RIPEMD160 8:SHA256 9:SHA384 10:SHA512 11:SHA224]) is 2 for all loaded hashes
+Cost 3 (cipher algorithm [1:IDEA 2:3DES 3:CAST5 4:Blowfish 7:AES128 8:AES192 9:AES256 10:Twofish 11:Camellia128 12:Camellia192 13:Camellia256]) is 9 for all loaded hashes
+Press 'q' or Ctrl-C to abort, almost any other key for status
+alexandru        (tryhackme)
+1g 0:00:00:00 DONE (2020-12-26 13:00) 3.703g/s 3970p/s 3970c/s 3970C/s alexandru
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+
