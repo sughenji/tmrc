@@ -1,0 +1,27 @@
+python -c 'import pty; pty.spawn("/bin/bash")'
+root@source:/usr/share/webmin/# cd
+cd
+root@source:~# ls
+ls
+root.txt
+root@source:~# cd /home
+cd /home
+root@source:/home# ls
+ls
+dark
+root@source:/home# cd dar
+cd dark/
+root@source:/home/dark# ls
+ls
+user.txt  webmin_1.890_all.deb
+root@source:/home/dark# cat user.txt
+cat user.txt
+THM{SUPPLY_CHAIN_COMPROMISE}
+root@source:/home/dark# cd
+cd
+root@source:~# ls
+ls
+root.txt
+root@source:~# cat root.txt
+cat root.txt
+THM{UPDATE_YOUR_INSTALL}
