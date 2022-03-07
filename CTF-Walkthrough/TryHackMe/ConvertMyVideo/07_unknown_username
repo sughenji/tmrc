@@ -1,0 +1,47 @@
+
+non si sa quale sia l'username.
+provo a fuzzare:
+
+root@kali:/opt/TryHackMe/convertmyvideo# wfuzz -c -f sub-figther -w ../cmess/subdomains-top1million-5000.txt -u 'http://10.10.143.178' -H "HOST: FUZZ.convert.thm" --hw 747
+ /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.143.178/
+Total requests: 4997
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
+
+000000001:   200        19 L     52 W       747 Ch      "www - www"
+000000003:   200        19 L     52 W       747 Ch      "ftp - ftp"
+000000002:   200        19 L     52 W       747 Ch      "mail - mail"
+
+
+
+escluso 52 W:
+
+root@kali:/opt/TryHackMe/convertmyvideo# wfuzz -c -f sub-figther -w ../cmess/subdomains-top1million-5000.txt -u 'http://10.10.143.178' -H "HOST: FUZZ.convert.thm" --hw 52
+ /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.143.178/
+Total requests: 4997
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
+
+000000690:   400        12 L     53 W       422 Ch      "gc._msdcs - gc._msdcs"
+
+Total time: 35.06493
+Processed Requests: 4997
+Filtered Requests: 4996
+Requests/sec.: 142.5070
+
+
+...niente di fatto.

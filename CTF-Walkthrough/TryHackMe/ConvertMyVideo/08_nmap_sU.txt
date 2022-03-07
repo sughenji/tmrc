@@ -1,0 +1,30 @@
+# Nmap 7.91 scan initiated Sat Dec 26 17:45:54 2020 as: nmap -p-500 -sU -T4 -oN 08_nmap_sU.txt convert.thm
+Warning: 10.10.143.178 giving up on port because retransmission cap hit (6).
+Nmap scan report for convert.thm (10.10.143.178)
+Host is up (0.086s latency).
+Not shown: 478 closed ports
+PORT    STATE         SERVICE
+8/udp   open|filtered unknown
+49/udp  open|filtered tacacs
+53/udp  open|filtered domain
+68/udp  open|filtered dhcpc
+135/udp open|filtered msrpc
+156/udp open|filtered sqlsrv
+180/udp open|filtered ris
+190/udp open|filtered cacp
+192/udp open|filtered osu-nms
+209/udp open|filtered tam
+243/udp open|filtered sur-meas
+275/udp open|filtered unknown
+279/udp open|filtered unknown
+302/udp open|filtered unknown
+307/udp open|filtered unknown
+310/udp open|filtered bhmds
+345/udp open|filtered pawserv
+360/udp open|filtered scoi2odialog
+382/udp open|filtered hp-managed-node
+403/udp open|filtered decap
+420/udp open|filtered smpte
+494/udp open|filtered pov-ray
+
+# Nmap done at Sat Dec 26 17:53:56 2020 -- 1 IP address (1 host up) scanned in 482.08 seconds

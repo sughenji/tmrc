@@ -1,0 +1,10 @@
+sembra che non gli piacciano gli spazi..
+
+provo ad encodare il comando in base64 e poi ad usare eval
+
+root@kali:/opt/TryHackMe/convertmyvideo# echo -n "cat /etc/passwd" | base64
+Y2F0IC9ldGMvcGFzc3dk
+
+
+o meglio in php....
+

@@ -1,0 +1,20 @@
+
+inviando una richiesta di conversione (es. con stringa "a") si ottiene
+
+HTTP/1.1 200 OK
+
+Date: Sat, 26 Dec 2020 17:00:25 GMT
+
+Server: Apache/2.4.29 (Ubuntu)
+
+Vary: Accept-Encoding
+
+Content-Length: 373
+
+Connection: close
+
+Content-Type: text/html; charset=UTF-8
+
+
+
+{"status":1,"errors":"WARNING: Assuming --restrict-filenames since file system encoding cannot encode all characters. Set the LC_ALL environment variable to fix this.\nERROR: u'b' is not a valid URL. Set --default-search \"ytsearch\" (or run  youtube-dl \"ytsearch:b\" ) to search YouTube\n","url_orginal":"b","output":"","result_url":"\/tmp\/downloads\/5fe76c295d452.mp3"}

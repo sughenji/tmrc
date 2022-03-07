@@ -1,0 +1,37 @@
+root@kali:/opt/TryHackMe/convertmyvideo# head 10-million-password-list-top-1000.txt
+123456
+password
+12345678
+qwerty
+123456789
+12345
+1234
+111111
+1234567
+dragon
+root@kali:/opt/TryHackMe/convertmyvideo# vi 10-million-password-list-top-1000.txt
+root@kali:/opt/TryHackMe/convertmyvideo# cp 10-million-password-list-top-1000.txt sugo1000.txt
+root@kali:/opt/TryHackMe/convertmyvideo# vi sugo1000.txt
+root@kali:/opt/TryHackMe/convertmyvideo# for i in `head sugo1000.txt`; do echo $i; done
+admin:123456
+admin:password
+admin:12345678
+admin:qwerty
+admin:123456789
+admin:12345
+admin:1234
+admin:111111
+admin:1234567
+admin:dragon
+root@kali:/opt/TryHackMe/convertmyvideo# for i in `head sugo1000.txt`; do echo -n $i | base64 ; done
+YWRtaW46MTIzNDU2
+YWRtaW46cGFzc3dvcmQ=
+YWRtaW46MTIzNDU2Nzg=
+YWRtaW46cXdlcnR5
+YWRtaW46MTIzNDU2Nzg5
+YWRtaW46MTIzNDU=
+YWRtaW46MTIzNA==
+YWRtaW46MTExMTEx
+YWRtaW46MTIzNDU2Nw==
+YWRtaW46ZHJhZ29u
+root@kali:/opt/TryHackMe/convertmyvideo# for i in `cat sugo1000.txt`; do echo -n $i | base64 >> sugo1000base64.txt ; done

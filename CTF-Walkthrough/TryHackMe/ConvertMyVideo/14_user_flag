@@ -1,0 +1,7 @@
+www-data@dmv:/var/www/html/admin$ cat flag.txt
+cat flag.txt
+flag{0d8486a0c0c42503bb60ac77f4046ed7}
+www-data@dmv:/var/www/html/admin$ cat .htpasswd
+cat .htpasswd
+itsmeadmin:$apr1$tbcm2uwv$UP1ylvgp4.zLKxWj8mc6y/
+

@@ -1,0 +1,4 @@
+/images (Status: 301)
+/admin (Status: 401)
+/js (Status: 301)
+/tmp (Status: 301)
