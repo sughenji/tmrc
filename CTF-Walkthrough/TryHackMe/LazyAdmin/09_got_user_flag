@@ -1,0 +1,19 @@
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+www-data@THM-Chal:/$
+
+www-data@THM-Chal:/$
+
+www-data@THM-Chal:/$ cd /home
+cd /home
+www-data@THM-Chal:/home$ ls
+ls
+itguy
+www-data@THM-Chal:/home$ cd itguy
+cd itguy
+www-data@THM-Chal:/home/itguy$ ls
+ls
+Desktop    Downloads  Pictures  Templates  backup.pl         mysql_login.txt
+Documents  Music      Public    Videos     examples.desktop  user.txt
+www-data@THM-Chal:/home/itguy$ cat user.txt
+cat user.txt
+THM{63e5bce9271952aad1113b6f1ac28a07}

