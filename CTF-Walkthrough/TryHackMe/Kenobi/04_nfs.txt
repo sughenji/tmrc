@@ -1,0 +1,48 @@
+root@kali:/opt/TryHackMe/kenobi# nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.104.17
+Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-29 22:45 CET
+Nmap scan report for 10.10.104.17
+Host is up (0.066s latency).
+
+PORT    STATE SERVICE
+111/tcp open  rpcbind
+| nfs-ls: Volume /var
+|   access: Read Lookup NoModify NoExtend NoDelete NoExecute
+| PERMISSION  UID  GID  SIZE  TIME                 FILENAME
+| rwxr-xr-x   0    0    4096  2019-09-04T08:53:24  .
+| rwxr-xr-x   0    0    4096  2019-09-04T12:27:33  ..
+| rwxr-xr-x   0    0    4096  2019-09-04T12:09:49  backups
+| rwxr-xr-x   0    0    4096  2019-09-04T10:37:44  cache
+| rwxrwxrwt   0    0    4096  2019-09-04T08:43:56  crash
+| rwxrwsr-x   0    50   4096  2016-04-12T20:14:23  local
+| rwxrwxrwx   0    0    9     2019-09-04T08:41:33  lock
+| rwxrwxr-x   0    108  4096  2019-09-04T10:37:44  log
+| rwxr-xr-x   0    0    4096  2019-01-29T23:27:41  snap
+| rwxr-xr-x   0    0    4096  2019-09-04T08:53:24  www
+|_
+| nfs-showmount:
+|_  /var *
+| nfs-statfs:
+|   Filesystem  1K-blocks  Used       Available  Use%  Maxfilesize  Maxlink
+|_  /var        9204224.0  1836536.0  6877092.0  22%   16.0T        32000
+
+Nmap done: 1 IP address (1 host up) scanned in 3.25 seconds
+root@kali:/opt/TryHackMe/kenobi# mkdir /mnt/nfs
+mkdir: cannot create directory ‘/mnt/nfs’: File exists
+root@kali:/opt/TryHackMe/kenobi# mount -t nfs 10.10.104.17:/var /mnt/nfs/
+root@kali:/opt/TryHackMe/kenobi# cd /mnt/nfs/
+root@kali:/mnt/nfs# ls -l
+total 48
+drwxr-xr-x  2 root root    4096 Sep  4  2019 backups
+drwxr-xr-x  9 root root    4096 Sep  4  2019 cache
+drwxrwxrwt  2 root root    4096 Sep  4  2019 crash
+drwxr-xr-x 40 root root    4096 Sep  4  2019 lib
+drwxrwsr-x  2 root staff   4096 Apr 12  2016 local
+lrwxrwxrwx  1 root root       9 Sep  4  2019 lock -> /run/lock
+drwxrwxr-x 10 root crontab 4096 Sep  4  2019 log
+drwxrwsr-x  2 root mail    4096 Feb 27  2019 mail
+drwxr-xr-x  2 root root    4096 Feb 27  2019 opt
+lrwxrwxrwx  1 root root       4 Sep  4  2019 run -> /run
+drwxr-xr-x  2 root root    4096 Jan 30  2019 snap
+drwxr-xr-x  5 root root    4096 Sep  4  2019 spool
+drwxrwxrwt  6 root root    4096 Dec 29 22:26 tmp
+drwxr-xr-x  3 root root    4096 Sep  4  2019 www

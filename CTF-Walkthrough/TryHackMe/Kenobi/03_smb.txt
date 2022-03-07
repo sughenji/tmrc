@@ -1,0 +1,23 @@
+root@kali:/opt/TryHackMe/kenobi# smbclient -L \\10.10.104.17\
+>
+Enter WORKGROUP\root's password:
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        print$          Disk      Printer Drivers
+        anonymous       Disk
+        IPC$            IPC       IPC Service (kenobi server (Samba, Ubuntu))
+Reconnecting with SMB1 for workgroup listing.
+
+        Server               Comment
+        ---------            -------
+
+        Workgroup            Master
+        ---------            -------
+        WORKGROUP            KENOBI
+root@kali:/opt/TryHackMe/kenobi# mkdir /mnt/smb
+root@kali:/opt/TryHackMe/kenobi# mount -t cifs \\\\10.10.104.17\\anonymous /mnt/smb/
+🔐 Password for root@\\10.10.104.17\anonymous:
+root@kali:/opt/TryHackMe/kenobi# cd /mnt/smb/
+root@kali:/mnt/smb# ls
+log.txt
