@@ -120,6 +120,4 @@ https://observatory.mozilla.org/
 
 https://firstsiteguide.com/wordpress-security-online-scanner/
 
-
-
-
+https://wpsec.com/
