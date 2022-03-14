@@ -55,6 +55,8 @@ WinPmem (RAM dump) https://github.com/Velocidex/WinPmem
 
 Event Log Explorer https://eventlogxp.com/
 
+Orochi https://github.com/LDO-CERT/orochi
+
 ## Specific info on system
 
 ### OS version:
