@@ -57,6 +57,10 @@ Event Log Explorer https://eventlogxp.com/
 
 Orochi https://github.com/LDO-CERT/orochi
 
+srum-dump https://github.com/MarkBaggett/srum-dump
+
+RDP-Parser https://le-tools.com/RDP-Parser.html
+
 ## Specific info on system
 
 ### OS version:
@@ -140,6 +144,12 @@ rif. https://www.microsoft.com/security/blog/2008/05/07/what-is-a-windows-live-i
 #### UserAssist 
 
 `NTUSER.DAT\Software\Microsoft\Windows\Currentversion\Explorer\UserAssist\{GUID}\Count`
+
+Other resources:
+
+https://blog.didierstevens.com/programs/userassist/
+
+https://www.nirsoft.net/utils/userassist_view.html
 
 #### ShimCache:
 

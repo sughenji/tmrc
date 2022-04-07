@@ -1,10 +1,19 @@
 # Wireshark cheat sheet
 
+- [List interfaces](#list-interfaces)
+- [Capture and ring buffer](#capture-and-ring-buffer)
+- [Conversation filter](#conversation-filter)
+- [Search for string](#search-for-string)
+- [Resolved address](#resolved-address)
+- [IP alias](#ip-alias)
+- [Delta time](#delta-time)
+- [Sample capture](#sample-capture)
+
 Some useful tips from Chris Greer Masterclass https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ and more!
 
 
 
-- list interfaces
+## List interfaces
 
 ```
 C:\Users\sugo>dumpcap -D
@@ -18,12 +27,17 @@ C:\Users\sugo>dumpcap -D
 8. \Device\NPF_{BD559BFB-A75F-41DA-BE84-DC44533A7B34} (Connessione alla rete locale (LAN))
 ```
 
-- start collecting traffic in some folder, with some ring buffer of specified size:
+## Capture and ring buffer
+
+start collecting traffic in some folder, with some ring buffer of specified size:
 
 ```
 C:\Users\sugo>dumpcap -i 5 -w d:\wireshark_capture\test.pcapng -b filesize:500000 -b files:10
 ```
-- conversation filter (between two IPs)
+
+## Conversation filter
+
+conversation filter (between two IPs)
 
 ![filter1](https://user-images.githubusercontent.com/42389836/150690077-f47711a5-c127-496b-9630-518ba00417bb.JPG)
 
@@ -45,7 +59,7 @@ Port can be one of...:
 tcp.port in {80 443 8080}
 ```
 
-- Search for string
+## Search for string
 
 This is case sensitive:
 
@@ -59,15 +73,22 @@ This is case insensitive:
 frame matches google
 ```
 
-- Resolved addresses
+## Resolved addresses
 
 Statistics -> resolved addresses -> Host
 
-- How to assign a descriptive name to a private address:
+## IP alias
+How to assign a descriptive name to a private address:
 
 
 ![dns1](https://user-images.githubusercontent.com/42389836/150691352-62c1cbb0-ffc9-4353-bf77-bdd1dd9f4d0d.JPG)
 
-- View delta time in context (in same TCP stream)
+## Delta time
+
+View delta time in context (in same TCP stream)
 
 ![streamtcp](https://user-images.githubusercontent.com/42389836/151020481-6817afba-c0a6-46a1-b0ec-d1c9aacddfa9.JPG)
+
+## Sample capture
+
+https://gitlab.com/wireshark/wireshark/-/wikis/SampleCaptures
