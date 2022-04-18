@@ -61,6 +61,24 @@ srum-dump https://github.com/MarkBaggett/srum-dump
 
 RDP-Parser https://le-tools.com/RDP-Parser.html
 
+## Network Forensic Tool
+
+Network Miner
+
+Scalpel
+
+Hands on:
+
+https://www.malware-traffic-analysis.net/
+
+https://cyberdefenders.org/
+
+
+
+## Online Resources
+
+https://www.garykessler.net/library/file_sigs.html
+
 ## Specific info on system
 
 ### OS version:
