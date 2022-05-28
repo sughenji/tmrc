@@ -1,4 +1,4 @@
-# Networ Traffic Analysis
+# Network Traffic Analysis
 
 ## Eternalblue
 
@@ -50,7 +50,7 @@ Look for no recognized vendor in mac address
 
 Look for old TLS version traffic (like 1.0)
 
-## General infos on host
+## General info on host
 
 Look for DHCP option (12) hostname to get an idea of what kind of device is - filter: dhcp.option.hostname
 
