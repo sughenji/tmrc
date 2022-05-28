@@ -41,3 +41,21 @@ Hex: `FF 53 4D 42 33 00 00 00 00`
 ## Emotet
 
 https://feodotracker.abuse.ch/browse/emotet/
+
+## Looking for malware activity
+
+Look for no user-agent
+
+Look for no recognized vendor in mac address
+
+Look for old TLS version traffic (like 1.0)
+
+## General infos on host
+
+Look for DHCP option (12) hostname to get an idea of what kind of device is - filter: dhcp.option.hostname
+
+Look for nbns traffic to see registration (-> hostname)
+
+Look for kerberos traffic (tcp.port==88) to determine username or kerberos.CNameString (will reveal hostname AND user account)
+
+Look for useragent to get an idea of OS
