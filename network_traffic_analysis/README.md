@@ -37,3 +37,7 @@ Hex: `FF 53 4D 42 33 00 00 00 00`
 
 
 ![filter2](https://user-images.githubusercontent.com/42389836/163867765-529c8bf4-6a7e-4bca-86ea-598cb189d7b0.JPG)
+
+## Emotet
+
+https://feodotracker.abuse.ch/browse/emotet/
