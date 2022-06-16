@@ -61,6 +61,8 @@ srum-dump https://github.com/MarkBaggett/srum-dump
 
 RDP-Parser https://le-tools.com/RDP-Parser.html
 
+Forensicator: https://hakin9.org/live-forensicator-powershell-script-to-aid-incidence-response-and-live-forensics/
+
 ## Network Forensic Tool
 
 Network Miner
