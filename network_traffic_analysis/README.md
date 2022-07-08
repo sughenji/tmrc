@@ -59,3 +59,12 @@ Look for nbns traffic to see registration (-> hostname)
 Look for kerberos traffic (tcp.port==88) to determine username or kerberos.CNameString (will reveal hostname AND user account)
 
 Look for useragent to get an idea of OS
+
+## Tshark-fu
+
+```
+tshark -r traffic.pcap -T fields -e ip.src -e dns.qry.name -2R "dns.flags.response eq 0" | awk -F" " '{ print $2 }' | sort -u
+tshark -r traffic.pcap -q -z endpoints,tcp
+tshark -r traffic.pcap -Y ntlmssp.auth.username -V -x | ack -i 'Response:|user|dns'
+```
+
