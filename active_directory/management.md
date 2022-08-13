@@ -1,18 +1,80 @@
 # management
 
+Returns all commands that contains `session`:
+
+```
+PS C:\Users\sugo> get-command -noun pssession
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Connect-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Disconnect-PSSession                               3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Enter-PSSession                                    3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Exit-PSSession                                     3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Export-PSSession                                   3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Get-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Import-PSSession                                   3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          New-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Receive-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Remove-PSSession                                   3.0.0.0    Microsoft.PowerShell.Core
+
+
+PS C:\Users\sugo>
+```
+
 Enable PsRemoting
 
 ```
 Enable-PSRemoting (-Force)
 ```
 
-check if PsRemoting is enabled:
+This will spawn WinRM service (port 5985/tcp).
+
+To check if PsRemoting is enabled:
 
 ```
 Enter-PSSession -ComputerName localhost
 ```
 
 it works? :)
+
+Create PSSession with our DC:
+
+```
+$dc = New-PSSession 10.0.2.19 -Credential (Get-Credential)
+```
+
+Copy a file through PSSession:
+
+```
+Copy-Item .\file.txt -ToSession $dc c:\windows\tasks
+```
+
+
+# Create usernames
+
+```
+PS C:\Users\sugo> $name = "Francesco Politi"
+PS C:\Users\sugo> echo $name
+Francesco Politi
+PS C:\Users\sugo> $name[0]
+F
+PS C:\Users\sugo> $name[0] + $name.split(" ")
+FFrancesco Politi
+PS C:\Users\sugo> $name[0] + $name.split(" ")[1]
+FPoliti
+PS C:\Users\sugo> $name[0] + $name.split(" ")[1].tolower()
+Fpoliti
+PS C:\Users\sugo> ($name[0] + $name.split(" ")[1]).tolower()
+fpoliti
+PS C:\Users\sugo>
+```
+
+# Export security policy settings
+
+```
+secedit /export /cfg c:\Windows\Tasks\secpol.cfg
+```
 
 
 
