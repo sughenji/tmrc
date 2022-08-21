@@ -1,6 +1,6 @@
 # management
 
-Returns all commands that contains `session`:
+## Returns all commands that contains `session`:
 
 ```
 PS C:\Users\sugo> get-command -noun pssession
@@ -22,7 +22,7 @@ Cmdlet          Remove-PSSession                                   3.0.0.0    Mi
 PS C:\Users\sugo>
 ```
 
-Enable PsRemoting
+## Enable PsRemoting
 
 ```
 Enable-PSRemoting (-Force)
@@ -38,7 +38,7 @@ Enter-PSSession -ComputerName localhost
 
 it works? :)
 
-Create PSSession with our DC:
+## Create PSSession with our DC:
 
 ```
 $dc = New-PSSession 10.0.2.19 -Credential (Get-Credential)
@@ -50,8 +50,38 @@ Copy a file through PSSession:
 Copy-Item .\file.txt -ToSession $dc c:\windows\tasks
 ```
 
+## Create PSSession and get credentials through CLI (no GUI)
 
-# Create usernames
+rif. https://devblogs.microsoft.com/powershell/getting-credentials-from-the-command-line/
+
+```
+PS C:\Users\local_admin\Documents> $key = "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds"
+PS C:\Users\local_admin\Documents> Set-ItemProperty $key ConsolePrompting True
+PS C:\Users\local_admin\Documents> New-PSSession 10.0.2.19 -Credential (get-credential)
+
+PS C:\Users\local_admin\Documents> New-PSSession 10.0.2.19 -Credential (get-credential)
+
+cmdlet Get-Credential at command pipeline position 1
+Supply values for the following parameters:
+Credential
+User: xyz.com\administrator
+Password for user xyz.com\administrator: ************
+
+
+ Id Name            ComputerName    ComputerType    State         ConfigurationName     Availability
+ -- ----            ------------    ------------    -----         -----------------     ------------
+  2 WinRM2          10.0.2.19       RemoteMachine   Opened        Microsoft.PowerShell     Available
+
+
+PS C:\Users\local_admin\Documents> hostname
+DESKTOP-CRO0797
+PS C:\Users\local_admin\Documents> Enter-PSSession 2
+[10.0.2.19]: PS C:\Users\Administrator\Documents> hostname
+DC1
+[10.0.2.19]: PS C:\Users\Administrator\Documents>
+```
+
+## Create usernames
 
 ```
 PS C:\Users\sugo> $name = "Francesco Politi"
@@ -70,7 +100,7 @@ fpoliti
 PS C:\Users\sugo>
 ```
 
-# Export security policy settings
+## Export security policy settings
 
 ```
 secedit /export /cfg c:\Windows\Tasks\secpol.cfg

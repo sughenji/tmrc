@@ -59,7 +59,13 @@ KAPE https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-s
 
 Autopsy https://www.autopsy.com/
 
-FTK Imager https://www.exterro.com/ftk-imager
+FTK Imager https://www.exterro.com/ftk-imager https://accessdata.com/product-download/ftk-imager-version-4-2-0
+
+Redline https://fireeye.market/apps/211364
+
+DumpIt.exe
+
+win32dd.exe / win64dd.exe 
 
 AccessData's Registry Viewer https://accessdata.com/product-download/registry-viewer-2-0-0
 
