@@ -1,12 +1,21 @@
 # Forensic
 
-## Obtain memory information
+- [Collect memory](#collect-memory)
+- [Volatility](#volatility)
+	- [Useful links](#useful-links)
+	- [Instalation](#installation)
+	- [Profile](#profile)
+	- [Pslist](#pslist)
+
+## Collect memory
 
 FTK Imager 
 
-## Memory analysis
+LiME
 
-### Volatility
+## Volatility
+
+# useful links
 
 https://github.com/volatilityfoundation/volatility/wiki/Installation
 
@@ -17,6 +26,8 @@ https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-m
 Followed this to install on Kali:
 
 https://seanthegeek.net/1172/how-to-install-volatility-2-and-volatility-3-on-debian-ubuntu-or-kali-linux/
+
+# Installation
 
 ```
 sudo apt install -y build-essential git libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata
@@ -30,6 +41,10 @@ sudo python2 -m pip install yara
 sudo ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
 python2 -m pip install -U git+https://github.com/volatilityfoundation/volatility.git
 ```
+
+# Profile
+
+# Pslist
 
 Es.
 
