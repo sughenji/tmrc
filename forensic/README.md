@@ -5,7 +5,11 @@
 	- [Useful links](#useful-links)
 	- [Instalation](#installation)
 	- [Profile](#profile)
+      	- [Credentials](#credentials)
+	- [Last shutdown](#last-shutdown)
 	- [Pslist](#pslist)
+	- [cmd history](#cmd-history)
+	- [Truecrypt](#truecrypt)
 
 ## Collect memory
 
@@ -22,6 +26,8 @@ https://github.com/volatilityfoundation/volatility/wiki/Installation
 https://github.com/volatilityfoundation/volatility/wiki
 
 https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-methodology/memory-dump-analysis/volatility-examples
+
+https://heisenberk.github.io/Profile-Memory-Dump/
 
 Followed this to install on Kali:
 
@@ -43,6 +49,50 @@ python2 -m pip install -U git+https://github.com/volatilityfoundation/volatility
 ```
 
 # Profile
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py -f Snapshot6.vmem imageinfo
+```
+
+# Credentials
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot6.vmem hashdump
+Volatility Foundation Volatility Framework 2.6.1
+*** Failed to import volatility.plugins.malware.apihooks (NameError: name 'distorm3' is not defined)
+*** Failed to import volatility.plugins.malware.threads (NameError: name 'distorm3' is not defined)
+*** Failed to import volatility.plugins.mac.apihooks_kernel (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
+*** Failed to import volatility.plugins.mac.check_syscall_shadow (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
+*** Failed to import volatility.plugins.ssdt (NameError: name 'distorm3' is not defined)
+*** Failed to import volatility.plugins.mac.apihooks (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+John:1001:aad3b435b51404eeaad3b435b51404ee:47fbd6536d7868c873d5ea455f2fc0c9:::
+HomeGroupUser$:1002:aad3b435b51404eeaad3b435b51404ee:91c34c06b7988e216c3bfeb9530cabfb:::
+```
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ hashcat -m 1000 '47fbd6536d7868c873d5ea455f2fc0c9' /usr/share/wordlists/rockyou.txt
+```
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ hashcat -m 1000 '47fbd6536d7868c873d5ea455f2fc0c9' --show
+47fbd6536d7868c873d5ea455f2fc0c9:charmander999
+```
+
+# Last shutdown
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot19.vmem shutdowntime
+Volatility Foundation Volatility Framework 2.6.1
+Registry: SYSTEM
+Key Path: ControlSet001\Control\Windows
+Key Last updated: 2020-12-27 22:50:12 UTC+0000
+Value Name: ShutdownTime
+Value: 2020-12-27 22:50:12 UTC+0000
+```
+
+
 
 # Pslist
 
@@ -78,4 +128,19 @@ Offset(V)  Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Star
 0x8205bda0 wuauclt.exe            1588   1004      5      132      0      0 2012-07-22 02:44:01 UTC+0000
 ```
 
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot19.vmem pslist
+```
+
+# CMD history
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot19.vmem cmdscan
+```
+
+# Truecrypt
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem truecryptpassphrase
+```
 
