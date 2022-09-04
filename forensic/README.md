@@ -5,17 +5,32 @@
 	- [Useful links](#useful-links)
 	- [Instalation](#installation)
 	- [Profile](#profile)
+	- [Envars](#envars)
+	- [Hostname](#hostname)
+	- [SIDs](#sids)
       	- [Credentials](#credentials)
 	- [Last shutdown](#last-shutdown)
 	- [Pslist](#pslist)
+	- [Command arguments](#command-arguments)
+	- [Offset](#offset)
 	- [cmd history](#cmd-history)
 	- [Truecrypt](#truecrypt)
+	- [DLL list](#dll-list)
+	- [Connections](#connections)
 
 ## Collect memory
 
 FTK Imager 
 
 LiME
+
+```
+apt install lime-forensics-dkms/jammy
+cd /lib/modules/5.15.0-43-generic/updates/dkms/
+insmod ./lime.ko "path=/tmp/image format=lime"
+```
+
+(this will create an image of current RAM in `/tmp/image`)
 
 ## Volatility
 
@@ -54,17 +69,59 @@ python2 -m pip install -U git+https://github.com/volatilityfoundation/volatility
 joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py -f Snapshot6.vmem imageinfo
 ```
 
+# Envars
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem envars
+```
+
+# Hostname
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem envars |grep COMPUTERNAME
+Volatility Foundation Volatility Framework 2.6.1
+     408 wininit.exe          0x0000000000149660 COMPUTERNAME                   JOHN-PC
+     464 winlogon.exe         0x000000000021def0 COMPUTERNAME                   JOHN-PC
+     508 services.exe         0x00000000002b1320 COMPUTERNAME                   JOHN-PC
+..
+..
+```	
+
+# SIDs
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem getsids
+Volatility Foundation Volatility Framework 2.6.1
+System (4): S-1-5-18 (Local System)
+System (4): S-1-5-32-544 (Administrators)
+System (4): S-1-1-0 (Everyone)
+System (4): S-1-5-11 (Authenticated Users)
+System (4): S-1-16-16384 (System Mandatory Level)
+smss.exe (264): S-1-5-18 (Local System)
+smss.exe (264): S-1-5-32-544 (Administrators)
+smss.exe (264): S-1-1-0 (Everyone)
+smss.exe (264): S-1-5-11 (Authenticated Users)
+smss.exe (264): S-1-16-16384 (System Mandatory Level)
+csrss.exe (356): S-1-5-18 (Local System)
+csrss.exe (356): S-1-5-32-544 (Administrators)
+csrss.exe (356): S-1-1-0 (Everyone)
+csrss.exe (356): S-1-5-11 (Authenticated Users)
+csrss.exe (356): S-1-16-16384 (System Mandatory Level)
+wininit.exe (408): S-1-5-18 (Local System)
+wininit.exe (408): S-1-5-32-544 (Administrators)
+wininit.exe (408): S-1-1-0 (Everyone)
+wininit.exe (408): S-1-5-11 (Authenticated Users)
+wininit.exe (408): S-1-16-16384 (System Mandatory Level)
+..
+..
+```
+
+
 # Credentials
 
 ```
 joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot6.vmem hashdump
 Volatility Foundation Volatility Framework 2.6.1
-*** Failed to import volatility.plugins.malware.apihooks (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.malware.threads (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.mac.apihooks_kernel (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
-*** Failed to import volatility.plugins.mac.check_syscall_shadow (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
-*** Failed to import volatility.plugins.ssdt (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.mac.apihooks (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 John:1001:aad3b435b51404eeaad3b435b51404ee:47fbd6536d7868c873d5ea455f2fc0c9:::
@@ -101,12 +158,6 @@ Es.
 ```
 joshua@kaligra:~/Documents/thm/volatility$ vol.py  -f cridex.vmem --profile WinXPSP2x86 pslist
 Volatility Foundation Volatility Framework 2.6.1
-*** Failed to import volatility.plugins.malware.apihooks (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.malware.threads (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.mac.apihooks_kernel (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
-*** Failed to import volatility.plugins.mac.check_syscall_shadow (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
-*** Failed to import volatility.plugins.ssdt (NameError: name 'distorm3' is not defined)
-*** Failed to import volatility.plugins.mac.apihooks (ImportError: Error loading the diStorm dynamic library (or cannot load library into process).)
 Offset(V)  Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit
 ---------- -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------
 0x823c89c8 System                    4      0     53      240 ------      0
@@ -132,6 +183,30 @@ Offset(V)  Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Star
 joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot19.vmem pslist
 ```
 
+# Command arguments
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem cmdline -p 2192
+Volatility Foundation Volatility Framework 2.6.1
+************************************************************************
+SearchIndexer. pid:   2192
+Command line : C:\Windows\system32\SearchIndexer.exe /Embedding
+```
+
+# Offset
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem pslist -p 1904
+Volatility Foundation Volatility Framework 2.6.1
+Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------
+0xfffffa80052c2b30 TrueCrypt.exe          1904   1180     14      268      1      1 2020-12-27 13:39:50 UTC+0000
+```
+
+Answer: `0xfffffa80052c2b30`
+
+
+
 # CMD history
 
 ```
@@ -142,5 +217,35 @@ joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f S
 
 ```
 joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem truecryptpassphrase
+```
+
+# DLL list
+
+```
+joshua@kaligra:~/Documents/thm/memoryforensics$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem dlllist -p 1904
+Volatility Foundation Volatility Framework 2.6.1
+************************************************************************
+TrueCrypt.exe pid:   1904
+Command line : "C:\Program Files\TrueCrypt\TrueCrypt.exe"
+
+
+Base                             Size          LoadCount LoadTime                       Path
+------------------ ------------------ ------------------ ------------------------------ ----
+0x0000000000400000           0x1a2000             0xffff 1970-01-01 00:00:00 UTC+0000   C:\Program Files\TrueCrypt\TrueCrypt.exe
+0x00000000778a0000           0x1a9000             0xffff 1970-01-01 00:00:00 UTC+0000   C:\Windows\SYSTEM32\ntdll.dll
+0x00000000752c0000            0x3f000                0x3 2020-12-27 13:39:50 UTC+0000   C:\Windows\SYSTEM32\wow64.dll
+0x0000000075260000            0x5c000                0x1 2020-12-27 13:39:50 UTC+0000   C:\Windows\SYSTEM32\wow64win.dll
+0x0000000075250000             0x8000                0x1 2020-12-27 13:39:50 UTC+0000   C:\Windows\SYSTEM32\wow64cpu.dll
+0x0000000000400000           0x1a2000             0xffff 1970-01-01 00:00:00 UTC+0000   C:\Program Files\TrueCrypt\TrueCrypt.exe
+0x0000000077a80000           0x180000             0xffff 1970-01-01 00:00:00 UTC+0000   C:\Windows\SysWOW64\ntdll.dll
+0x0000000075910000           0x110000             0xffff 2020-12-27 13:39:50 UTC+0000   C:\Windows\syswow64\kernel32.dll
+..
+..
+```
+
+# Connections
+
+```
+$ vol.py --profile Win7SP1x64 -f Snapshot14.vmem netscan
 ```
 

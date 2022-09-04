@@ -38,6 +38,19 @@ Enter-PSSession -ComputerName localhost
 
 it works? :)
 
+Check if there are TrustedHosts:
+
+```
+get-item wsman:\localhost\client\trustedhosts
+```
+
+Add a trustedhost:
+
+```
+set-item wsman:\localhost\client\trustedhosts -Value 192.168.111.43
+```
+
+
 ## Create PSSession with our DC:
 
 ```
@@ -106,5 +119,16 @@ PS C:\Users\sugo>
 secedit /export /cfg c:\Windows\Tasks\secpol.cfg
 ```
 
+## Rename Computer
 
+```
+Rename-Computer "ws01" -DomainCredential (Get-Credential)
+```
 
+## Execute script on remote target
+
+```
+Invoke-Command -Computer ws01 -ScriptBlock { whoami }
+```
+
+## 
