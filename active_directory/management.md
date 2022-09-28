@@ -113,6 +113,62 @@ fpoliti
 PS C:\Users\sugo>
 ```
 
+## Create users from Excel
+
+```
+# Generate not so complex random passwords
+# credits: https://activedirectoryfaq.com/2017/08/creating-individual-random-passwords/
+
+function Get-RandomCharacters($length, $characters) {
+    $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
+    $private:ofs=""
+    return [String]$characters[$random]
+}
+
+function Scramble-String([string]$inputString){     
+    $characterArray = $inputString.ToCharArray()   
+    $scrambledStringArray = $characterArray | Get-Random -Count $characterArray.Length     
+    $outputString = -join $scrambledStringArray
+    return $outputString 
+}
+
+# Check if Import-Excel module is installed
+if (Get-InstalledModule | Where-Object {$_.Name -eq "ImportExcel" }) {
+        write-host "Ok, module Import-Excel is already imported.`n"
+    }
+else {
+    Write-Host "Please run first: Install-Module ImportExcel -scope currentuser"
+    EXIT 1
+}
+
+$ExcelUsersFile = $args[0]
+$Domain = $args[1]
+
+$operators = Import-Excel $ExcelUsersFile -HeaderName "Nome", "Cognome" -StartRow 2
+
+foreach ($user in $operators) { 
+	$password = Get-RandomCharacters -length 7 -characters 'abcdefghiklmnoprstuvwxyz'
+	$password += Get-RandomCharacters -length 1 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ'
+	$password += Get-RandomCharacters -length 1 -characters '1234567890'
+	$password += Get-RandomCharacters -length 1 -characters '!$%?@#+'
+	$password = Scramble-String $password	
+	
+	Write-Output "Nome: $($user."Nome")" >> .\$Domain-log.txt
+	Write-Output "Cognome: $($user."Cognome")" >> .\$Domain-log.txt
+	$username = (($user."Nome")[0]+"."+($user."Cognome").replace("'", "").replace(" ","")).tolower()
+    Write-Output "[*] Creating User... $($user."Nome") $($user."Cognome")" 
+	Write-Output "Username: $username" >> .\$Domain-log.txt
+	Write-Output "Password: $password`n" >> .\$Domain-log.txt
+	Write-Output "`n"
+    $secpassword = ConvertTo-SecureString -String $password -AsPlainText -Force
+    New-ADUser -SamAccountName $username -UserPrincipalName $username@$Domain -GivenName $($user."Nome") -SurName $($user."Cognome") -Name "$($user."Nome") $($user."Cognome")" -DisplayName "$($user."Nome") $($user."Cognome")"-AccountPassword $secpassword -Enabled $true -ChangePasswordAtLogon $true
+    Write-Output "User $($user."Nome") $($user."Cognome") successfully created!`n"
+}
+Write-Output "Please check $domain-log.txt file for details.`n"
+
+```
+
+
 ## Export security policy settings
 
 ```
@@ -131,4 +187,17 @@ Rename-Computer "ws01" -DomainCredential (Get-Credential)
 Invoke-Command -Computer ws01 -ScriptBlock { whoami }
 ```
 
-## 
+## Mount share with powershell
+
+```
+PS C:\> $username = 'sugo'
+PS C:\> $password = 'Password!'
+PS C:\> $secpassword = ConvertTo-SecureString $password -AsPlainText -Force
+PS C:\> $cred = New-Object System.Management.Automation.PSCredential $username, $secpassword
+PS C:\> New-PSDrive -Name "Z" -Root "\\10.0.2.200\Finance" -PSProvider "FileSystem" -Credential $cred
+
+Name           Used (GB)     Free (GB) Provider      Root                                                              CurrentLocation
+----           ---------     --------- --------      ----                                                              ---------------
+Z                                      FileSystem    \\10.0.2.200\Finance
+```
+

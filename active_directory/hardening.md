@@ -19,4 +19,6 @@
 
 - check if you have user with LM hashes
 
+- disable Always Elevated Installer
+
 
