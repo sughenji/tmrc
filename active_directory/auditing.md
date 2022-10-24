@@ -6,6 +6,7 @@
 	- [Group3r](#group3r)
 	- [ADRecon](#adrecon)
 	- [Purple-Knight](#purple-knight)
+	- [Lepide](#lepide)
 
 # tools
 
@@ -101,3 +102,7 @@ PS C:\Tools\ADRecon> .\ADRecon.ps1
 ## Purple-Knight
 
 https://www.purple-knight.com/
+
+## Lepide
+
+https://www.lepide.com/

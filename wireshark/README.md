@@ -2,6 +2,7 @@
 
 - [List interfaces](#list-interfaces)
 - [Capture and ring buffer](#capture-and-ring-buffer)
+- [Capture with tshark](#capture-with-tshark)
 - [Conversation filter](#conversation-filter)
 - [Search for string](#search-for-string)
 - [Resolved address](#resolved-address)
@@ -34,6 +35,13 @@ start collecting traffic in some folder, with some ring buffer of specified size
 ```
 C:\Users\sugo>dumpcap -i 5 -w d:\wireshark_capture\test.pcapng -b filesize:500000 -b files:10
 ```
+
+## Capture with tshark
+
+```
+tshark.exe -b interval:3600 -b files:48 -f "port 53" -i Ethernet0 -w c:\users\sugo\desktop\traffic.pcapng
+```
+
 
 ## Conversation filter
 
