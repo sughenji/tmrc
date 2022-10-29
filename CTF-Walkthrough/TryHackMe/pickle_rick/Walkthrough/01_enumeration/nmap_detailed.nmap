@@ -1,0 +1,11 @@
+# Nmap 7.93 scan initiated Sat Oct 29 11:46:48 2022 as: nmap -T4 -Pn -p80 -sC -sV -oA nmap_detailed 10.10.104.194
+Nmap scan report for 10.10.104.194
+Host is up (0.054s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Rick is sup4r cool
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Oct 29 11:46:57 2022 -- 1 IP address (1 host up) scanned in 9.05 seconds

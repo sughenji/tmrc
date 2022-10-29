@@ -17,3 +17,11 @@ Remember to save output with `-oA`.
 Later on you can use this tool to generate spreadsheet documents:
 
 https://github.com/NetsecExplained/Nmap-XML-to-CSV
+
+Open Excel, Data, import "From text/CSV"
+
+N.B. if IP addresses aren't showing correctly, select "non rilevare tipi di dati" during CSV import.
+
+
+
+

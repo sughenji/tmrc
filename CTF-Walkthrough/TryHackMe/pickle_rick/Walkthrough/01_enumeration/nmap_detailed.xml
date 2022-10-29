@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Oct 29 11:46:48 2022 as: nmap -T4 -Pn -p80 -sC -sV -oA nmap_detailed 10.10.104.194 -->
+<nmaprun scanner="nmap" args="nmap -T4 -Pn -p80 -sC -sV -oA nmap_detailed 10.10.104.194" start="1667036808" startstr="Sat Oct 29 11:46:48 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1667036809" endtime="1667036817"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.104.194" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.18" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.18</cpe></service><script id="http-server-header" output="Apache/2.4.18 (Ubuntu)"><elem>Apache/2.4.18 (Ubuntu)</elem>
+</script><script id="http-title" output="Rick is sup4r cool"><elem key="title">Rick is sup4r cool</elem>
+</script></port>
+</ports>
+<times srtt="53600" rttvar="53600" to="268000"/>
+</host>
+<runstats><finished time="1667036817" timestr="Sat Oct 29 11:46:57 2022" summary="Nmap done at Sat Oct 29 11:46:57 2022; 1 IP address (1 host up) scanned in 9.05 seconds" elapsed="9.05" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
