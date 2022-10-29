@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Oct 29 16:15:51 2022 as: nmap -T4 -p21,80 -sC -sV -oA nmap_advanced 10.0.2.21 -->
+<nmaprun scanner="nmap" args="nmap -T4 -p21,80 -sC -sV -oA nmap_advanced 10.0.2.21" start="1667052951" startstr="Sat Oct 29 16:15:51 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="21,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.0.2.21" addrtype="ipv4"/>
+<address addr="08:00:27:90:AA:96" addrtype="mac" vendor="Oracle VirtualBox virtual NIC"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1667052951" endtime="1667052958"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.0.2.21" addrtype="ipv4"/>
+<address addr="08:00:27:90:AA:96" addrtype="mac" vendor="Oracle VirtualBox virtual NIC"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="vsftpd" version="2.3.5" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:2.3.5</cpe></service><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to 10.0.2.8&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 2.3.5 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to 10.0.2.8&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 2.3.5 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;drwxr-xr-x    2 65534    65534        4096 Mar 03  2018 public"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.2.22" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.22</cpe></service><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-robots.txt" output="1 disallowed entry &#xa;/backup_wordpress"/><script id="http-server-header" output="Apache/2.2.22 (Ubuntu)"><elem>Apache/2.2.22 (Ubuntu)</elem>
+</script></port>
+</ports>
+<times srtt="1837" rttvar="3190" to="100000"/>
+</host>
+<runstats><finished time="1667052958" timestr="Sat Oct 29 16:15:58 2022" summary="Nmap done at Sat Oct 29 16:15:58 2022; 1 IP address (1 host up) scanned in 6.99 seconds" elapsed="6.99" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

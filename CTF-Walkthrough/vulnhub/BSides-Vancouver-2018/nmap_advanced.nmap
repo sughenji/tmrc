@@ -1,0 +1,31 @@
+# Nmap 7.93 scan initiated Sat Oct 29 16:15:51 2022 as: nmap -T4 -p21,80 -sC -sV -oA nmap_advanced 10.0.2.21
+Nmap scan report for 10.0.2.21
+Host is up (0.0018s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 2.3.5
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 10.0.2.8
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 2.3.5 - secure, fast, stable
+|_End of status
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxr-xr-x    2 65534    65534        4096 Mar 03  2018 public
+80/tcp open  http    Apache httpd 2.2.22 ((Ubuntu))
+|_http-title: Site doesn't have a title (text/html).
+| http-robots.txt: 1 disallowed entry 
+|_/backup_wordpress
+|_http-server-header: Apache/2.2.22 (Ubuntu)
+MAC Address: 08:00:27:90:AA:96 (Oracle VirtualBox virtual NIC)
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Oct 29 16:15:58 2022 -- 1 IP address (1 host up) scanned in 6.99 seconds

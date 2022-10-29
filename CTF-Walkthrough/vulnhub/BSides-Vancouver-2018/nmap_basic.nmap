@@ -1,0 +1,11 @@
+# Nmap 7.93 scan initiated Sat Oct 29 16:15:08 2022 as: nmap -T4 -p- -oA nmap_basic 10.0.2.21
+Nmap scan report for 10.0.2.21
+Host is up (0.00090s latency).
+Not shown: 65532 closed tcp ports (reset)
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 08:00:27:90:AA:96 (Oracle VirtualBox virtual NIC)
+
+# Nmap done at Sat Oct 29 16:15:15 2022 -- 1 IP address (1 host up) scanned in 6.29 seconds
