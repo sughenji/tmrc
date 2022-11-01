@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sun Oct 30 22:18:16 2022 as: nmap -T4 -p80,135,445,5985 -A -oA nmap_advanced 10.10.11.106 -->
+<nmaprun scanner="nmap" args="nmap -T4 -p80,135,445,5985 -A -oA nmap_advanced 10.10.11.106" start="1667164696" startstr="Sun Oct 30 22:18:16 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="80,135,445,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.11.106" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1667164697" endtime="1667164748"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.11.106" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_services:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=UTF-8)."></script><script id="http-auth" output="&#xa;HTTP/1.1 401 Unauthorized&#xd;&#xa;  Basic realm=MFP Firmware Update Center. Please enter password for admin&#xa;"><table>
+<elem key="scheme">Basic</elem>
+<table key="params">
+<elem key="realm">MFP Firmware Update Center. Please enter password for admin</elem>
+</table>
+</table>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Microsoft Windows 7 - 10 microsoft-ds" extrainfo="workgroup: WORKGROUP" hostname="DRIVER" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<osmatch name="Microsoft Windows Server 2008 R2" accuracy="91" line="74585">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="2008" accuracy="91"><cpe>cpe:/o:microsoft:windows_server_2008:r2</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows 10 1511 - 1607" accuracy="87" line="69586">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="10" accuracy="87"><cpe>cpe:/o:microsoft:windows_10</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows 8.1 Update 1" accuracy="86" line="78048">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="8" accuracy="86"><cpe>cpe:/o:microsoft:windows_8</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows Phone 7.5 or 8.0" accuracy="86" line="79336">
+<osclass type="phone" vendor="Microsoft" osfamily="Windows" osgen="Phone" accuracy="86"><cpe>cpe:/o:microsoft:windows</cpe></osclass>
+</osmatch>
+<osmatch name="FreeBSD 6.2-RELEASE" accuracy="86" line="27735">
+<osclass type="general purpose" vendor="FreeBSD" osfamily="FreeBSD" osgen="6.X" accuracy="86"><cpe>cpe:/o:freebsd:freebsd:6.2</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows 10 1511" accuracy="85" line="69972">
+<osclass type="specialized" vendor="Microsoft" osfamily="Windows" osgen="10" accuracy="85"><cpe>cpe:/o:microsoft:windows_10:1511</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows 7 or Windows Server 2008 R2" accuracy="85" line="74384">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="2008" accuracy="85"><cpe>cpe:/o:microsoft:windows_server_2008:r2</cpe></osclass>
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="7" accuracy="85"><cpe>cpe:/o:microsoft:windows_7</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows Server 2008 R2 or Windows 8.1" accuracy="85" line="74929">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="2008" accuracy="85"><cpe>cpe:/o:microsoft:windows_server_2008:r2</cpe></osclass>
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="8.1" accuracy="85"><cpe>cpe:/o:microsoft:windows_8.1</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows Server 2008 R2 SP1 or Windows 8" accuracy="85" line="75113">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="2008" accuracy="85"><cpe>cpe:/o:microsoft:windows_server_2008:r2:sp1</cpe></osclass>
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="8" accuracy="85"><cpe>cpe:/o:microsoft:windows_8</cpe></osclass>
+</osmatch>
+<osmatch name="Microsoft Windows Server 2016" accuracy="85" line="76195">
+<osclass type="general purpose" vendor="Microsoft" osfamily="Windows" osgen="2016" accuracy="85"><cpe>cpe:/o:microsoft:windows_server_2016</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="432" lastboot="Sun Oct 30 22:11:56 2022"/>
+<distance value="2"/>
+<tcpsequence index="260" difficulty="Good luck!" values="984D02CE,F68BBA8B,4C527325,5C8C3815,36B81D11,A968E12C"/>
+<ipidsequence class="Incremental" values="6651,6652,6653,6654,6655,6656"/>
+<tcptssequence class="1000HZ" values="5F3B6,5F420,5F4A3,5F50A,5F56F,5F5E4"/>
+<hostscript><script id="clock-skew" output="mean: 7h00m14s, deviation: 0s, median: 7h00m13s"><elem key="stddev">0</elem>
+<elem key="mean">25214</elem>
+<elem key="count">2</elem>
+<elem key="median">25213</elem>
+</script><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled but not required"><table key="311">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-security-mode" output="&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-10-31T04:18:44&#xa;  start_date: 2022-10-31T04:12:21"><elem key="date">2022-10-31T04:18:44</elem>
+<elem key="start_date">2022-10-31T04:12:21</elem>
+</script></hostscript><trace port="135" proto="tcp">
+<hop ttl="1" ipaddr="10.10.14.1" rtt="70.89"/>
+<hop ttl="2" ipaddr="10.10.11.106" rtt="70.90"/>
+</trace>
+<times srtt="63609" rttvar="10914" to="107265"/>
+</host>
+<runstats><finished time="1667164748" timestr="Sun Oct 30 22:19:08 2022" summary="Nmap done at Sun Oct 30 22:19:08 2022; 1 IP address (1 host up) scanned in 52.88 seconds" elapsed="52.88" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
