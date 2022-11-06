@@ -633,7 +633,7 @@ cd /root
 ls
 user.txt
 cat user.txt
-thm{"Curiouser and curiouser!"}
+thm{"Cur[REDACTED]"}
 cd /home/alice
 ls
 CVE-2021-403.tar.gz
@@ -643,7 +643,7 @@ root.txt
 shell.elf
 walrus_and_the_carpenter.py
 cat root.txt
-thm{Twinkle, twinkle, little bat! How I wonder what you’re at!}
+thm{[REDACTED}
 
 ```
 
