@@ -175,7 +175,7 @@ uid=7(lp) gid=7(lp) groups=7(lp),19(lpadmin)
 
 ```
 > exec cat user.txt
-3e10a6020aa944847af1d5d96cee1673
+3e10a6020aa9[REDACTED]
 >
 ```
 
@@ -230,5 +230,5 @@ On attacker machine:
 
 ```
 root@kali:/opt/htb/Antique# curl http://localhost:631/admin/log/error_log
-b07549ac8dc04884e51ba5bc0c9992ac
+b07549ac8[REDACTED]
 ```

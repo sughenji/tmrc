@@ -305,7 +305,7 @@ C:\Users\security\Desktop>dir
                2 Dir(s)  16,772,272,128 bytes free
 
 C:\Users\security\Desktop>type user.txt
-ff1f3b48913b213a31ff6756d2553d38
+ff1f3b48[REDACTED]
 C:\Users\security\Desktop>
 
 ```
