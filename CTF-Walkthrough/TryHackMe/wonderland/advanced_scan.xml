@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sun Nov  6 15:31:23 2022 as: nmap -Pn -T4 -p80 -sC -sV -oA advanced_scan 10.10.214.233 -->
+<nmaprun scanner="nmap" args="nmap -Pn -T4 -p80 -sC -sV -oA advanced_scan 10.10.214.233" start="1667745083" startstr="Sun Nov  6 15:31:23 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1667745084" endtime="1667745098"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.214.233" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Golang net/http server" extrainfo="Go-IPFS json-rpc or InfluxDB API" method="probed" conf="10"><cpe>cpe:/a:protocol_labs:go-ipfs</cpe></service><script id="http-title" output="Follow the white rabbit."><elem key="title">Follow the white rabbit.</elem>
+</script></port>
+</ports>
+<times srtt="55482" rttvar="55482" to="277410"/>
+</host>
+<runstats><finished time="1667745098" timestr="Sun Nov  6 15:31:38 2022" summary="Nmap done at Sun Nov  6 15:31:38 2022; 1 IP address (1 host up) scanned in 14.64 seconds" elapsed="14.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

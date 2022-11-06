@@ -1,0 +1,13 @@
+/img                 [36m (Status: 301)[0m [Size: 0][34m [--> img/][0m
+/r                   [36m (Status: 301)[0m [Size: 0][34m [--> r/][0m
+/poem                [36m (Status: 301)[0m [Size: 0][34m [--> poem/][0m
+/http%3A%2F%2Fwww    [36m (Status: 301)[0m [Size: 0][34m [--> /http:/www][0m
+/http%3A%2F%2Fyoutube[36m (Status: 301)[0m [Size: 0][34m [--> /http:/youtube][0m
+/http%3A%2F%2Fblogs  [36m (Status: 301)[0m [Size: 0][34m [--> /http:/blogs][0m
+/http%3A%2F%2Fblog   [36m (Status: 301)[0m [Size: 0][34m [--> /http:/blog][0m
+/**http%3A%2F%2Fwww  [36m (Status: 301)[0m [Size: 0][34m [--> /%2A%2Ahttp:/www][0m
+/http%3A%2F%2Fcommunity[36m (Status: 301)[0m [Size: 0][34m [--> /http:/community][0m
+/http%3A%2F%2Fradar  [36m (Status: 301)[0m [Size: 0][34m [--> /http:/radar][0m
+/http%3A%2F%2Fjeremiahgrossman[36m (Status: 301)[0m [Size: 0][34m [--> /http:/jeremiahgrossman][0m
+/http%3A%2F%2Fweblog [36m (Status: 301)[0m [Size: 0][34m [--> /http:/weblog][0m
+/http%3A%2F%2Fswik   [36m (Status: 301)[0m [Size: 0][34m [--> /http:/swik][0m

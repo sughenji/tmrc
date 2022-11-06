@@ -1,0 +1,4 @@
+# Nmap 7.93 scan initiated Sun Nov  6 15:30:40 2022 as: nmap -Pn -T4 -p- -oA first_scan 10.10.214.233
+Host: 10.10.214.233 ()	Status: Up
+Host: 10.10.214.233 ()	Ports: 22/open/tcp//ssh///, 80/open/tcp//http///	Ignored State: closed (65533)
+# Nmap done at Sun Nov  6 15:31:05 2022 -- 1 IP address (1 host up) scanned in 24.79 seconds

@@ -1,0 +1,4 @@
+# Nmap 7.93 scan initiated Sun Nov  6 15:31:23 2022 as: nmap -Pn -T4 -p80 -sC -sV -oA advanced_scan 10.10.214.233
+Host: 10.10.214.233 ()	Status: Up
+Host: 10.10.214.233 ()	Ports: 80/open/tcp//http//Golang net|http server (Go-IPFS json-rpc or InfluxDB API)/
+# Nmap done at Sun Nov  6 15:31:38 2022 -- 1 IP address (1 host up) scanned in 14.64 seconds

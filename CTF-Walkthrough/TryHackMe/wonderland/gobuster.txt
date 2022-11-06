@@ -1,0 +1,23 @@
+/img                 [36m (Status: 301)[0m [Size: 0][34m [--> img/][0m
+/r                   [36m (Status: 301)[0m [Size: 0][34m [--> r/][0m
+/poem                [36m (Status: 301)[0m [Size: 0][34m [--> poem/][0m
+/http%3A%2F%2Fwww    [36m (Status: 301)[0m [Size: 0][34m [--> /http:/www][0m
+/http%3A%2F%2Fwww.php[36m (Status: 301)[0m [Size: 0][34m [--> /http:/www.php][0m
+/http%3A%2F%2Fwww.txt[36m (Status: 301)[0m [Size: 0][34m [--> /http:/www.txt][0m
+/http%3A%2F%2Fwww.bak[36m (Status: 301)[0m [Size: 0][34m [--> /http:/www.bak][0m
+/http%3A%2F%2Fyoutube[36m (Status: 301)[0m [Size: 0][34m [--> /http:/youtube][0m
+/http%3A%2F%2Fyoutube.php[36m (Status: 301)[0m [Size: 0][34m [--> /http:/youtube.php][0m
+/http%3A%2F%2Fyoutube.txt[36m (Status: 301)[0m [Size: 0][34m [--> /http:/youtube.txt][0m
+/http%3A%2F%2Fyoutube.bak[36m (Status: 301)[0m [Size: 0][34m [--> /http:/youtube.bak][0m
+/http%3A%2F%2Fblogs  [36m (Status: 301)[0m [Size: 0][34m [--> /http:/blogs][0m
+/http%3A%2F%2Fblogs.php[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blogs.php][0m
+/http%3A%2F%2Fblogs.bak[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blogs.bak][0m
+/http%3A%2F%2Fblogs.txt[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blogs.txt][0m
+/http%3A%2F%2Fblog   [36m (Status: 301)[0m [Size: 0][34m [--> /http:/blog][0m
+/http%3A%2F%2Fblog.txt[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blog.txt][0m
+/http%3A%2F%2Fblog.php[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blog.php][0m
+/http%3A%2F%2Fblog.bak[36m (Status: 301)[0m [Size: 0][34m [--> /http:/blog.bak][0m
+/**http%3A%2F%2Fwww  [36m (Status: 301)[0m [Size: 0][34m [--> /%2A%2Ahttp:/www][0m
+/**http%3A%2F%2Fwww.txt[36m (Status: 301)[0m [Size: 0][34m [--> /%2A%2Ahttp:/www.txt][0m
+/**http%3A%2F%2Fwww.bak[36m (Status: 301)[0m [Size: 0][34m [--> /%2A%2Ahttp:/www.bak][0m
+/**http%3A%2F%2Fwww.php[36m (Status: 301)[0m [Size: 0][34m [--> /%2A%2Ahttp:/www.php][0m
