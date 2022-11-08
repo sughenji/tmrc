@@ -28,7 +28,7 @@ PS C:\Users\sugo>
 Enable-PSRemoting (-Force)
 ```
 
-This will spawn WinRM service (port 5985/tcp).
+This will spawn WinRM service (default port 5985/tcp).
 
 To check if PsRemoting is enabled:
 
@@ -63,6 +63,25 @@ Copy a file through PSSession:
 Copy-Item .\file.txt -ToSession $dc c:\windows\tasks
 ```
 
+## Create PSSession with multiple remote servers:
+
+```
+$servers = New-PSSession -ComputerName hostname1, hostname2, hostname3 -Credential
+```
+
+We can also load remote server list from a text file:
+
+```
+$devices = Get-Content -Path c:\Users\sugo\Downloads\listServers.txt
+```
+
+Run same command on multiple sessions:
+
+```
+Invoke-Command -Session $servers -ScriptBlock {hostname}
+```
+
+
 ## Create PSSession and get credentials through CLI (no GUI)
 
 rif. https://devblogs.microsoft.com/powershell/getting-credentials-from-the-command-line/
@@ -93,6 +112,57 @@ PS C:\Users\local_admin\Documents> Enter-PSSession 2
 DC1
 [10.0.2.19]: PS C:\Users\Administrator\Documents>
 ```
+
+How to check if `WSMAN` is locally enabled:
+
+(negative response)
+
+```
+PS C:\Users\sugo> test-wsman
+test-wsman : <f:WSManFault xmlns:f="http://schemas.microsoft.com/wbem/wsman/1/wsmanfault" Code="2150858770"
+Machine="SUGO-PC.sugolandia.local"><f:Message>Il client non è in grado di connettersi alla destinazione specificata nella
+richiesta. Verificare che il servizio nella destinazione sia in esecuzione e accetti le richieste. Consultare i
+registri e la documentazione per il servizio WS-Management in esecuzione nella destinazione, nella maggior parte dei
+casi IIS o Gestione remota Windows. Se la destinazione è il servizio Gestione remota Windows, eseguire il comando
+seguente nella destinazione per analizzare e configurare il servizio Gestione remota Windows: "winrm quickconfig".
+</f:Message></f:WSManFault>
+In riga:1 car:1
++ test-wsman
++ ~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Test-WSMan], InvalidOperationException
+    + FullyQualifiedErrorId : WsManError,Microsoft.WSMan.Management.TestWSManCommand
+```
+
+(positive response)
+
+```
+PS C:\Users\administrator.SUGOLANDIA> test-wsman
+
+
+wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+ProductVendor   : Microsoft Corporation
+ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 3.0
+```
+
+
+How to check listener configuration:
+
+```
+PS C:\Users\administrator.SUGOLANDIA> winrm enumerate winrm/config/listener
+Listener
+    Address = *
+    Transport = HTTP
+    Port = 5985
+    Hostname
+    Enabled = true
+    URLPrefix = wsman
+    CertificateThumbprint
+    ListeningOn = 127.0.0.1, 192.168.1.12, ::1, fe80::c448:a4b6:5eb4:764f%15
+```
+
+
+
 
 ## Create usernames
 
