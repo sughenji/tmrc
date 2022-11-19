@@ -3,6 +3,7 @@
 - [Audit log](#audit-log)
 - [cPanel logs](#cpanel-logs)
 - [Search in time](#search-in-time)
+- [Obfuscated PHP code](#obfuscated-php-code)
 
 # Audit Log
 
@@ -30,6 +31,9 @@ FTP logs are in `/var/log/messages`
 find -newerct "8 Sep 2022" ! -newerct "9 Sep 2022" -ls |grep php
 ```
 
+# Obfuscated PHP Code
+
+https://glot.io/snippets/efruafhnez
 
 
 

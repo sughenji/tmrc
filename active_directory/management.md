@@ -1,5 +1,13 @@
 # management
 
+## interesting url
+
+https://www.techthoughts.info/powershell-remoting/#Configuring_WinRM
+
+https://github.com/techthoughts2/Learn-PowerShell-Code-Examples/blob/master/LearnPowerShell/EP9%20-%20PowerShell%20Remoting.ps1
+
+https://learn.microsoft.com/it-it/troubleshoot/windows-client/system-management-components/configure-winrm-for-https
+
 ## Returns all commands that contains `session`:
 
 ```
