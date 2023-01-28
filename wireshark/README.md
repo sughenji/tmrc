@@ -9,6 +9,8 @@
 - [IP alias](#ip-alias)
 - [Delta time](#delta-time)
 - [Sample capture](#sample-capture)
+- [DNS queries](#dns-queries)
+- [SSL](#ssl)
 
 Some useful tips from Chris Greer Masterclass https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ and more!
 
@@ -100,3 +102,20 @@ View delta time in context (in same TCP stream)
 ## Sample capture
 
 https://gitlab.com/wireshark/wireshark/-/wikis/SampleCaptures
+
+## DNS queries
+
+```
+dns.qry.name
+```
+
+## SSL
+
+```
+ssl.handshake.extensions_server_name
+```
+
+
+
+
+
