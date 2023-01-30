@@ -11,6 +11,7 @@
 - [Sample capture](#sample-capture)
 - [DNS queries](#dns-queries)
 - [SSL](#ssl)
+- [Hostname](#hostname)
 
 Some useful tips from Chris Greer Masterclass https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ and more!
 
@@ -115,6 +116,9 @@ dns.qry.name
 ssl.handshake.extensions_server_name
 ```
 
+## Hostname
+
+Look for DHCP request or filter `nbns`
 
 
 
