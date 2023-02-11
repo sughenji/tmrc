@@ -17,6 +17,7 @@
 	- [Truecrypt](#truecrypt)
 	- [DLL list](#dll-list)
 	- [Connections](#connections)
+- [Event viewer](#event-viewer)
 
 ## Collect memory
 
@@ -248,4 +249,18 @@ Base                             Size          LoadCount LoadTime               
 ```
 $ vol.py --profile Win7SP1x64 -f Snapshot14.vmem netscan
 ```
+
+# Event viewer
+
+Search for logs about a specific username:
+
+```
+<QueryList>
+  <Query Id="0" Path="Security">
+    <Select Path="Security">*[EventData[Data[@Name='TargetUserName']='sugo']]</Select>
+  </Query>
+</QueryList>
+```
+
+ref. https://www.beaming.co.uk/knowledge-base/techs-how-to-search-the-windows-event-log-for-logins-by-username/
 

@@ -56,7 +56,9 @@ Search for every network that belongs to some AS:
 # whois -h whois.ripe.net -- "-i origin AS1111 -Troute" |grep route | awk '{ print $2 }'
 ```
 
+## Useful online resources
 
+https://irrexplorer.nlnog.net/
 
 
 

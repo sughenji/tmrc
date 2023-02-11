@@ -9,6 +9,7 @@
 - [Update Notify Windows](#update-notify-windows)
 - [Github](#github)
 - [Ansible](#ansible)
+- [VIM](#vim)
 
 ## Mount SSHFS
 
@@ -195,4 +196,11 @@ sugo@vboxdebian:~/ansible$ cat mailclusters_debian_upgrade.yaml
 ```
 
 
+## VIM
+
+remove all highlights:
+
+```
+:noh
+```
 

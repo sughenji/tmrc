@@ -68,3 +68,47 @@ tshark -r traffic.pcap -q -z endpoints,tcp
 tshark -r traffic.pcap -Y ntlmssp.auth.username -V -x | ack -i 'Response:|user|dns'
 ```
 
+## Capture with pktmon
+
+```
+c:\Users\sugo\Desktop>pktmon start --capture
+
+Parametri registratore:
+    Nome registratore:        PktMon
+    Modalità di registrazione:       Circolare
+    File di log:           c:\Users\sugo\Desktop\PktMon.etl
+    Dimensioni massime file:      512 MB
+    Memoria utilizzata:        256 MB
+
+Dati raccolti:
+    Contatori pacchetti, acquisizione pacchetti
+
+Tipo cattura:
+    Tutti i pacchetti
+
+Componenti monitorati:
+    Tutto
+
+Filtri pacchetti:
+    Nessuno
+```
+
+```
+c:\Users\sugo\Desktop>pktmon stop --capture
+Scaricamento log in corso...
+Unione dei metadati in...
+File di log: c:\Users\sugo\Desktop\PktMon.etl (nessun evento perduto)
+```
+
+```
+c:\Users\sugo\Desktop>pktmon etl2pcap PktMon.etl
+Elaborazione in corso...
+
+Pacchetti totali:       4198
+Conteggio mancata elaborazione pacchetti:   0
+Pacchetti formattati:   4198
+File formattato:      PktMon.pcapng
+
+c:\Users\sugo\Desktop>
+```
+
