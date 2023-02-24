@@ -81,6 +81,12 @@ https://github.com/kost/nmap-android/releases
 
 ## TMUX
 
+### spawn new session
+
+```
+tmux new -s RSYSLOG
+```
+
 ### Resize pane down 
 
 ```
