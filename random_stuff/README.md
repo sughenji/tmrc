@@ -10,6 +10,7 @@
 - [Github](#github)
 - [Ansible](#ansible)
 - [VIM](#vim)
+- [psexec](#psexec)
 
 ## Mount SSHFS
 
@@ -209,4 +210,40 @@ remove all highlights:
 ```
 :noh
 ```
+
+## psexec
+
+```
+c:\SysinternalSuite>PsExec.exe -accepteula -s \\nomecomputer-pc cmd
+```
+
+```
+c:\Users\Administrator\Downloads>net use x: \\192.168.1.129\Download /user:Administrator
+Esecuzione comando riuscita.
+c:\Users\Administrator\Downloads>x:
+X:\wazuh-agent>copy wazuh-agent-4.4.1-1.msi c:\users\administrator\downloads\
+        1 file copiati.
+```
+
+```
+c:\Users\Administrator\Downloads>powershell
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Tutti i diritti riservati.
+
+Prova la nuova PowerShell multipiattaforma https://aka.ms/pscore6
+
+PS C:\Users\Administrator\Downloads> .\wazuh-agent-4.4.1-1.msi /q WAZUH_MANAGER="192.168.10.5"
+PS C:\Users\Administrator\Downloads> PS C:\Users\Administrator\Downloads> net start WazuhSvc
+
+Avvio del servizio Wazuh riuscito.
+```
+
+
+
+
+
+
+
+
+
 
