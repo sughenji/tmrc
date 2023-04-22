@@ -4,6 +4,9 @@
 - [cPanel logs](#cpanel-logs)
 - [Search in time](#search-in-time)
 - [Obfuscated PHP code](#obfuscated-php-code)
+- [Online scanner](#online-scanner)
+- [Manual scan](#manual-scan)
+- [Plugins](#plugins)
 
 # Audit Log
 
@@ -35,5 +38,34 @@ find -newerct "8 Sep 2022" ! -newerct "9 Sep 2022" -ls |grep php
 
 https://glot.io/snippets/efruafhnez
 
+# Online Scanner
+
+https://sitecheck.sucuri.net/
+
+https://www.isitwp.com/wordpress-website-security-scanner/
+
+https://wpsec.com/?ref=syedbalkhi18
+
+http://www.scanwp.com/
+
+https://hackertarget.com/wordpress-security-scan/
+
+https://wprecon.com/
+
+https://www.webinspector.com/website-malware-scanner/
+
+https://urlquery.net/
+
+https://www.virustotal.com/gui/home/upload
+
+https://safeweb.norton.com/
+
+# Manual scan
+
+Search for php files in `uploads` directory (you should not find any)
+
+# Plugins
+
+https://it.wordpress.org/plugins/gotmls/ 
 
 
