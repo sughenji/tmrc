@@ -8,6 +8,7 @@
   - [Update Notify Windows](#update-notify-windows)
   - [psexec](#psexec)
   - [Install openssh server powershell](#install-openssh-server-powershell)
+  - [Manage Firewall with powershell](#manage-firewall-with-powershell)
 - Linux
   - [Compiling C code on Linux](#compiling-c-code-on-linux)
   - [TMUX](#tmux)
@@ -105,7 +106,7 @@ PS C:\Users\Administrator\Downloads> PS C:\Users\Administrator\Downloads> net st
 Avvio del servizio Wazuh riuscito.
 ```
 
-### Install Openssh server Powershel
+### Install Openssh server Powershell
 
 ```
 Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'
@@ -130,6 +131,34 @@ Set-Service -Name sshd -StartupType 'Automatic'
 ```
 Start-Service sshd
 ```
+
+### Manage firewall with powershell
+
+```
+PS C:\Windows\system32> Get-NetFirewallRule -DisplayName "Condivisione file e stampanti (richiesta echo - ICMPv4-In)"
+Name                          : FPS-ICMP4-ERQ-In-NoScope
+DisplayName                   : Condivisione file e stampanti (richiesta echo - ICMPv4-In)
+Description                   : I messaggi di richiesta echo vengono inviati come richieste di ping agli altri nodi.
+DisplayGroup                  : Condivisione file e stampanti
+Group                         : @FirewallAPI.dll,-28502
+Enabled                       : False <===============
+Profile                       : Domain
+..
+..
+..
+```
+
+To enable on ALL profiles:
+
+```
+PS C:\Windows\system32> Get-NetFirewallRule -DisplayName "Condivisione file e stampanti (richiesta echo - ICMPv4-In)" | where Profile -CLike "*" |  Enable-NetFirewallRule
+PS C:\Windows\system32>
+```
+
+
+
+
+
 
 ### Compiling C code on Linux
 
