@@ -7,6 +7,7 @@
   - [Powershell Test Connection](#powershell-test-connection)
   - [Update Notify Windows](#update-notify-windows)
   - [psexec](#psexec)
+  - [Install openssh server powershell](#install-openssh-server-powershell)
 - Linux
   - [Compiling C code on Linux](#compiling-c-code-on-linux)
   - [TMUX](#tmux)
@@ -104,7 +105,33 @@ PS C:\Users\Administrator\Downloads> PS C:\Users\Administrator\Downloads> net st
 Avvio del servizio Wazuh riuscito.
 ```
 
-### Compiling C code con Linux
+### Install Openssh server Powershel
+
+```
+Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'
+```
+
+```
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+```
+
+```
+PS C:\Windows\system32> get-service sshd
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  sshd               OpenSSH SSH Server
+```
+
+```
+Set-Service -Name sshd -StartupType 'Automatic'
+```
+
+```
+Start-Service sshd
+```
+
+### Compiling C code on Linux
 
 ```
 i686-w64-mingw32-gcc multiplestrings.c -o  multiplestrings.exe -lws2_32
@@ -127,19 +154,19 @@ https://github.com/kost/nmap-android/releases
 
 ### TMUX
 
-### spawn new session
+#### spawn new session
 
 ```
 tmux new -s RSYSLOG
 ```
 
-### Resize pane down 
+#### Resize pane down 
 
 ```
 :resize-pane -D
 ```
 
-### Resize pane down 5 lines
+#### Resize pane down 5 lines
 
 ```
 :resize-pane -D 5
