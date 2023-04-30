@@ -1,18 +1,22 @@
 # Random Stuff
 
-- [Mount SSHFS](#mount-sshfs)
-- [Accessing SMB](#accessing-smb)
-- [Capture traffic](#capture-traffic)
-- [Powershell Test Connection](#powershell-test-connection)
-- [Compiling C code on Linux](#compiling-c-code-on-linux)
-- [TMUX](#tmux)
-- [Update Notify Windows](#update-notify-windows)
-- [Github](#github)
-- [Ansible](#ansible)
-- [VIM](#vim)
-- [psexec](#psexec)
+- Windows
+  - [Mount SSHFS](#mount-sshfs)
+  - [Accessing SMB](#accessing-smb)
+  - [Capture traffic](#capture-traffic)
+  - [Powershell Test Connection](#powershell-test-connection)
+  - [Update Notify Windows](#update-notify-windows)
+  - [psexec](#psexec)
+- Linux
+  - [Compiling C code on Linux](#compiling-c-code-on-linux)
+  - [TMUX](#tmux)
+  - [Ansible](#ansible)
+  - [VIM](#vim)
+- Github
+  - [create ssh pair](#create-ssh-pair)
+  - [switch to ssh authentication](#switch-to-ssh-authentication)
 
-## Mount SSHFS
+### Mount SSHFS
 
 First install this:
 
@@ -31,7 +35,7 @@ net use s: \\sshfs.r\user@192.168.1.14!22222\home\user\Documents
 net use s: /delete
 ```
 
-## Accessing smb
+### Accessing smb
 
 Mount C$ with AD credentials:
 
@@ -39,7 +43,7 @@ Mount C$ with AD credentials:
 mount -t cifs \\\\192.168.1.14\\C$ /mnt/ -o domain=SUGOLANDIA,user=sugo
 ```
 
-## Capture traffic
+### Capture traffic
 
 Capture network traffic with files rotation
 
@@ -47,7 +51,7 @@ Capture network traffic with files rotation
 tshark.exe -b interval:3600 -b files:48 -f "port 53" -i Ethernet0 -w c:\users\sugo\downloads\traffic.pcapng
 ```
 
-## Powershell test connection
+### Powershell test connection
 
 ```
 PS C:\Users\sugo> Test-NetConnection -Port 1080 172.30.1.149
@@ -59,7 +63,48 @@ SourceAddress    : 192.168.88.14
 TcpTestSucceeded : True
 ```
 
-## Compiling C code con Linux
+### Update Notify Windows
+
+```
+$WUCOMPUTERNAME = (Get-CIMInstance CIM_ComputerSystem).name
+$WUSUBJECT = "Windows Updates available for " + $WUCOMPUTERNAME
+$WURECIPIENT = "checkupdate@micso.net"
+$WURELAY = "relay.micso.it"
+$WUFROM = $WUCOMPUTERNAME + "@micso.it"
+$WULIST = Get-WUList
+$HTMLBODY = ($WULIST|select KB,Title|ConvertTo-Html -As LIST -Head $WUCOMPUTERNAME|Out-String)
+Send-MailMessage -To $WURECIPIENT -From $WUFROM -Subject $WUSUBJECT -SmtpServer $WURELAY -Body $HTMLBODY -BodyAsHtml
+#Write-Output $HTMLBODY
+```
+
+### psexec
+
+```
+c:\SysinternalSuite>PsExec.exe -accepteula -s \\nomecomputer-pc cmd
+```
+
+```
+c:\Users\Administrator\Downloads>net use x: \\192.168.1.129\Download /user:Administrator
+Esecuzione comando riuscita.
+c:\Users\Administrator\Downloads>x:
+X:\wazuh-agent>copy wazuh-agent-4.4.1-1.msi c:\users\administrator\downloads\
+        1 file copiati.
+```
+
+```
+c:\Users\Administrator\Downloads>powershell
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Tutti i diritti riservati.
+
+Prova la nuova PowerShell multipiattaforma https://aka.ms/pscore6
+
+PS C:\Users\Administrator\Downloads> .\wazuh-agent-4.4.1-1.msi /q WAZUH_MANAGER="192.168.10.5"
+PS C:\Users\Administrator\Downloads> PS C:\Users\Administrator\Downloads> net start WazuhSvc
+
+Avvio del servizio Wazuh riuscito.
+```
+
+### Compiling C code con Linux
 
 ```
 i686-w64-mingw32-gcc multiplestrings.c -o  multiplestrings.exe -lws2_32
@@ -80,7 +125,7 @@ Other resource:
 
 https://github.com/kost/nmap-android/releases
 
-## TMUX
+### TMUX
 
 ### spawn new session
 
@@ -100,44 +145,7 @@ tmux new -s RSYSLOG
 :resize-pane -D 5
 ```
 
-## Update Notify Windows
-
-```
-$WUCOMPUTERNAME = (Get-CIMInstance CIM_ComputerSystem).name
-$WUSUBJECT = "Windows Updates available for " + $WUCOMPUTERNAME
-$WURECIPIENT = "checkupdate@micso.net"
-$WURELAY = "relay.micso.it"
-$WUFROM = $WUCOMPUTERNAME + "@micso.it"
-$WULIST = Get-WUList
-$HTMLBODY = ($WULIST|select KB,Title|ConvertTo-Html -As LIST -Head $WUCOMPUTERNAME|Out-String)
-Send-MailMessage -To $WURECIPIENT -From $WUFROM -Subject $WUSUBJECT -SmtpServer $WURELAY -Body $HTMLBODY -BodyAsHtml
-#Write-Output $HTMLBODY
-```
-
-## Github
-
-Create SSH keypair:
-
-```
-ssh-keygen -t rsa -C github
-```
-
-(then we need to upload **public** key to our repository)
-
-start SSH agent and add our private key:
-
-```
-eval $(ssh-agent)
-ssh-add id_rsa_github
-```
-
-switch to SSH authentication:
-
-```
-git remote set-url origin git@github.com:sughenji/nomedelrepository.git
-```
-
-## Ansible
+### Ansible
 
 Inventory:
 
@@ -202,8 +210,7 @@ sugo@vboxdebian:~/ansible$ cat mailclusters_debian_upgrade.yaml
       apt: upgrade=dist force_apt_get=yes
 ```
 
-
-## VIM
+### VIM
 
 remove all highlights:
 
@@ -211,32 +218,36 @@ remove all highlights:
 :noh
 ```
 
-## psexec
+
+
+## Github
+
+### Create SSH keypair:
 
 ```
-c:\SysinternalSuite>PsExec.exe -accepteula -s \\nomecomputer-pc cmd
+ssh-keygen -t rsa -C github
 ```
 
-```
-c:\Users\Administrator\Downloads>net use x: \\192.168.1.129\Download /user:Administrator
-Esecuzione comando riuscita.
-c:\Users\Administrator\Downloads>x:
-X:\wazuh-agent>copy wazuh-agent-4.4.1-1.msi c:\users\administrator\downloads\
-        1 file copiati.
-```
+(then we need to upload **public** key to our repository)
+
+start SSH agent and add our private key:
 
 ```
-c:\Users\Administrator\Downloads>powershell
-Windows PowerShell
-Copyright (C) Microsoft Corporation. Tutti i diritti riservati.
-
-Prova la nuova PowerShell multipiattaforma https://aka.ms/pscore6
-
-PS C:\Users\Administrator\Downloads> .\wazuh-agent-4.4.1-1.msi /q WAZUH_MANAGER="192.168.10.5"
-PS C:\Users\Administrator\Downloads> PS C:\Users\Administrator\Downloads> net start WazuhSvc
-
-Avvio del servizio Wazuh riuscito.
+eval $(ssh-agent)
+ssh-add id_rsa_github
 ```
+
+### switch to ssh authentication
+
+```
+git remote set-url origin git@github.com:sughenji/nomedelrepository.git
+```
+
+
+
+
+
+
 
 
 
