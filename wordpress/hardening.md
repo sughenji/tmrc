@@ -3,6 +3,7 @@
 - [Web Application Firewall](#waf)
 - [Stay updated](#update)
 - [PHP version](#php)
+- [Force SSL](#force-ssl)
 - [Disable indexing](#index)
 - [Disable XMLRPC](#xmlrpc)
 - [Protect wp-login.php](#wp-login)
@@ -25,6 +26,15 @@ Core, themes, plugins...
 ## PHP
 
 https://www.php.net/supported-versions.php
+
+## Force SSL
+
+```
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+```
 
 ## index
 
