@@ -18,6 +18,7 @@
 	- [DLL list](#dll-list)
 	- [Connections](#connections)
 - [Event viewer](#event-viewer)
+- [Chainsaw](#chainsaw)
 
 ## Collect memory
 
@@ -263,4 +264,58 @@ Search for logs about a specific username:
 ```
 
 ref. https://www.beaming.co.uk/knowledge-base/techs-how-to-search-the-windows-event-log-for-logins-by-username/
+
+
+## Chainsaw
+
+https://github.com/WithSecureLabs/chainsaw
+
+```
+D:\download\chainsaw_all_platforms+rules+examples\chainsaw>chainsaw_x86_64-pc-windows-msvc.exe hunt d:\share\dc01logs -s sigma/rules --mapping mappings/sigma-event-logs-all.yml --level critical
+
+ ██████╗██╗  ██╗ █████╗ ██╗███╗   ██╗███████╗ █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██║████╗  ██║██╔════╝██╔══██╗██║    ██║
+██║     ███████║███████║██║██╔██╗ ██║███████╗███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██║██║██║╚██╗██║╚════██║██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║██║██║ ╚████║███████║██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+    By Countercept (@FranticTyping, @AlexKornitzer)
+
+[+] Loading detection rules from: sigma/rules
+[+] Loaded 88 detection rules (144 not loaded)
+[+] Loading forensic artefacts from: d:\share\dc01logs (extensions: .evtx, .evt)
+[+] Loaded 331 forensic artefacts (592.4 MB)
+[+] Hunting: [========================================] 331/331 -
+[+] Group: Sigma
+┌─────────────────────┬────────────────────────────────┬───────┬────────────────────────────────┬──────────┬───────────┬─────────────────────┬────────────────────────────────┐
+│      timestamp      │           detections           │ count │     Event.System.Provider      │ Event ID │ Record ID │      Computer       │           Event Data           │
+├─────────────────────┼────────────────────────────────┼───────┼────────────────────────────────┼──────────┼───────────┼─────────────────────┼────────────────────────────────┤
+│ 2023-05-01 14:08:20 │ + Active Directory Replication │ 1     │ Microsoft-Windows-Security-Aud │ 4662     │ 53362     │ DC01.budapest.local │ AccessList: "%%7688\r          │
+│                     │ from Non Machine Account       │       │ iting                          │          │           │                     │ \t\t\t\                        │
+│                     │                                │       │                                │          │           │                     │ t"                             │
+│                     │                                │       │                                │          │           │                     │ AccessMask: '0x100'            │
+│                     │                                │       │                                │          │           │                     │ AdditionalInfo: '-'            │
+│                     │                                │       │                                │          │           │                     │ AdditionalInfo2: ''            │
+│                     │                                │       │                                │          │           │                     │ HandleId: '0x0'                │
+│                     │                                │       │                                │          │           │                     │ ObjectName: '%{06d6aa46-5cc3-4 │
+│                     │                                │       │                                │          │           │                     │ 678-974d-e2c2b57910aa}'        │
+│                     │                                │       │                                │          │           │                     │ ObjectServer: DS               │
+│                     │                                │       │                                │          │           │                     │ ObjectType: '%{19195a5b-6da0-1 │
+│                     │                                │       │                                │          │           │                     │ 1d0-afd3-00c04fd930c9}'        │
+│                     │                                │       │                                │          │           │                     │ OperationType: Object Access   │
+│                     │                                │       │                                │          │           │                     │ Properties: "%%7688\r          │
+│                     │                                │       │                                │          │           │                     │ \t\t{11                        │
+│                     │                                │       │                                │          │           │                     │ 31f6aa-9c07-11d1-f79f-00c04fc2 │
+│                     │                                │       │                                │          │           │                     │ dcd2}\r                        │
+│                     │                                │       │                                │          │           │                     │ \t{19195a5b-6da0-11d0          │
+│                     │                                │       │                                │          │           │                     │ -afd3-00c04fd930c9}\r          │
+│                     │                                │       │                                │          │           │                     │ "                              │
+│                     │                                │       │                                │          │           │                     │ SubjectDomainName: BUDAPEST    │
+│                     │                                │       │                                │          │           │                     │ SubjectLogonId: '0x650f73'     │
+│                     │                                │       │                                │          │           │                     │ SubjectUserName: Administrator │
+│                     │                                │       │                                │          │           │                     │ SubjectUserSid: S-1-5-21-12754 │
+│                     │                                │       │                                │          │           │                     │ 03054-872536965-1404416288-500 │
+├─────────────────────┼────────────────────────────────┼───────┼────────────────────────────────┼──────────┼───────────┼─────────────────────┼────────────────────────────────┤
+```
+
 
