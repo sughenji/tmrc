@@ -9,3 +9,5 @@ https://twitter.com/vxunderground (The largest collection of malware source code
 https://www.nomoreransom.org/it/index.html
 
 https://noransom.kaspersky.com/
+
+https://github.com/fastfire/deepdarkCTI
