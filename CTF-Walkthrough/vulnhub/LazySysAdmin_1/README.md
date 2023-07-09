@@ -4,7 +4,7 @@ URL: https://www.vulnhub.com/entry/lazysysadmin-1,205/
 
 Level: Beginner - Intermediate
 
-Date: 1 July 2023
+Date: 9 July 2023
 
 - [Reconnaissance](#reconnaissance)
 	- [NMAP](#nmap)
