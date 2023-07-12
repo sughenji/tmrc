@@ -40,6 +40,13 @@ Load csv into an empty Excel sheet ("non rilevare tipi di dati")
 # nmap -Pn 192.168.88.0/24 -oA nmap-scan
 ```
 
+# UDP scan
+
+```
+# nmap -sU --min-rate 10000 <target>
+```
+
+
 ## sorted list of open ports:
 
 ```
