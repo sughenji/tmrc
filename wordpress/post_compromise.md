@@ -34,6 +34,14 @@ FTP logs are in `/var/log/messages`
 find -newerct "8 Sep 2022" ! -newerct "9 Sep 2022" -ls |grep php
 ```
 
+```
+find / -mtime 10 # find files that were modified in the last 10 days
+find / -atime 10 # find files that were accessed in the last 10 day
+find / -cmin -60 # find files changed within the last hour (60 minutes)
+find / -amin -60 # find files accesses within the last hour (60 minutes)
+```
+
+
 # Obfuscated PHP Code
 
 https://glot.io/snippets/efruafhnez
