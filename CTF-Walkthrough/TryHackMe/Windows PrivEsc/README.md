@@ -105,10 +105,15 @@ RW daclsvc
 ```
 
 `-u` : Suppress errors
+
 `-w`: Show only objects that have write access
+
 `-c`: Name is a Windows Service, e.g. `ssdpsrv`. Specify `"*"` as the name to show all services and `scmanager` to check the security of the Service Control Manager.
+
 `-q`: Omit Banner
+
 `-v`: Verbose (includes Windows Vista Integrity Level)
+
 `user`: is literally the account name on which we would like to check privileges
 
 reference:
