@@ -1,4 +1,4 @@
-# Forest
+# CyberHeroes
 
 URL: https://tryhackme.com/room/cyberheroes
 
