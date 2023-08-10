@@ -728,7 +728,7 @@ cd /root
 ls
 flag3.txt
 cat flag3.txt
-THM{D1ff3r3nt_3nv1ronmenxxxxxx}
+THM{D1ff3r3nt_xxxxxx}
 ```
 
 ## flag 4
@@ -779,10 +779,10 @@ RUN apt-get update && apt-get install sudo -y
 RUN echo "www-data ALL = NOPASSWD: `which env`" >> /etc/sudoers
 
 # Write flag
-RUN echo "THM{D1ff3r3nt_3nv1ronments_874112}" > /root/flag3.txt
+RUN echo "THM{D1ff3r3nt_mxxxxxxxxx}" > /root/flag3.txt
 RUN chmod 400 /root/flag3.txt
 
-RUN echo "THM{LF1_t0_RC3_aec3fb}" > /var/www/flag2_QMW7JvaY2LvK.txt
+RUN echo "THM{LF1_t0_RC3_axxxxxxxx}" > /var/www/flag2_QMW7JvaY2LvK.txt
 
 EXPOSE 80
 
