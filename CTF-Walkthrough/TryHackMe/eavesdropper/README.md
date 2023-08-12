@@ -8,7 +8,7 @@ Date: 11-12 Aug 2023
 
 - [Reconnaissance](#reconnaissance)
 	- [NMAP](#nmap)
-- [Local Enum]
+- [Local Enum](#local-enum)
 	- [Processes](#processes)
 	- [LinPeas](#linpeas)
 	- [Pspy](#pspy)
