@@ -3,6 +3,10 @@
 - [List interfaces](#list-interfaces)
 - [Capture and ring buffer](#capture-and-ring-buffer)
 - [Capture with tshark](#capture-with-tshark)
+	- [Extract TCP connections](#extract-tcp-connections)
+	- [Extract IP traffic](#extract-ip-traffic)
+	- [Print URL and referer](#print-url-and-referer)
+- [capinfos](#capinfos)
 - [Conversation filter](#conversation-filter)
 - [Search for string](#search-for-string)
 - [Resolved address](#resolved-address)
@@ -43,6 +47,57 @@ C:\Users\sugo>dumpcap -i 5 -w d:\wireshark_capture\test.pcapng -b filesize:50000
 
 ```
 tshark.exe -b interval:3600 -b files:48 -f "port 53" -i Ethernet0 -w c:\users\sugo\desktop\traffic.pcapng
+```
+
+### Extract TCP connections
+
+```
+tshark -nn -r 2015-03-03-traffic-analysis-exercise.pcap -z conv,tcp > tcp_convs
+```
+
+### Extract IP traffic
+
+```
+tshark -nn -r 2015-03-03-traffic-analysis-exercise.pcap -z conv,ip > ip_convs
+```
+
+### print url and referer
+
+```
+tshark -nn -q -r 2015-03-03-traffic-analysis-exercise.pcap -Y http.request.full_uri -T fields   -e http.request.full_uri -e http.referer
+```
+
+## capinfos
+
+```
+joshua@kaligra:~/Documents/malware-traffic-analysis/2015-03-03$ capinfos 2015-03-03-traffic-analysis-exercise.pcap
+File name:           2015-03-03-traffic-analysis-exercise.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 65535 bytes
+Number of packets:   5,772
+File size:           4,312 kB
+Data size:           4,219 kB
+Capture duration:    468.307323 seconds
+First packet time:   2015-03-03 20:05:10.986424
+Last packet time:    2015-03-03 20:12:59.293747
+Data byte rate:      9,010 bytes/s
+Data bit rate:       72 kbps
+Average packet size: 731.09 bytes
+Average packet rate: 12 packets/s
+SHA256:              960780fa3046f9d7ba336d51606b90089ed3704c19abc6afea5ef49dd55fa753
+RIPEMD160:           91e8b43e712e2fd5e02829978ccfb8988c34d683
+SHA1:                929b509aa8ba70c0ad0cd6635cba435f7288d247
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 65535
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 5772
 ```
 
 
