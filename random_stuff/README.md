@@ -24,6 +24,8 @@
   - [send message]
 	 - [Python](#python)
 	 - [Powershell](#powershell)
+- Web
+  - [Google Dorks](#google-dorks)
 
 ### Mount SSHFS
 
@@ -357,3 +359,10 @@ $Telegramchatid = "-62861232"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-RestMethod -Uri "https://api.telegram.org/bot$($Telegramtoken)/sendMessage?chat_id=$($Telegramchatid)&text=$($Message)"
 ```
+
+## web
+
+### Google Dorks
+
+```
+ext:inc "<?php"
