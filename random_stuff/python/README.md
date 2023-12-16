@@ -18,7 +18,7 @@
 
 ## simple get request
 
-```
+```python
 #!/usr/bin/python3
 import requests
 r = requests.get('http://someurl.domain/')
@@ -34,7 +34,7 @@ to only print status code:
 
 with BeautifulSoup
 
-```
+```python
 >>> import requests
 >>> from bs4 import BeautifulSoup as bs
 >>> r = requests.get('http://someurl.domain/')
@@ -48,7 +48,7 @@ with BeautifulSoup
 
 ## get request with parameter
 
-```
+```python
 #!/usr/bin/python3
 import requests
 payload = { 'id': 'flag' }
@@ -58,7 +58,7 @@ print(r.text)
 
 ## get request with header
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
@@ -75,7 +75,7 @@ r = requests.get(url, headers=headers)
 print(r.text)
 ```
 
-```
+```python
 url = 'http://someurl.domain/users'
 headers = {'Accept': 'application/xml'}
 r = requests.get(url, headers=headers)
@@ -85,7 +85,7 @@ print(r.text)
 
 ## get request with manual cookie
 
-```
+```python
 import requests
 
 url = 'http://someurl.domain'
@@ -96,7 +96,7 @@ print(r.text)
 
 ## print cookie
 
-```
+```python
 import requests
 
 s = requests.Session()
@@ -109,7 +109,7 @@ print(r.text)
 
 ## head method
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
@@ -119,7 +119,7 @@ print(r.headers)
 
 ## post request
 
-```
+```python
 import requests
 
 payload = { 'username': 'admin', 'password': 'admin' }
@@ -129,7 +129,7 @@ print(r.text)
 
 ## post with json body
 
-```
+```python
 import requests
 
 r = requests.post('http://domain.url/login', json={
@@ -142,7 +142,7 @@ print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
 ## options method
 
-```
+```python
 import requests
 
 r = requests.options('http://domain.url/')
@@ -157,7 +157,7 @@ In this example, the token is obtained with an initial POST request.
 Then, the CSRF token is sent to other pages (index 1..4):
 
 
-```
+```python
 import requests
 
 s = requests.Session()
@@ -173,7 +173,7 @@ for i in range(4):
 
 ## extract html elements
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
@@ -196,7 +196,7 @@ for link in soup.find_all('p'):
 
 more advanced example (only "red" elements)
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
@@ -216,7 +216,7 @@ for letter in soup.find_all('span', {'class': 'red'}):
 
 only comments:
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
@@ -235,7 +235,7 @@ for c in comments:
 extract links and javascript according to regexp:
 
 
-```
+```python
 #!/usr/bin/python3
 
 """
@@ -276,7 +276,7 @@ print(mo.group())
 
 or
 
-```
+```python
 #!/usr/bin/python3
 
 import bs4, requests, re
@@ -314,7 +314,7 @@ for i in script_list:
 
 ## scraping with regexp
 
-```
+```python
 #!/usr/bin/python
 
 import re,requests
@@ -355,7 +355,7 @@ for i in urilist:
 
 this example involves cookie, csrf, some headers:
 
-```
+```python
 #!/usr/bin/python3
 
 import requests
