@@ -13,6 +13,7 @@
 - [Extract HTML elements](#extract-html-elements)
 - [Scraping with regexp](#scraping-with-regexp)
 - [Loggin into DVWA](#logging-into-dvwa)
+- [Upload file](#upload-file)
 
 
 ## simple get request
@@ -388,6 +389,24 @@ req2 = s.post(url, data=payload, proxies=proxy, headers=headers)
 print(req2.text)
 ```
 
+## upload file
+
+of course you need to know the correct names of the form
+
+```python
+import requests
+
+file = open("logo.png", "rb")
+
+url = "http://192.168.106.253/study/upload.php"
+
+u = requests.post(url, files = {"fileToUpload": file})
+
+if u.ok:
+    print("File uploaded succesfully!")
+else:
+    print("Upload failed!")
+```
 
 
 
