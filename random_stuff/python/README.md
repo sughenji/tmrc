@@ -12,6 +12,7 @@
 - [Token CSRF](#token-csrf)
 - [Extract HTML elements](#extract-html-elements)
 - [Scraping with regexp](#scraping-with-regexp)
+- [Loggin into DVWA](#logging-into-dvwa)
 
 
 ## simple get request
@@ -21,6 +22,13 @@
 import requests
 r = requests.get('http://someurl.domain/')
 print(r.text)
+```
+
+to only print status code:
+
+```
+>>> print(r.status_code)
+200
 ```
 
 with BeautifulSoup
@@ -341,6 +349,45 @@ scrape(url)
 for i in urilist:
     scrape(url+i)
 ```
+
+## logging into dvwa
+
+this example involves cookie, csrf, some headers:
+
+```
+#!/usr/bin/python3
+
+import requests
+from bs4 import BeautifulSoup
+
+# our proxy (burp?)
+proxy = { 'http': 'http://127.0.0.1:8080' }
+
+url = 'http://192.168.106.253/DVWA/login.php'
+s = requests.Session()
+req = s.get(url)
+soup = BeautifulSoup(req.text, 'html.parser')
+
+# we get our cookie
+c = (req.cookies["PHPSESSID"])
+print("Cookie: " + c + "\n")
+
+# we need to grab only the "hidden" HTML object
+hidden_input = soup.find('input', type='hidden')
+
+# this is our token for the next request
+csrf_token = hidden_input.get('value', '')
+print("user_token: " + csrf_token + "\n")
+
+# our actual POST request
+
+payload = { 'username': 'gordonb', 'password': 'abc123', 'Login': 'Login', 'user_token': csrf_token }
+headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID='+c }
+
+req2 = s.post(url, data=payload, proxies=proxy, headers=headers)
+print(req2.text)
+```
+
 
 
 
