@@ -275,6 +275,37 @@ sugo@vboxdebian:~/ansible$ cat mailclusters_debian_upgrade.yaml
       apt: upgrade=dist force_apt_get=yes
 ```
 
+For `yum update`:
+
+Add your user to `sudoers`, like:
+
+```
+# to allow yum 
+sugo            ALL=(ALL)       NOPASSWD: /usr/bin/yum
+```
+
+Populate your inventory:
+
+```
+diameters:
+  hosts:
+    diameter:
+      ansible_host: xx.yy.69.82
+    diameter2:
+      ansible_host: xx.yy.69.4
+    diameter3:
+      ansible_host: xx.yy.69.80
+```
+
+Use `shell` module:
+
+```
+$ ansible diameters -m shell -i inventory.yaml -usugo -a "sudo yum update -y"
+```
+
+
+
+
 ### VIM
 
 remove all highlights:
