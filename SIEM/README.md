@@ -11,7 +11,7 @@ data.win.system.eventID: 4625
 or: `*4625*`
 
 
-Free text search: `"doco1"`
+Free text search: `"dc1"`
 
 ![](Pasted%20image%2020231228121300.png)
 
@@ -41,7 +41,7 @@ data.win.system.eventID: 4624 and data.win.eventdata.targetUserName: sugo and da
 Get a list of indexes:
 
 ```bash
-root@videodrome:~# curl -k "https://192.168.81.4:9200/_cat/indices" -u admin:XXXXXXXXXXX
+root@videodrome:~# curl -k "https://192.168.100.4:9200/_cat/indices" -u admin:XXXXXXXXXXX
 green open wazuh-alerts-4.x-2023.05.25            s-BOcZL9T6Kh4N_1o7KfrQ 3 0 6376242 0    3.5gb    3.5gb
 green open wazuh-alerts-4.x-2023.05.26            LBIx5hfKSsy7L36Dv7qcow 3 0 5120565 0    2.3gb    2.3gb
 green open wazuh-alerts-4.x-2023.05.27            GDRdGRHpQd-m3uvx5T_d2w 3 0 4538891 0    1.6gb    1.6gb
@@ -59,7 +59,7 @@ green open wazuh-alerts-4.x-2023.05.21            DPSevUUZSZC7WkJ02D9Vtg 3 0 677
 Get latest 2 alerts (`size=2`) from a specific index (`wazuh-alerts-4.x-2023.11.28`)
 
 ```bash
-root@videodrome:~# curl -k "https://192.168.81.4:9200/wazuh-alerts-4.x-2023.11.28/_search?pretty=true&size=2" -u admin:XXXXXX
+root@videodrome:~# curl -k "https://192.168.100.4:9200/wazuh-alerts-4.x-2023.11.28/_search?pretty=true&size=2" -u admin:XXXXXX
 {
   "took" : 1,
   "timed_out" : false,
