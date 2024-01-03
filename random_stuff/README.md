@@ -466,6 +466,12 @@ To reload server configuration
 wg-reload wg0
 ```
 
+To start client (if config file is in `/etc/wireguard/wg0.conf`):
+
+```
+wg-quick up wg0
+```
+
 
 
 
