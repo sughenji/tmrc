@@ -472,6 +472,29 @@ To start client (if config file is in `/etc/wireguard/wg0.conf`):
 wg-quick up wg0
 ```
 
+Windows Tips: basically I used this solutions:
+
+https://github.com/micahmo/WgServerforWindowso
+
+everything went smoothly, but I noticed that often the "Nat routing" was disabled.
+
+I wrote this simple script:
+
+```powershell
+# Command to check (replace this with your actual command)
+$commandOutput = Get-NetNat 
+
+# Check if the output is empty
+if (-not $commandOutput) {
+    Write-Host "Command returned nothing. Launching another script..."
+    new-netnat -name wg_server_nat -InternalIPInterfaceAddressPrefix 10.253.0.1/24
+	    
+}
+```
+
+
+
+
 
 
 
