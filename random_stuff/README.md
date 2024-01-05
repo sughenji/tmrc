@@ -28,7 +28,8 @@
   - [Google Dorks](#google-dorks)
 
 - Networking
-  - [wireguard](#wireguard)
+  - [wireguard on Windows server](#wireguard-on-windows-server)
+  - [wireguard on Mikrotik](#wireguard-on-mikrotik)
 
 ### Mount SSHFS
 
@@ -404,7 +405,7 @@ ext:inc "<?php"
 
 ## networking
 
-### wireguard
+### wireguard on Windows server
 
 Generate private key:
 
@@ -490,6 +491,76 @@ if (-not $commandOutput) {
     new-netnat -name wg_server_nat -InternalIPInterfaceAddressPrefix 10.253.0.1/24
 	    
 }
+```
+
+### wireguard on mikrotik
+
+VPN site-to-site
+
+reference:
+
+https://help.mikrotik.com/docs/display/ROS/WireGuard
+
+On Mikrotik on site 1 (LAN: `192.168.101.0/24`, PUBLIC IP: `188.34.72.4`):
+
+Create interface:
+
+```
+/interface/wireguard
+add listen-port=13231 name=wireguard1
+```
+
+Take note on `public key` of site 1, let's say `SITE1PUBKEY`.
+
+Configure an IP address on interface `wireguard1`, let's say `SITE1WGIP`, eg. `10.0.0.1/24`.
+
+On Mikrotik on site 2 (LAN: `192.168.102./24`, PUBLIC IP: `65.42.43.23`):
+
+```
+/interface/wireguard
+add listen-port=13231 name=wireguard1
+```
+
+Take note on `public key` of site 2, let's say `SITE2PUBKEY`.
+
+Configure an IP address on interface `wireguard1`, let's say `SITE2WGIP`, eg. `10.0.0.2/24`.
+
+On Mikrotik on site 1:
+
+Add peer interface:
+
+N.B.
+
+**You must put in `allowed-address` the remote network, and even the remote peer wireguard IP (`SITE2WGIP`).**
+
+```
+/interface/wireguard/peers
+add allowed-address=192.168.102.0/24,10.0.0.2/32 endpoint-address=65.42.43.23 endpoint-port=13231 interface=wireguard1 \
+public-key="SITE2PUBKEY"
+```
+
+Configure a static route to SITE2 remote LAN network:
+
+```
+/ip/route
+add dst-address=192.168.102.0/24 gateway=wireguard1
+```
+
+On Mikrotik on site 2:
+
+Add peer interface:
+
+```
+/interface/wireguard/peers
+add allowed-address=192.168.101.0/24,10.0.0.1/32 endpoint-address=188.34.72.4 endpoint-port=13231 interface=wireguard1 \
+public-key="SITE1PUBKEY"
+```
+
+Configure a static route to SITE1 remote LAN network:
+
+```
+/ip/route
+add dst-address=192.168.101.0/24 gateway=wireguard1
 ```
 
 
