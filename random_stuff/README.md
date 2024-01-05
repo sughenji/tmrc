@@ -591,3 +591,8 @@ PSK: see above
 Endpoint: Mikrotik's public IP address
 
 AllowedIPs: remote LAN behind Mikrotik (eg. `192.168.88.0/24`)
+
+N.B. to route ALL traffic to wireguard tunnel, simply type in your roadwarrior device:
+
+`AllowedIPs: 0.0.0.0/0`
+
