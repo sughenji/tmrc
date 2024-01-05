@@ -572,13 +572,13 @@ add dst-address=192.168.101.0/24 gateway=wireguard1
 
 On Mikrotik, add a new peer.
 
-Public key is the key you obtain from remote device.
+Public key is the key you obtain from roadwarrior device.
 
-Preshared key is the psk that you obtain from remote device, or: `wg genpsk` on Linux).
+Preshared key is the psk that you obtain from roadwarrior device, or: `wg genpsk` on Linux).
 
-Allowed Address is the IP address configured on your remote device (eg. `10.0.0.69/24`)
+Allowed Address is the IP address configured on your roadwarrior device (eg. `10.0.0.69/24`)
 
-On remote device (eg. Android device):
+On roadwarrior device (eg. Android device):
 
 address = `10.0.0.69/24`
 
@@ -591,13 +591,3 @@ PSK: see above
 Endpoint: Mikrotik's public IP address
 
 AllowedIPs: remote LAN behind Mikrotik (eg. `192.168.88.0/24`)
-
-
-
-
-
-
-
-
-
-
