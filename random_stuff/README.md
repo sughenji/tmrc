@@ -28,8 +28,11 @@
   - [Google Dorks](#google-dorks)
 
 - Networking
-  - [wireguard on Windows server](#wireguard-on-windows-server)
-  - [wireguard on Mikrotik](#wireguard-on-mikrotik)
+  - [wireguard](#wireguard)
+  	- [wireguard on Windows server](#wireguard-on-windows-server)
+  	- [wireguard on Mikrotik](#wireguard-on-mikrotik)
+	- [wireguard roadwarrior](#wireguard-roadwarrior)
+  
 
 ### Mount SSHFS
 
@@ -405,6 +408,8 @@ ext:inc "<?php"
 
 ## networking
 
+## wireguard
+
 ### wireguard on Windows server
 
 Generate private key:
@@ -562,6 +567,31 @@ Configure a static route to SITE1 remote LAN network:
 /ip/route
 add dst-address=192.168.101.0/24 gateway=wireguard1
 ```
+
+### wireguard roadwarrior
+
+On Mikrotik, add a new peer.
+
+Public key is the key you obtain from remote device.
+
+Preshared key is the psk that you obtain from remote device, or: `wg genpsk` on Linux).
+
+Allowed Address is the IP address configured on your remote device (eg. `10.0.0.69/24`)
+
+On remote device (eg. Android device):
+
+address = `10.0.0.69/24`
+
+Peer:
+
+public key: the public key from Mikrotik endpoint
+
+PSK: see above
+
+Endpoint: Mikrotik's public IP address
+
+AllowedIPs: remote LAN behind Mikrotik (eg. `192.168.88.0/24`)
+
 
 
 
