@@ -19,6 +19,8 @@
 	- [Connections](#connections)
 - [Event viewer](#event-viewer)
 - [Chainsaw](#chainsaw)
+- [Windows](#windows)
+	- [previous hostname](#previous-hostname)
 
 ## Collect memory
 
@@ -319,3 +321,10 @@ D:\download\chainsaw_all_platforms+rules+examples\chainsaw>chainsaw_x86_64-pc-wi
 ```
 
 
+## windows
+
+### previous hostname
+
+```
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SchedulingAgent
+```
