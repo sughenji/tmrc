@@ -1,5 +1,9 @@
 # Elasticsearch
 
+## Common events
+
+### failed logins
+
 Search for event ID 4625 (failed login)
 
 ```
@@ -10,11 +14,14 @@ data.win.system.eventID: 4625
 
 or: `*4625*`
 
+### free text search
 
-Free text search: `"dc1"`
+Free text search: `"doco1"`
 
 ![](Pasted%20image%2020231228121300.png)
 
+
+### failed login for disabled account
 
 Login failed for disabled account (substatus = 0xC0000072)
 
@@ -38,10 +45,151 @@ Specific time:
 data.win.system.eventID: 4624 and data.win.eventdata.targetUserName: sugo and data.win.system.systemTime:     "2023-12-29T20:11:00.629985900Z"
 ```
 
-Get a list of indexes:
+### File download event
+
+https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=90015
+
+(requires `Sysmon`)
+
+
+```shell-session
+event.code:15 AND file.name:*filename.exe
+```
+
+if we expand event's details, we can find also application used to generate file (`process.name` or `process.executable`):
+
+![](Pasted%20image%2020240107172345.png)
+
+so we can assume that file was downloaded through Edge browser.
+### file creation
+
+(requires `Sysmon`)
+
+```shell-session
+event.code:11 AND file.name:filename.exe*
+```
+
+look for hostname: `agent.hostname`, `host.name`, `host.hostname` to find on which workstation that file has been created
+
+### network connection
+
+(requires `Sysmon`)
+
+```
+event.code:3 and host.hostname:WS001
+```
+
+
+### process creation
+
+(requires `Sysmon`)
+
+```shell-session
+event.code:1 AND process.name:"outlook.exe"
+```
+
+parent name
+
+```shell-session
+event.code:1 AND process.parent.name:"notepad.exe"
+```
+
+
+### search for a process spawned by a parent process
+
+(requires `Sysmon`)
+
+if the suspected parent command line containes string `fattura.bat`:
+
+```
+event.code:1 AND process.parent.command_line:*fattura.bat*
+```
+
+(we can also see `process.args`)
+
+### more on process execution
+
+```
+process.pid:"1234" and process.name:"powershell.exe"
+```
+
+add columns: `file.path`, `dns.question.name`, `destination.ip`, ...
+
+### looking on a specific process
+
+
+```shell-session
+process.pid:"1234" and process.name:"powershell.exe"
+```
+
+### looking for a specific hash
+
+
+```shell-session
+process.hash.sha256:018d37cbd3878258c29db3bc3f2988b6ab688843801b9abc28e6131141ab66d4
+```
+
+in case of malicious file, we can look if several machines where attacked.
+
+### dns event
+
+(requires `Sysmon`)
+
+
+### find a process that scan network shares on a suspected machine
+
+eg. suspected machine's hostname is: `HOST001`
+
+```
+destination.port:"445" and agent.hostname:"HOST001"
+```
+
+we add `process.pid` as column
+
+![](Pasted%20image%2020240107195807.png)
+
+and we found 1 PIDS: `5620`
+
+if you are looking for some powershell tool that scans networks, try to set a **FILTER** on Discover dashboard, like
+
+![](Pasted%20image%2020240110234522.png)
+
+then look for some juicy strings, put them on search engine, you will reach something like:
+
+https://gist.github.com/nullbind/f5e26b6e6024e5c21256e8bfb7babf2d
+
+### find a file transfer into some path
+
+https://attack.mitre.org/techniques/T1570/
+
+eg. `c:\downloads`
+
+```
+file.directory : "C:\downloads"
+```
+
+### look for boot or autostart execution
+
+https://attack.mitre.org/techniques/T1547/001/
+
+filter: `registry.value` exists
+
+add column: `registry.path`
+
+### look for powershell lateral movement
+
+https://www.ired.team/offensive-security/lateral-movement/t1028-winrm-for-lateral-movement
+
+filter: `powershell.file.script_block_text` exists and `event.id:4104`
+
+
+
+## common tasks
+
+### get a list of indexes
 
 ```bash
-root@videodrome:~# curl -k "https://192.168.100.4:9200/_cat/indices" -u admin:XXXXXXXXXXX
+root@videodrome:~# curl -k "https://192.168.81.4:9200/_cat/indices" -u admin:XXXXXXXXXXX
 green open wazuh-alerts-4.x-2023.05.25            s-BOcZL9T6Kh4N_1o7KfrQ 3 0 6376242 0    3.5gb    3.5gb
 green open wazuh-alerts-4.x-2023.05.26            LBIx5hfKSsy7L36Dv7qcow 3 0 5120565 0    2.3gb    2.3gb
 green open wazuh-alerts-4.x-2023.05.27            GDRdGRHpQd-m3uvx5T_d2w 3 0 4538891 0    1.6gb    1.6gb
@@ -56,10 +204,17 @@ green open wazuh-alerts-4.x-2023.05.21            DPSevUUZSZC7WkJ02D9Vtg 3 0 677
 ..
 ```
 
+### set timezone
+
+```
+http://base_ip:5601/app/management/kibana/settings
+```
+### get latest x alerts
+
 Get latest 2 alerts (`size=2`) from a specific index (`wazuh-alerts-4.x-2023.11.28`)
 
 ```bash
-root@videodrome:~# curl -k "https://192.168.100.4:9200/wazuh-alerts-4.x-2023.11.28/_search?pretty=true&size=2" -u admin:XXXXXX
+root@videodrome:~# curl -k "https://192.168.81.4:9200/wazuh-alerts-4.x-2023.11.28/_search?pretty=true&size=2" -u admin:XXXXXX
 {
   "took" : 1,
   "timed_out" : false,
@@ -99,6 +254,8 @@ root@videodrome:~# curl -k "https://192.168.100.4:9200/wazuh-alerts-4.x-2023.11.
 ..
 ..
 ```
+
+### get detail of a specific agent
 
 Get a detail of a specific agent
 
@@ -144,6 +301,8 @@ root@dune:~# curl -s -k 'https://localhost:55000/agents/?q=id=001' -H "Authoriza
   "error": 0
 }
 ```
+
+### get a list of all agents
 
 Get a list of ALL agents
 
@@ -212,6 +371,8 @@ root@dune:/home/sugo# curl -s -k 'https://localhost:55000/agents/?q=id!=000' -H 
 ..
 ```
 
+### exclude computer accounts
+
 KQL (Kibana Query Language) query to exclude computer accounts (`HOSTNAME$`):
 
 ```shell-session
@@ -219,4 +380,8 @@ NOT user.name: *$ AND winlog.channel.keyword: Security
 ```
 
 
+### set a specific field as a column
+
+
+![](Pasted%20image%2020240107174611.png)
 
