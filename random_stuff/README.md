@@ -199,6 +199,8 @@ https://github.com/kost/nmap-android/releases
 
 ### TMUX
 
+Session -> can contain multiple windows -> which in turn can contain multiple panels
+
 #### spawn new session
 
 ```
@@ -216,6 +218,56 @@ tmux new -s RSYSLOG
 ```
 :resize-pane -D 5
 ```
+
+#### Toggle status bar
+
+```
+:set status off
+```
+
+#### "zoom" current pane
+
+```
+prefix+z
+```
+
+#### change prefix
+
+Open `.tmux.conf` and set this
+
+```
+set -g prefix ^W
+```
+
+after:
+
+```
+:source-file .tmux.conf
+```
+
+#### load plugins
+
+clone repository
+
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+```
+sugo@server$ cat .tmux.conf 
+
+# plugins
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-logging'
+
+# active plugins
+run '~/.tmux/plugins/tpm/tpm'
+```
+
+
+
 
 ### Ansible
 
