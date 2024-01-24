@@ -14,6 +14,7 @@
   - [TMUX](#tmux)
   - [Ansible](#ansible)
   - [VIM](#vim)
+  - [ulimit](#ulimit)
 - Github
   - [create ssh pair](#create-ssh-pair)
   - [switch to ssh authentication](#switch-to-ssh-authentication)
@@ -32,6 +33,9 @@
   	- [wireguard on Windows server](#wireguard-on-windows-server)
   	- [wireguard on Mikrotik](#wireguard-on-mikrotik)
 	- [wireguard roadwarrior](#wireguard-roadwarrior)
+
+- Wireless pentest
+  - [cracking wpa](#cracking-wpa)
   
 
 ### Mount SSHFS
@@ -373,6 +377,15 @@ remove all highlights:
 :noh
 ```
 
+### ulimit
+
+```
+# sudo -u bareos bash -c 'ulimit -n'
+1024
+```
+
+https://woshub.com/too-many-open-files-error-linux/
+
 
 
 ## Github
@@ -647,4 +660,13 @@ AllowedIPs: remote LAN behind Mikrotik (eg. `192.168.88.0/24`)
 N.B. to route ALL traffic to wireguard tunnel, simply type in your roadwarrior device:
 
 `AllowedIPs: 0.0.0.0/0`
+
+
+## Wireless pentest
+
+### cracking wpa
+
+```
+hashcat.exe -m 22000 ..\other.hc22000 d:\tmrc\hacking\wordlist\rockyou.txt
+```
 
