@@ -36,6 +36,7 @@
 
 - Wireless pentest
   - [cracking wpa](#cracking-wpa)
+  - [hashcat rules](#hashcat-rules)
   
 
 ### Mount SSHFS
@@ -668,5 +669,11 @@ N.B. to route ALL traffic to wireguard tunnel, simply type in your roadwarrior d
 
 ```
 hashcat.exe -m 22000 ..\other.hc22000 d:\tmrc\hacking\wordlist\rockyou.txt
+```
+
+### hashcat rules
+
+```
+$ hashcat --stdout -r spipbest.rule wordlist.txt > wordlistpostrule.txt
 ```
 
