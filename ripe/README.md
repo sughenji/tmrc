@@ -1,10 +1,12 @@
 # RIPE
 
-Look for every object mantained by X:
+## Look for every object mantained by X:
 
 ```
 whois -h whois.ripe.net -i mnt-by ITALIACOM-MNT
 ```
+
+## Look for people
 
 N.B. `--` is used to avoid sequent options to be considered as `whois` options instead of RIPE syntax
 
@@ -50,11 +52,18 @@ last-modified:  2017-01-17T20:29:52Z
 source:         RIPE # Filtered
 ```
 
-Search for every network that belongs to some AS:
+## Look for every network that belongs to some AS
 
 ```
 # whois -h whois.ripe.net -- "-i origin AS1111 -Troute" |grep route | awk '{ print $2 }'
 ```
+
+## Search for ROUTE object:
+
+```
+# whois -h whois.ripe.net -- "-Troute 195.32.80.0/20"
+```
+
 
 ## Useful online resources
 
