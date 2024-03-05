@@ -33,6 +33,11 @@
   	- [wireguard on Windows server](#wireguard-on-windows-server)
   	- [wireguard on Mikrotik](#wireguard-on-mikrotik)
 	- [wireguard roadwarrior](#wireguard-roadwarrior)
+  - [scapy](#scapy)
+	- [read pcap file](#read-pcap-file)
+	- [print detail of a packet](#print-detail-of-a-packet)
+	- [print field of a packet](#print-field-of-a-packet)
+	- [print only icmp packet](#print-only-icmp-packet)
 
 - Wireless pentest
   - [cracking wpa](#cracking-wpa)
@@ -661,6 +666,63 @@ AllowedIPs: remote LAN behind Mikrotik (eg. `192.168.88.0/24`)
 N.B. to route ALL traffic to wireguard tunnel, simply type in your roadwarrior device:
 
 `AllowedIPs: 0.0.0.0/0`
+
+## scapy
+
+### read pcap file
+
+```
+>>> from scapy.all import *
+>>> rdpcap("/home/sugo/github/tmrc/network_traffic_analysis/eternalblue.pcap")
+<eternalblue.pcap: TCP:1420 UDP:0 ICMP:0 Other:0>
+```
+
+or
+
+```
+>>> from scapy.all import *
+>>> packets = rdpcap("/home/sugo/github/tmrc/network_traffic_analysis/eternalblue.pcap")
+>>> packets.summary
+<bound method _PacketList.summary of <eternalblue.pcap: TCP:1420 UDP:0 ICMP:0 Other:0>>
+```
+
+### print detail of a packet
+
+```
+>>> pkts[0].show()
+###[ Ethernet ]###
+  dst       = 52:54:00:12:35:00
+  src       = 08:00:27:2f:03:77
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 84
+..
+..
+```
+
+### print field of a packet
+
+```
+>>> pkts[0].load
+b'{\xbf\x93b\x00\x00\x00\x00\xadm\x06\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567'
+```
+
+### print only icmp packet
+
+```
+>>> pkts.summary
+<bound method _PacketList.summary of <esercitazione_20230529.pcapng: TCP:1464 UDP:0 ICMP:50 Other:9>>
+>>> pkts[ICMP].summary()
+Ether / IP / ICMP 10.0.2.8 > 10.0.2.5 echo-request 0 / Raw
+Ether / IP / ICMP 10.0.2.5 > 10.0.2.8 echo-reply 0 / Raw
+Ether / IP / ICMP 10.0.2.8 > 10.0.2.5 echo-request 0 / Raw
+..
+..
+```
+
 
 
 ## Wireless pentest
