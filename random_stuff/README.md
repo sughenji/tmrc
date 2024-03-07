@@ -38,6 +38,8 @@
 	- [print detail of a packet](#print-detail-of-a-packet)
 	- [print field of a packet](#print-field-of-a-packet)
 	- [print only icmp packet](#print-only-icmp-packet)
+  - [wireshark](#wireshark)
+	- [maxmind](#maxmind)
 
 - Wireless pentest
   - [cracking wpa](#cracking-wpa)
@@ -723,6 +725,19 @@ Ether / IP / ICMP 10.0.2.8 > 10.0.2.5 echo-request 0 / Raw
 ..
 ```
 
+## wireshark
+
+### maxmind
+
+Download files:
+
+GeoLite2-ASN_
+
+GeoLite2-City_
+
+GeoLite2-Country
+
+Go to Preferences -> Name Resolution -> MaxMind Database Directories
 
 
 ## Wireless pentest
