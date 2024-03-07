@@ -739,6 +739,8 @@ GeoLite2-Country
 
 Go to Preferences -> Name Resolution -> MaxMind Database Directories
 
+Go to Statistics -> Endpoints -> map
+
 
 ## Wireless pentest
 
