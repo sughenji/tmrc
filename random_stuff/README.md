@@ -34,10 +34,12 @@
   	- [wireguard on Mikrotik](#wireguard-on-mikrotik)
 	- [wireguard roadwarrior](#wireguard-roadwarrior)
   - [scapy](#scapy)
+	- [list commands](#list-commands)
 	- [read pcap file](#read-pcap-file)
 	- [print detail of a packet](#print-detail-of-a-packet)
 	- [print field of a packet](#print-field-of-a-packet)
 	- [print only icmp packet](#print-only-icmp-packet)
+	- [forge icmp](#forge-icmp)
   - [wireshark](#wireshark)
 	- [maxmind](#maxmind)
 
@@ -671,6 +673,23 @@ N.B. to route ALL traffic to wireguard tunnel, simply type in your roadwarrior d
 
 ## scapy
 
+### list commands
+
+```
+>>> lsc()
+IPID_count          : Identify IP id values classes in a list of packets
+arpcachepoison      : Poison target's cache with (your MAC,victim's IP) couple
+arping              : Send ARP who-has requests to determine which hosts are up
+arpleak             : Exploit ARP leak flaws, like NetBSD-SA2017-002.
+bind_layers         : Bind 2 layers on some specific fields' values.
+bridge_and_sniff    : Forward traffic between interfaces if1 and if2, sniff and return
+chexdump            : Build a per byte hexadecimal representation
+computeNIGroupAddr  : Compute the NI group Address. Can take a FQDN as input parameter
+..
+..
+```
+
+
 ### read pcap file
 
 ```
@@ -724,6 +743,31 @@ Ether / IP / ICMP 10.0.2.8 > 10.0.2.5 echo-request 0 / Raw
 ..
 ..
 ```
+
+### forge icmp
+
+with root or sudo rights
+
+
+```python
+>>> from scapy.all import *
+>>> pingr = IP(dst="46.252.144.172")/ICMP()
+>>> sr1(pingr)
+```
+
+get response:
+
+```python
+>>> resp = sr1(pingr)
+Begin emission:
+..Finished to send 1 packets.
+.*
+Received 147 packets, got 1 answers, remaining 0 packets
+>>> resp[0].summary()
+'IP / ICMP 4.2.2.1 > 172.16.20.40 echo-reply 0 / Padding'
+```
+
+
 
 ## wireshark
 
