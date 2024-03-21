@@ -39,6 +39,7 @@
 	- [print detail of a packet](#print-detail-of-a-packet)
 	- [print field of a packet](#print-field-of-a-packet)
 	- [print only icmp packet](#print-only-icmp-packet)
+  	- [print only icmp echo request](#print-only-icmp-echo-request)
 	- [forge icmp](#forge-icmp)
   - [wireshark](#wireshark)
 	- [maxmind](#maxmind)
@@ -743,6 +744,19 @@ Ether / IP / ICMP 10.0.2.8 > 10.0.2.5 echo-request 0 / Raw
 ..
 ..
 ```
+
+### print only icmp echo request
+
+```
+from scapy.all import *
+
+pkts = rdpcap("onlyicmp.pcap")
+
+for p in pkts:
+    if p[ICMP].type == 8:
+        print(p[ICMP].id)
+```
+
 
 ### forge icmp
 

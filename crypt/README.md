@@ -4,6 +4,8 @@
 - [Symmetric encryption with OpenSSL](#symmetric-encryption-with-openssl)
 - [Generate private key](#generate-private-key)
 - [Generate public key](#generate-public-key)
+- [Export GPG public key](#export-gpg-public-key)
+- [Export GPG private key](#export-gpg-private-key)
 - [Encrypt with public key](#encrypt-with-public-key)
 - [Decrypt with private key](#decrypt-with-private-key)
 - [Generate Diffie Hellman](#generate-diffie-hellman) 
@@ -62,6 +64,21 @@ To see details
 ```
 $ openssl rsa -in private-key.pem -text -noout
 ```
+
+## export gpg public key
+
+```bash
+$ gpg --output vstore_pub_key --armor --export asd@domain.it
+```
+
+## export gpg private key
+
+```bash
+$ gpg --output vstore_private_key --armor --export-secret-key --pinentry-mode=loopback asd@domain.it
+Password:
+```
+
+
 
 ## encrypt with public key
 
