@@ -6,6 +6,8 @@
 - [Generate public key](#generate-public-key)
 - [Export GPG public key](#export-gpg-public-key)
 - [Export GPG private key](#export-gpg-private-key)
+- [Import GPG private key](#import-gpg-private-key)
+- [Decrypt with GPG private key](#decrypt-with-gpg-private-key)
 - [Encrypt with public key](#encrypt-with-public-key)
 - [Decrypt with private key](#decrypt-with-private-key)
 - [Generate Diffie Hellman](#generate-diffie-hellman) 
@@ -76,6 +78,26 @@ $ gpg --output vstore_pub_key --armor --export asd@domain.it
 ```bash
 $ gpg --output vstore_private_key --armor --export-secret-key --pinentry-mode=loopback asd@domain.it
 Password:
+```
+
+## import gpg private key
+
+```bash
+$ gpg --import priv
+gpg: key 44F9A09421EDDFDD: public key "Vault Backup (Vault Backup) <asd@domain.it>" imported
+gpg: key 44F9A09421EDDFDD: secret key imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+```
+
+## decrypt with gpg private key
+
+```bash
+$ gpg --output dump.sql --decrypt vdb.20240321152725.gpg
+gpg: encrypted with 4096-bit RSA key, ID 3A9CAB6E524B9A77, created 2021-07-01
+      "Vault Backup (Vault Backup) <asd@domain.it>"
 ```
 
 
