@@ -92,6 +92,12 @@ gpg:       secret keys read: 1
 gpg:   secret keys imported: 1
 ```
 
+*In case of "permission denied" error:*
+
+```
+gpg --pinentry-mode=loopback --import priv
+```
+
 ## decrypt with gpg private key
 
 ```bash
@@ -100,7 +106,11 @@ gpg: encrypted with 4096-bit RSA key, ID 3A9CAB6E524B9A77, created 2021-07-01
       "Vault Backup (Vault Backup) <asd@domain.it>"
 ```
 
+*In case of "permission denied" error:*
 
+```
+gpg --pinentry-mode=loopback --output dump.sql --decrypt vdb.20240402024000.gp
+```
 
 ## encrypt with public key
 
