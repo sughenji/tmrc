@@ -96,13 +96,31 @@ nmap -sP -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,100432 --source-port 
 
 ## some NSE script for DNS
 
+```
 nmap -v -PN -sU -p53 -T4 --script=dns-test-open-recursion,dns-safe-recursion-port.nse,dns-safe-recursion-txid.nse host1 ... host2...
+```
 
 ## ndiff
 
 to show "diff" between two nmap scan output
 
+## let's make an inventory of our network
 
+Run `nmap` with `-p-` (we want ALL ports) and `-sV` for version details. 
+
+Save output in all supported formats (we are interested in XML).
+
+```
+$ sudo nmap -p- 192.168.88.0/24 -sV -oA inventory
+```
+
+To create a pretty HTML report of our scan:
+
+```
+$ xsltproc inventory.xml -o inventory.html
+```
+
+![](scan-xsltproc.png)
 
 
 
