@@ -814,3 +814,7 @@ hashcat.exe -m 22000 ..\other.hc22000 d:\tmrc\hacking\wordlist\rockyou.txt
 $ hashcat --stdout -r spipbest.rule wordlist.txt > wordlistpostrule.txt
 ```
 
+```
+$ hashcat --force --stdout -r /usr/share/hashcat/rules/best64.rule wordlist > wordlistpostrule
+```
+
