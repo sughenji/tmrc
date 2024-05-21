@@ -9,6 +9,7 @@
   - [psexec](#psexec)
   - [Install openssh server powershell](#install-openssh-server-powershell)
   - [Manage Firewall with powershell](#manage-firewall-with-powershell)
+  - [Script to send email reminder password expiring](#script-to-send-email-reminder-password-expiring)
 - Linux
   - [Compiling C code on Linux](#compiling-c-code-on-linux)
   - [TMUX](#tmux)
@@ -186,8 +187,52 @@ PS C:\Windows\system32> Get-NetFirewallRule -DisplayName "Condivisione file e st
 PS C:\Windows\system32>
 ```
 
+### Script to send email reminder password expiring
 
 
+```powershell
+# Importare il modulo Active Directory
+Import-Module ActiveDirectory
+
+# Configurare i dettagli del server SMTP
+$smtpServer = "smtp-out.domain.ext"
+$smtpFrom = "noc@domain.ext"
+$smtpSubject = "[DOMAIN] Avviso scadenza password di dominio"
+
+# Ottieni la data corrente e aggiungi 7 giorni
+$expiryDate = (Get-date).AddDays(7).ToString('yyyy/MM/dd')
+# mi faccio printare la data di riferimento, giusto per
+#Write-Host $expiryDate
+
+# Recupera tutti gli utenti dal dominio Active Directory che rispondono ai seguenti criteri:
+# 1) sono abilitati
+# 2) hanno scadenza password abilitata (non vogliamo inviare alert a utenti la cui password NON scade, per nostra scelta)
+# 3) NON sono membri dell'OU Mhost customer (per il momento ai clienti/consulenti esterni non mandiamo reminder)
+# 4) NON matchano gli utenti "fittizi" (es. extest_96a4813aea414)
+$users = Get-ADUser -Filter * -Property DisplayName, EmailAddress, passwordNeverExpires, msDS-UserPasswordExpiryTimeComputed | Where-Object { $_.Enabled -eq $true -and $_.passwordNeverExpires -eq $false -and $_.distinguishedName -notlike "*OU=mHOST customers,DC=micso,DC=local" -and $_.distinguishedName -notMatch "extest_" }   
+
+foreach ($user in $users) {
+        $userDate = ([datetime]::FromFileTime($user."msDS-UserPasswordExpiryTimeComputed").ToString("yyyy/MM/dd"))
+        # giusto un test per farmi printare cose:
+        #Write-Host $user.DisplayName,$userDate,$user.EmailAddress
+        if ($userDate -lt $expiryDate) {
+        $emailBody = @"
+Ciao $($user.DisplayName),
+
+La tua password scadrà il $($userdate). 
+Ti preghiamo di aggiornare la tua password prima di questa data.
+Per farlo, puoi premere Control+Alt+Canc sul tuo PC e scegliere il menu "Cambia password".
+In alternativa, puoi accedere sulla webmail https://exchange.domain.ext, cliccare in alto a destra sul simbolo dell'ingranaggio, scegliere "Opzioni"; successivamente, dal menu di sinistra "Generale", "Il mio account", potrai cliccare su "Modifica password".
+
+Cordiali saluti e buon lavoro,
+Micso
+"@ 
+        #Write-Host $user.DisplayName,$userDate,$user.EmailAddress,$smtpSubject
+        # Invia la mail
+        Send-MailMessage -SmtpServer $smtpServer -From $smtpFrom -To $user.EmailAddress -Subject $smtpSubject -Body $emailBody -BodyAsHtml
+        } 
+}
+```
 
 
 
