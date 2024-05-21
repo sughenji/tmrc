@@ -102,9 +102,9 @@ TcpTestSucceeded : True
 ```
 $WUCOMPUTERNAME = (Get-CIMInstance CIM_ComputerSystem).name
 $WUSUBJECT = "Windows Updates available for " + $WUCOMPUTERNAME
-$WURECIPIENT = "checkupdate@micso.net"
-$WURELAY = "relay.micso.it"
-$WUFROM = $WUCOMPUTERNAME + "@micso.it"
+$WURECIPIENT = "checkupdate@domain.net"
+$WURELAY = "relay.domain.it"
+$WUFROM = $WUCOMPUTERNAME + "@domain.it"
 $WULIST = Get-WUList
 $HTMLBODY = ($WULIST|select KB,Title|ConvertTo-Html -As LIST -Head $WUCOMPUTERNAME|Out-String)
 Send-MailMessage -To $WURECIPIENT -From $WUFROM -Subject $WUSUBJECT -SmtpServer $WURELAY -Body $HTMLBODY -BodyAsHtml
@@ -207,9 +207,9 @@ $expiryDate = (Get-date).AddDays(7).ToString('yyyy/MM/dd')
 # Recupera tutti gli utenti dal dominio Active Directory che rispondono ai seguenti criteri:
 # 1) sono abilitati
 # 2) hanno scadenza password abilitata (non vogliamo inviare alert a utenti la cui password NON scade, per nostra scelta)
-# 3) NON sono membri dell'OU Mhost customer (per il momento ai clienti/consulenti esterni non mandiamo reminder)
+# 3) NON sono membri dell'OU customer (per il momento ai clienti/consulenti esterni non mandiamo reminder)
 # 4) NON matchano gli utenti "fittizi" (es. extest_96a4813aea414)
-$users = Get-ADUser -Filter * -Property DisplayName, EmailAddress, passwordNeverExpires, msDS-UserPasswordExpiryTimeComputed | Where-Object { $_.Enabled -eq $true -and $_.passwordNeverExpires -eq $false -and $_.distinguishedName -notlike "*OU=mHOST customers,DC=micso,DC=local" -and $_.distinguishedName -notMatch "extest_" }   
+$users = Get-ADUser -Filter * -Property DisplayName, EmailAddress, passwordNeverExpires, msDS-UserPasswordExpiryTimeComputed | Where-Object { $_.Enabled -eq $true -and $_.passwordNeverExpires -eq $false -and $_.distinguishedName -notlike "*OU=customers,DC=domain,DC=local" -and $_.distinguishedName -notMatch "extest_" }   
 
 foreach ($user in $users) {
         $userDate = ([datetime]::FromFileTime($user."msDS-UserPasswordExpiryTimeComputed").ToString("yyyy/MM/dd"))
