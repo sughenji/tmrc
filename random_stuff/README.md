@@ -44,6 +44,7 @@
 	- [forge icmp](#forge-icmp)
   - [wireshark](#wireshark)
 	- [maxmind](#maxmind)
+  - [rsync](#rsync)
 
 - Wireless pentest
   - [cracking wpa](#cracking-wpa)
@@ -215,17 +216,17 @@ foreach ($user in $users) {
         $userDate = ([datetime]::FromFileTime($user."msDS-UserPasswordExpiryTimeComputed").ToString("yyyy/MM/dd"))
         # giusto un test per farmi printare cose:
         #Write-Host $user.DisplayName,$userDate,$user.EmailAddress
-        if ($userDate -lt $expiryDate) {
+        if ($userDate -lt $expiryDate -and $userDate -gt (Get-date).ToString('yyyy/MM/dd') ) {
         $emailBody = @"
-Ciao $($user.DisplayName),
+Ciao $($user.DisplayName),<br />
 
-La tua password scadrà il $($userdate). 
-Ti preghiamo di aggiornare la tua password prima di questa data.
-Per farlo, puoi premere Control+Alt+Canc sul tuo PC e scegliere il menu "Cambia password".
-In alternativa, puoi accedere sulla webmail https://exchange.domain.ext, cliccare in alto a destra sul simbolo dell'ingranaggio, scegliere "Opzioni"; successivamente, dal menu di sinistra "Generale", "Il mio account", potrai cliccare su "Modifica password".
+La password del tuo utente $($user.UserPrincipalName) scade il $($userdate).<br />
+Ti preghiamo di aggiornare la tua password prima di questa data.<br />
+Per farlo, puoi premere Control+Alt+Canc sul tuo PC e scegliere il menu "Cambia password".<br />
+In alternativa, puoi accedere sulla webmail https://exchange.domain.ext, cliccare in alto a destra sul simbolo dell'ingranaggio, scegliere "Opzioni"; successivamente, dal menu di sinistra "Generale", "Il mio account", potrai cliccare su "Modifica password".<br />
 
-Cordiali saluti e buon lavoro,
-Micso
+Buon lavoro,<br />
+IT Staff
 "@ 
         #Write-Host $user.DisplayName,$userDate,$user.EmailAddress,$smtpSubject
         # Invia la mail
@@ -843,6 +844,19 @@ GeoLite2-Country
 Go to Preferences -> Name Resolution -> MaxMind Database Directories
 
 Go to Statistics -> Endpoints -> map
+
+## rsync
+
+Test for available shares on remote target (WITH authentication):
+
+```
+root@avatar:~# rsync backupuser@1.2.3.4::
+Password: 
+Multimedia     
+Download       
+Public         
+homes       
+```
 
 
 ## Wireless pentest
