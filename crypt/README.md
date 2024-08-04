@@ -11,6 +11,7 @@
 - [Encrypt with public key](#encrypt-with-public-key)
 - [Decrypt with private key](#decrypt-with-private-key)
 - [Generate Diffie Hellman](#generate-diffie-hellman) 
+- [Create LUKS device](#create-luks-device)
 
 ## Symmetric encryption with gpg
 
@@ -134,5 +135,28 @@ to see details
 
 ```
 openssl dhparam -in dhparams.pem -text -noout
+```
+
+
+## create luks device
+
+Eg. on Debian
+
+```bash
+apt install cryptsetup
+dd if=/dev/urandom of=./vaultfile bs=1M count=50
+cryptsetup --verify-passphrase luksFormat ./vaultfile
+cryptsetup open --type luks ./vaultfile myvault
+mkfs.ext4 -L myvault /dev/mapper/myvault
+mkdir /mnt/vault
+mount /dev/mapper/myvault /mnt/vault/
+```
+
+to close device:
+
+
+```bash
+/bin/umount /mnt/vault
+/usr/sbin/cryptsetup close myvault
 ```
 
