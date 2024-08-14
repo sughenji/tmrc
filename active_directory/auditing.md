@@ -7,6 +7,7 @@
 	- [ADRecon](#adrecon)
 	- [Purple-Knight](#purple-knight)
 	- [Lepide](#lepide)
+	- [Forest Druid](#forest-druid)
 
 # tools
 
@@ -106,3 +107,7 @@ https://www.purple-knight.com/
 ## Lepide
 
 https://www.lepide.com/
+
+## Forest Druid
+
+https://www.semperis.com/it/forest-druid/
