@@ -18,6 +18,7 @@
 	- [DLL list](#dll-list)
 	- [Connections](#connections)
 - [Event viewer](#event-viewer)
+	- [Get-WinEvent](#get-winevent)
 - [Chainsaw](#chainsaw)
 - [Windows](#windows)
 	- [previous hostname](#previous-hostname)
@@ -266,6 +267,65 @@ Search for logs about a specific username:
 ```
 
 ref. https://www.beaming.co.uk/knowledge-base/techs-how-to-search-the-windows-event-log-for-logins-by-username/
+
+# get-winevent
+
+List log files and record number
+
+```powershell
+Get-WinEvent -listlog  * | Select-Object LogName, RecordCount, IsClassicLog, IsEnabled, LogMode, LogType | Format-Table -AutoSize
+```
+
+Most recent 10 items from a log:
+
+```powershell
+Get-WinEvent -logname 'Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational' -MaxEvents 10
+```
+
+Read events from evtx file:
+
+```powershell
+Get-WinEvent -Path 'C:\Users\Administrator\LOGS\sysmon' -MaxEvents 5 | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+```
+
+Filtering with Filterhashtable
+
+```powershell
+Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1,3} | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+```
+
+Search between dates
+
+```powershell
+$startDate = (Get-Date -Year 2024 -Month 2 -Day 21).Date
+$endDate   = (Get-Date -Year 2024 -Month 3 -Day 14).Date
+Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1,3; StartTime=$startDate; EndTime=$endDate} | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+```
+
+Search sysmon connection to a specific ip
+
+```powershell
+Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=3} |
+`ForEach-Object {
+$xml = [xml]$_.ToXml()
+$eventData = $xml.Event.EventData.Data
+New-Object PSObject -Property @{
+    SourceIP = $eventData | Where-Object {$_.Name -eq "SourceIp"} | Select-Object -ExpandProperty '#text'
+    DestinationIP = $eventData | Where-Object {$_.Name -eq "DestinationIp"} | Select-Object -ExpandProperty '#text'
+    ProcessGuid = $eventData | Where-Object {$_.Name -eq "ProcessGuid"} | Select-Object -ExpandProperty '#text'
+    ProcessId = $eventData | Where-Object {$_.Name -eq "ProcessId"} | Select-Object -ExpandProperty '#text'
+}
+}  | Where-Object {$_.DestinationIP -eq "1.1.1.1" }
+```
+
+Filter with Xpath:
+
+```powershell
+Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' -FilterXPath "*[EventData[Data[@Name='Image']='C:\Windows\System32\reg.exe']] and *[EventData[Data[@Name='CommandLine']='`"C:\Windows\system32\reg.exe`" ADD HKCU\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f']]" | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+```
+
+
+
 
 
 ## Chainsaw
