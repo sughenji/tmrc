@@ -16,6 +16,8 @@
   - [Ansible](#ansible)
   - [VIM](#vim)
   - [ulimit](#ulimit)
+  - [bash]
+	- [Process substitution](#process-substitution)
 - Github
   - [create ssh pair](#create-ssh-pair)
   - [switch to ssh authentication](#switch-to-ssh-authentication)
@@ -450,6 +452,37 @@ remove all highlights:
 
 https://woshub.com/too-many-open-files-error-linux/
 
+## bash
+
+### process substitution
+
+Useful if you want, for example, compare two directories.
+
+```bash
+joshua@kaligra:~$ ls dir1
+a  b  c  d  f
+joshua@kaligra:~$ ls dir2
+b  c  e
+joshua@kaligra:~$ diff <(ls dir1) <(ls dir2)
+1d0
+< a
+4,5c3
+< d
+< f
+---
+> e
+```
+
+```bash
+joshua@kaligra:~$ cat <(ls dir1)
+a
+b
+c
+d
+f
+joshua@kaligra:~$ echo <(ls dir1)
+/dev/fd/63
+```
 
 
 ## Github
