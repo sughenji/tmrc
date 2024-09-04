@@ -324,6 +324,16 @@ Filter with Xpath:
 Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' -FilterXPath "*[EventData[Data[@Name='Image']='C:\Windows\System32\reg.exe']] and *[EventData[Data[@Name='CommandLine']='`"C:\Windows\system32\reg.exe`" ADD HKCU\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f']]" | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
 ```
 
+Filter possible DLL Hijacking (Signature invalid)
+
+```xml
+<QueryList>
+  <Query Id="0" Path="file://C:\Logs\DLLHijack\DLLHijack.evtx">
+    <Select Path="file://C:\Logs\DLLHijack\DLLHijack.evtx">*[System[(EventID=7)]] and *[EventData[Data[@Name='Signed']='false']]</Select>
+  </Query>
+</QueryList>
+```
+
 
 
 
