@@ -18,6 +18,7 @@
   - [ulimit](#ulimit)
   - [bash]
 	- [Process substitution](#process-substitution)
+	- [eval](#eval)
 - Github
   - [create ssh pair](#create-ssh-pair)
   - [switch to ssh authentication](#switch-to-ssh-authentication)
@@ -484,6 +485,13 @@ joshua@kaligra:~$ echo <(ls dir1)
 /dev/fd/63
 ```
 
+### eval
+
+with `eval` the commands affect the current shell
+
+https://stackoverflow.com/questions/43001805/whats-the-difference-between-eval-command-and-command
+
+"If you know that a variable contains an executable command you can run it without eval. But if the variable might contain Bash code which is not simply an executable command (i.e. something you could imagine passing to the C function exec()), you need eval"
 
 ## Github
 
