@@ -23,10 +23,6 @@ Credits: for several steps I followed the great IPPsec's walkthrough :)
 - [Fake SSH server](#fake-ssh-server)
 - [SSH access as cbrown user](#ssh-access-as-cbrown-user)
 - [Local enumeration](#local-enumeration)
-- [User flag](#user-flag)
-- [Privilege Escalation](#privilege-escalation)
-- [Root flag](#root-flag)
-
 
 
 
