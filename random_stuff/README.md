@@ -31,6 +31,7 @@
 	 - [Powershell](#powershell)
 - Web
   - [Google Dorks](#google-dorks)
+  - [Scraping Youtube playlist](#scraping-youtube-playlist)
 
 - Networking
   - [wireguard](#wireguard)
@@ -59,7 +60,6 @@
   - [forget](#restic-forget)
   - [check](#restic-check)
   - [script to check several repos](#restic-check-several-repos)
-  
 
 ### Mount SSHFS
 
@@ -570,11 +570,20 @@ Invoke-RestMethod -Uri "https://api.telegram.org/bot$($Telegramtoken)/sendMessag
 
 ## web
 
-### Google Dorks
+### google dorks
 
 ```
 ext:inc "<?php"
 ```
+
+### scraping youtube playlist
+
+```bash
+# apt install yt-dlp
+$ yt-dlp --flat-playlist -i --print-to-file url malicious_pdf_analysys.txt "https://www.youtube.com/playlist?list=PLa-ohdLO29_Y2FeT24w-c9nA_AH84MIpp"
+```
+
+Enjoy your `malicious_pdf_analysys.txt` file with all links
 
 ## networking
 
