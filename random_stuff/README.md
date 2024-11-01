@@ -60,6 +60,7 @@
   - [forget](#restic-forget)
   - [check](#restic-check)
   - [script to check several repos](#restic-check-several-repos)
+  - [restic script on gravity](#restic-script-on-gravity)
 
 ### Mount SSHFS
 
@@ -996,3 +997,19 @@ done
 
 /usr/sbin/cryptsetup close myvault
 ```
+
+## restic script on gravity
+
+```
+S C:\scripts> Get-Content .\restic_backup.bat
+restic -r E:\ backup D:\cellulari D:\data D:\guitar D:\immagini D:\Listening D:\software D:\tmrc D:\video --exclude-file C:\scripts\restic_exclude.txt
+restic -r E:\ forget --keep-yearly 12 --prune --cleanup-cache
+```
+
+```
+PS C:\scripts> Get-Content C:\scripts\restic_exclude.txt
+D:\tmrc\hacking\Br........
+"D:\tmrc\hacking\The .........\labs"
+D:\tmrc\hacking\wordlist
+```
+
