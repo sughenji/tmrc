@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/HackTheBox/README.md",
+                "file": "windows/README.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "README"
@@ -162,8 +162,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7ee599d897c0f00b",
+  "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "random_stuff/README.md",
+    "windows/README.md",
+    "web/wordpress/post_compromise.md",
+    "Untitled.md",
+    "networking",
+    "web",
+    "windows",
+    "web/wordpress/hardening.md",
+    "CTF-Walkthrough/HackTheBox/README.md",
     "CTF-Walkthrough/HackTheBox/Medium Boxes/TheNotebook/README.md",
     "CTF-Walkthrough/HackTheBox/Easy Boxes/Spectra/README.md",
     "CTF-Walkthrough/HackTheBox/Hard Boxes/Snoopy/README.md",
@@ -185,12 +194,6 @@
     "CTF-Walkthrough/HackTheBox/Easy Boxes/Mirai/README.md",
     "CTF-Walkthrough/HackTheBox/Easy Boxes/Legacy/README.md",
     "CTF-Walkthrough/HackTheBox/Easy Boxes/Lame/README.md",
-    "CTF-Walkthrough/HackTheBox/Easy Boxes/Jerry/README.md",
-    "CTF-Walkthrough/HackTheBox/Medium Boxes/Jeeves/README.md",
-    "CTF-Walkthrough/HackTheBox/Easy Boxes/Grandpa/README.md",
-    "CTF-Walkthrough/HackTheBox/Medium Boxes/Gobox/README.md",
-    "CTF-Walkthrough/HackTheBox/Easy Boxes/Forest/README.md",
-    "CTF-Walkthrough/HackTheBox/Easy Boxes/Driver/README.md",
     "CTF-Walkthrough/HackTheBox/Medium Boxes",
     "CTF-Walkthrough/HackTheBox/Easy Boxes",
     "_attachment/Whiz_Kids_Cast.jpg",
