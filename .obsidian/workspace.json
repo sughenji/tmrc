@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "CTF-Walkthrough/HackTheBox/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -162,8 +162,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cf708b471e4c3c49",
+  "active": "7ee599d897c0f00b",
   "lastOpenFiles": [
-    "CTF-Walkthrough/TryHackMe/dogcat/README.md"
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/TheNotebook/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Spectra/README.md",
+    "CTF-Walkthrough/HackTheBox/Hard Boxes/Snoopy/README.md",
+    "CTF-Walkthrough/HackTheBox/Hard Boxes",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Shocker/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/ServMon/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/SecNotes/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/ScriptKiddie/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Sauna/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Resolute/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Queries/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Previse/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Popcorn/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Optimum/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/OpenAdmin/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Nibbles/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Netmon/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Monteverde/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Mirai/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Legacy/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Lame/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Jerry/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Jeeves/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Grandpa/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes/Gobox/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Forest/README.md",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes/Driver/README.md",
+    "CTF-Walkthrough/HackTheBox/Medium Boxes",
+    "CTF-Walkthrough/HackTheBox/Easy Boxes",
+    "_attachment/Whiz_Kids_Cast.jpg",
+    "_attachment",
+    "SIEM/Pasted image 20231228121015.png"
   ]
 }
