@@ -1,3 +1,14 @@
+- [NMAP methodology](#nmap-methodology)
+- [Fun tricks](#fun-tricks)
+- [UDP scan](#udp-scan)
+- [Generate random host list](#generate-random-host-list)
+- [Fyodor against Microsoft](#fyodor-against-microsoft)
+- [Better options for host discovery](#better-options-for-host-discovery)
+- [some NSE script for DNS](#some-nse-script-for-dns)
+- [ndiff](#ndiff)
+- [inventory of our network](#inventory-of-our-network)
+- [maxmind](#maxmind)
+
 # NMAP methodology
 
 Start with `-T4` and tune some parameters:
@@ -40,14 +51,7 @@ Load csv into an empty Excel sheet ("non rilevare tipi di dati")
 # nmap -Pn 192.168.88.0/24 -oA nmap-scan
 ```
 
-# UDP scan
-
-```
-# nmap -sU --min-rate 10000 <target>
-```
-
-
-## sorted list of open ports:
+to sort list of open ports:
 
 ```
 grep " open " nmap-scan.nmap | sed -r 's/ +/ /g' | sort | uniq -c | sort -nr
@@ -76,35 +80,41 @@ grep " open " nmap-scan.nmap | sed -r 's/ +/ /g' | sort | uniq -c | sort -nr
       1 10001/tcp open scp-config
 ```
 
-## Generate a random host's list
+# UDP scan
+
+```
+# nmap -sU --min-rate 10000 <target>
+```
+
+# Generate random host list
 
 ```
 nmap -iR 10 -sL -n
 ```
 
-## Fyodor against Microsoft
+# Fyodor against Microsoft
 
 ```
 nmap -v -O -sV -T4 --osscan-guess -oA ms-smbscan --script=smb-enum-domains,smb-enum-processes,smb-enum-sessions,smb-enum-shares,smb-enum-users,smb-os-discovery-smb-security-mode,smb-system-info [TARGET]
 ```
 
-## Better options for host discovery
+# Better options for host discovery
 
 ```
 nmap -sP -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,100432 --source-port 53 -T4 -iL 50K_IPs
 ```
 
-## some NSE script for DNS
+# some NSE script for DNS
 
 ```
 nmap -v -PN -sU -p53 -T4 --script=dns-test-open-recursion,dns-safe-recursion-port.nse,dns-safe-recursion-txid.nse host1 ... host2...
 ```
 
-## ndiff
+# ndiff
 
 to show "diff" between two nmap scan output
 
-## let's make an inventory of our network
+# inventory of our network
 
 Run `nmap` with `-p-` (we want ALL ports) and `-sV` for version details. 
 
@@ -122,8 +132,16 @@ $ xsltproc inventory.xml -o inventory.html
 
 ![](scan-xsltproc.png)
 
+# maxmind
 
+Download files:
 
+GeoLite2-ASN_
 
+GeoLite2-City_
 
+GeoLite2-Country
 
+Go to Preferences -> Name Resolution -> MaxMind Database Directories
+
+Go to Statistics -> Endpoints -> map

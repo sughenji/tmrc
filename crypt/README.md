@@ -1,5 +1,3 @@
-# Crypt
-
 - [Symmetric encryption with GPG](#symmetric-encryption-with-gpg)
 - [Symmetric encryption with OpenSSL](#symmetric-encryption-with-openssl)
 - [Generate private key](#generate-private-key)
@@ -13,7 +11,7 @@
 - [Generate Diffie Hellman](#generate-diffie-hellman) 
 - [Create LUKS device](#create-luks-device)
 
-## Symmetric encryption with gpg
+# Symmetric encryption with gpg
 
 To see ciphers:
 
@@ -38,7 +36,7 @@ To decrypt:
 gpg --output original_message.txt --decrypt message.gpg
 ```
 
-## Symmetric encryption with openssl
+# Symmetric encryption with openssl
 
 ```
 openssl aes-256-cbc -e -in message.txt -out encrypted_message
@@ -50,13 +48,13 @@ to decrypt:
 openssl aes-256-cbc -d -in encrypted_message -out original_message.txt
 ```
 
-## generate private key
+# generate private key
 
 ```
 $ openssl genrsa -out private-key.pem 2048
 ```
 
-## generate public key
+# generate public key
 
 ```
 $ openssl rsa -in private-key.pem -pubout -out public-key.pem
@@ -68,20 +66,20 @@ To see details
 $ openssl rsa -in private-key.pem -text -noout
 ```
 
-## export gpg public key
+# export gpg public key
 
 ```bash
 $ gpg --output vstore_pub_key --armor --export asd@domain.it
 ```
 
-## export gpg private key
+# export gpg private key
 
 ```bash
 $ gpg --output vstore_private_key --armor --export-secret-key --pinentry-mode=loopback asd@domain.it
 Password:
 ```
 
-## import gpg private key
+# import gpg private key
 
 ```bash
 $ gpg --import priv
@@ -93,13 +91,13 @@ gpg:       secret keys read: 1
 gpg:   secret keys imported: 1
 ```
 
-*In case of "permission denied" error:*
+In case of "permission denied" error:
 
 ```
 gpg --pinentry-mode=loopback --import priv
 ```
 
-## decrypt with gpg private key
+# decrypt with gpg private key
 
 ```bash
 $ gpg --output dump.sql --decrypt vdb.20240321152725.gpg
@@ -107,25 +105,25 @@ gpg: encrypted with 4096-bit RSA key, ID 3A9CAB6E524B9A77, created 2021-07-01
       "Vault Backup (Vault Backup) <asd@domain.it>"
 ```
 
-*In case of "permission denied" error:*
+In case of "permission denied" error:
 
 ```
 gpg --pinentry-mode=loopback --output dump.sql --decrypt vdb.20240402024000.gp
 ```
 
-## encrypt with public key
+# encrypt with public key
 
 ```
 openssl pkeyutl -encrypt -in plaintext.txt -out ciphertext -inkey public-key.pem -pubin
 ```
 
-## decrypt with private key
+# decrypt with private key
 
 ```
 openssl pkeyutl -decrypt -in ciphertext -inkey private-key.pem -out decrypted.txt
 ```
 
-## generate diffie hellman
+# generate diffie hellman
 
 ```
 $ openssl dhparam -out dhparams.pem 2048
@@ -138,7 +136,7 @@ openssl dhparam -in dhparams.pem -text -noout
 ```
 
 
-## create luks device
+# create luks device
 
 Eg. on Debian
 

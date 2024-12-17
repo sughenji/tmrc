@@ -1,5 +1,8 @@
 # tmrc
 
-...sort of cheatsheet about multiple topics (not strictly related to cybersecurity!)
+...sort of cheatsheet/reference about multiple nerd topics :)
+
+![](_attachment/dec.pdp-1.train_set.102649722.lg.jpg)
+
 
 

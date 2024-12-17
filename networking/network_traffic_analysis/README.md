@@ -1,5 +1,12 @@
 # Network Traffic Analysis
 
+- [Eternalblue](#eternalblue)
+- [Emotet](#emotet)
+- [Looking for malware activity](#looking-for-malware-activity)
+- [General info on host](#general-info-on-host)
+- [tshark-fu](#tshark-fu)
+- [Capture with pktmon](#capture-with-pktmon)
+
 ## Eternalblue
 
 Consider PCAP from Snort Container:
