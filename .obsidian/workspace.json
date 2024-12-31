@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/README.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Username enumeration via account lock"
             }
           }
         ]
@@ -77,7 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 448.5
   },
   "right": {
     "id": "7c56c8ff000e0b2a",
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/README.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for Username enumeration via account lock"
             }
           },
           {
@@ -163,8 +163,11 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses.md",
     "CTF-Walkthrough/Portswigger/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
     "crypt/README.md",
     "CTF-Walkthrough/Portswigger/Authentication",
     "CTF-Walkthrough/Portswigger",
@@ -193,9 +196,6 @@
     "random_stuff/github/README.md",
     "networking/wireshark/README.md",
     "networking/wireguard/README.md",
-    "networking/scapy/README.md",
-    "networking/nmap/README.md",
-    "networking/network_traffic_analysis/README.md",
     "random_stuff/restic",
     "networking/scapy",
     "networking/wireguard",
