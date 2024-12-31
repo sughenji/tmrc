@@ -10,6 +10,7 @@
 - [Decrypt with private key](#decrypt-with-private-key)
 - [Generate Diffie Hellman](#generate-diffie-hellman) 
 - [Create LUKS device](#create-luks-device)
+- [SSH](#ssh)
 
 # Symmetric encryption with gpg
 
@@ -158,3 +159,28 @@ to close device:
 /usr/sbin/cryptsetup close myvault
 ```
 
+# ssh
+
+which version on remote host?
+
+```bash
+$ ssh -Q protocol-version server.company.org
+2
+```
+
+which host key algorithms on remote host?
+
+```bash
+$ nmap --script=ssh-hostkey.nse -p 22 server.company.org
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-27 17:47 CET
+Nmap scan report for server.company.org
+Host is up (0.00049s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   1024 a0:d2:e2:92:2f:49:b7:7e:b0:81:8b:3c:e0:55:0c:19 (DSA)
+|_  2048 4b:10:eb:5b:bc:61:1e:96:bd:14:93:e9:dd:85:6b:ef (RSA)
+
+Nmap done: 1 IP address (1 host up) scanned in 30.41 seconds
+```
