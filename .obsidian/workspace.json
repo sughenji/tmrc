@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+                "file": "CTF-Walkthrough/Portswigger/README.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Username enumeration via account lock"
+              "title": "README"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+                "file": "CTF-Walkthrough/Portswigger/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Username enumeration via account lock"
+              "title": "Backlinks for README"
             }
           },
           {
@@ -163,8 +163,9 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "crypt/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+    "CTF-Walkthrough/Portswigger/README.md",
+    "crypt/README.md",
     "CTF-Walkthrough/Portswigger/Authentication",
     "CTF-Walkthrough/Portswigger",
     "random_stuff/linux/README.md",
@@ -195,7 +196,6 @@
     "networking/scapy/README.md",
     "networking/nmap/README.md",
     "networking/network_traffic_analysis/README.md",
-    "docker/README.md",
     "random_stuff/restic",
     "networking/scapy",
     "networking/wireguard",
