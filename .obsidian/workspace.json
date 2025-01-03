@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
-                "mode": "source",
+                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
+                "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Username enumeration via account lock"
+              "title": "2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Username enumeration via account lock"
+              "title": "Backlinks for 2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST"
             }
           },
           {
@@ -163,21 +163,29 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "_attachment/Pasted image 20250103121511.png",
+    "networking/network_traffic_analysis/README.md",
+    "random_stuff/python/README.md",
+    "random_stuff/linux/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
+    "windows/active_directory/event_viewer/README.md",
+    "windows/active_directory/README.md",
+    "windows/active_directory/event_viewer",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2015",
+    "CTF-Walkthrough/Malware-Traffic-Analysis",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses.md",
     "CTF-Walkthrough/Portswigger/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock.md",
     "crypt/README.md",
     "CTF-Walkthrough/Portswigger/Authentication",
     "CTF-Walkthrough/Portswigger",
-    "random_stuff/linux/README.md",
     "web/performance/README.md",
     "web/wordpress/hardening.md",
     "web/performance",
     "web/README.md",
     "networking/Cisco/VXLAN/README.md",
-    "windows/active_directory/README.md",
     "networking/Cisco/VXLAN",
     "networking/Cisco",
     "windows/README.md",
@@ -191,15 +199,7 @@
     "random_stuff/web/README.md",
     "random_stuff/README.md",
     "random_stuff/telegram_bot/README.md",
-    "random_stuff/restic/README.md",
-    "random_stuff/python/README.md",
-    "random_stuff/github/README.md",
-    "networking/wireshark/README.md",
-    "networking/wireguard/README.md",
     "random_stuff/restic",
-    "networking/scapy",
-    "networking/wireguard",
-    "random_stuff/web",
     "SIEM/Pasted image 20240110234522.png",
     "SIEM/Pasted image 20240107195807.png",
     "SIEM/Pasted image 20240107174611.png",
