@@ -14,8 +14,8 @@
               "type": "markdown",
               "state": {
                 "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
-                "mode": "preview",
-                "source": true
+                "mode": "source",
+                "source": false
               },
               "icon": "lucide-file",
               "title": "2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST"
@@ -163,6 +163,10 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "_attachment/Pasted image 20250103170958.png",
+    "_attachment/Pasted image 20250103170735.png",
+    "_attachment/Pasted image 20250103170636.png",
+    "_attachment/Pasted image 20250103164153.png",
     "_attachment/Pasted image 20250103121511.png",
     "networking/network_traffic_analysis/README.md",
     "random_stuff/python/README.md",
@@ -204,9 +208,6 @@
     "SIEM/Pasted image 20240107195807.png",
     "SIEM/Pasted image 20240107174611.png",
     "SIEM/Pasted image 20240107172345.png",
-    "SIEM/Pasted image 20231229195445.png",
-    "SIEM/Pasted image 20231228121300.png",
-    "SIEM/Pasted image 20231228121015.png",
-    "_attachment/Whiz_Kids_Cast.jpg"
+    "SIEM/Pasted image 20231229195445.png"
   ]
 }
