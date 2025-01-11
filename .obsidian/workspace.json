@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
+                "file": "random_stuff/github/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST"
+              "title": "README"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
+                "file": "random_stuff/github/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST"
+              "title": "Backlinks for README"
             }
           },
           {
@@ -163,15 +163,23 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "random_stuff/python/crypt/README.md",
+    "random_stuff/python/README.md",
+    "random_stuff/python/crypt",
+    "random_stuff/python/web/README.md",
+    "random_stuff/python/web",
+    "crypt/README.md",
+    "windows/active_directory/lab/lab.md",
+    "networking/nmap/README.md",
+    "random_stuff/github/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
     "_attachment/Pasted image 20250103170958.png",
     "_attachment/Pasted image 20250103170735.png",
     "_attachment/Pasted image 20250103170636.png",
     "_attachment/Pasted image 20250103164153.png",
     "_attachment/Pasted image 20250103121511.png",
     "networking/network_traffic_analysis/README.md",
-    "random_stuff/python/README.md",
     "random_stuff/linux/README.md",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
     "windows/active_directory/event_viewer/README.md",
     "windows/active_directory/README.md",
     "windows/active_directory/event_viewer",
@@ -182,7 +190,6 @@
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses.md",
     "CTF-Walkthrough/Portswigger/README.md",
-    "crypt/README.md",
     "CTF-Walkthrough/Portswigger/Authentication",
     "CTF-Walkthrough/Portswigger",
     "web/performance/README.md",
@@ -195,19 +202,12 @@
     "windows/README.md",
     "README.md",
     "networking/Huawei/README.md",
-    "networking/Huawei",
     "_attachment/dec.pdp-1.train_set.102649722.lg.jpg",
-    "windows/active_directory/lab/lab.md",
     "web/wordpress/post_compromise.md",
     "ransomware/README.md",
-    "random_stuff/web/README.md",
-    "random_stuff/README.md",
-    "random_stuff/telegram_bot/README.md",
-    "random_stuff/restic",
     "SIEM/Pasted image 20240110234522.png",
     "SIEM/Pasted image 20240107195807.png",
     "SIEM/Pasted image 20240107174611.png",
-    "SIEM/Pasted image 20240107172345.png",
-    "SIEM/Pasted image 20231229195445.png"
+    "SIEM/Pasted image 20240107172345.png"
   ]
 }
