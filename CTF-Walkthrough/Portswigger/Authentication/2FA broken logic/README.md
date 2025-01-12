@@ -1,118 +1,81 @@
 https://portswigger.net/web-security/authentication/multi-factor/lab-2fa-broken-logic
 
-wiener's login phases:
+For this lab, brute force is required :)  
+So, since I have no Burpsuite Pro edition, I chose to use Zaproxy.  
 
-```http
-POST /login HTTP/2
-Host: 0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Cookie: verify=wiener; session=b85gDyYatG9fCV4Amw62m5H2Kvo3kZC5
-Content-Length: 30
-Cache-Control: max-age=0
-Sec-Ch-Ua: "Chromium";v="131", "Not_A Brand";v="24"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Accept-Language: it-IT,it;q=0.9
-Origin: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Content-Type: application/x-www-form-urlencoded
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: navigate
-Sec-Fetch-User: ?1
-Sec-Fetch-Dest: document
-Referer: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net/login
-Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
+# happy case: login as wiener
 
-username=wiener&password=peter
-```
+![](_attachment/Pasted%20image%2020250112200843.png)
 
-```http
-GET /login2 HTTP/2
-Host: 0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Cookie: verify=wiener; session=ZigneBT2Sg5wqLSaW8YgCMdEd0MvZGDb
-Cache-Control: max-age=0
-Accept-Language: it-IT,it;q=0.9
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: navigate
-Sec-Fetch-User: ?1
-Sec-Fetch-Dest: document
-Sec-Ch-Ua: "Chromium";v="131", "Not_A Brand";v="24"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Referer: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net/login
-Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
-```
+![](_attachment/Pasted%20image%2020250112200928.png)
 
-after this, wiener needs to put his 2FA code  (we can retrieve it from "email client" menu):
+we are asked for the 4-digit PIN, so we check the "email client":
 
-```bash
-Sent:     2025-01-11 16:23:24 +0000
-From:     no-reply@0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-To:       wiener@exploit-0a3000d80399cbe5e487ca2e01af00a4.exploit-server.net
-Subject:  Security code
+![](_attachment/Pasted%20image%2020250112201014.png)
 
-Hello!
+after putting the right code, we are allowed to access our account page:
 
-Your security code is 0890.
+https://0a58008a03c3748780b176be00c7009c.web-security-academy.net/my-account?id=wiener
 
-Please enter this in the app to continue.
 
-Thanks,
-Support team
-```
+![](_attachment/Pasted%20image%2020250112201128.png)
 
-```http
-POST /login2 HTTP/2
-Host: 0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Cookie: verify=wiener; session=ZigneBT2Sg5wqLSaW8YgCMdEd0MvZGDb
-Content-Length: 13
-Cache-Control: max-age=0
-Sec-Ch-Ua: "Chromium";v="131", "Not_A Brand";v="24"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Accept-Language: it-IT,it;q=0.9
-Origin: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Content-Type: application/x-www-form-urlencoded
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: navigate
-Sec-Fetch-User: ?1
-Sec-Fetch-Dest: document
-Referer: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net/login2
-Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
+# try to request a 2FA for another user: carlos
 
-mfa-code=0890
-```
+we can modify our previous request to `/login2` with another value for the `verify` parameter:
 
-wiener's home
+![](_attachment/Pasted%20image%2020250112201401.png)
 
-```http
-GET /my-account?id=wiener HTTP/2
-Host: 0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net
-Cookie: verify=wiener; session=l3NlBUkTU5IbRUf8jbqwMsE4eitU7qmn
-Cache-Control: max-age=0
-Accept-Language: it-IT,it;q=0.9
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: navigate
-Sec-Fetch-User: ?1
-Sec-Fetch-Dest: document
-Sec-Ch-Ua: "Chromium";v="131", "Not_A Brand";v="24"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Referer: https://0a7400230339cbd8e4f7cbac00d500c3.web-security-academy.net/my-account?id=wiener
-Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
+instead of `wiener`, we chose `carlos`.
+
+This will *trigger* the generation of another 4-digit code.
+
+# fuzzing the 4 digit code
+
+We can use the builtin Fuzzer tool, but pay attention: we need to use 4 digit values.
+
+So, using "Numberzz" from 1 to 10000 will not work :)
+
+We generate instead a text file with all 4 digit combinations 
+
+```python
+sugo@kali:~/Documents/portswigger/2fa-broken-login$ cat generate-pin.py
+#!/usr/bin/python3
+def generate_pins():
+    pins = []
+    for i in range(10000):  # I numeri da 0 a 9999
+        pins.append(f"{i:04}")  # Formatta ogni numero con zeri iniziali per renderlo a 4 cifre
+    return pins
+
+# Stampa tutti i PIN generati
+if __name__ == "__main__":
+    all_pins = generate_pins()
+    for pin in all_pins:
+        print(pin)
 
 ```
+
+# brute force
+
+Now we can pick our previous POST request to `/login2` and configuring fuzzing.  
+Of course, we specify `carlos` as username:  
+
+![](_attachment/Pasted%20image%2020250112201844.png)
+
+![](_attachment/Pasted%20image%2020250112201919.png)
+
+![](_attachment/Pasted%20image%2020250112202025.png)
+
+we observe our request and we look for a `302` response:
+
+
+![](_attachment/Pasted%20image%2020250112195754.png)
+
+# login as carlos
+
+now we can replace the cookie value (and the username) and get access to our page and solve the lab:  
+
+
+![](_attachment/Pasted%20image%2020250112195859.png)
+
+![](_attachment/Pasted%20image%2020250112195935.png)
