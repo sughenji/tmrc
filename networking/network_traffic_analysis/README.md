@@ -75,6 +75,37 @@ tshark -r traffic.pcap -q -z endpoints,tcp
 tshark -r traffic.pcap -Y ntlmssp.auth.username -V -x | ack -i 'Response:|user|dns'
 ```
 
+### dhcp details
+
+hostname, mac address, requested ip
+
+```bash
+tshark -r file.pcap -Y "dhcp && dhcp.type == 1 && dhcp.option.dhcp == 3" -T fields -e eth.src  -e bootp.option.hostname -e dhcp.option.requested_ip_address | uniq
+```
+
+### dns query
+
+```bash
+$ tshark -r file.pcap -Y "dns and udp.dstport==53" -T fields -e ip.src -e dns.qry.name  |head
+192.168.122.130 teredo.ipv6.microsoft.com
+192.168.122.130 www.msftncsi.com
+192.168.122.52  teredo.ipv6.microsoft.com
+192.168.122.130 www.bing.com
+192.168.122.130 www.bing.com
+192.168.122.130 login.live.com
+192.168.122.130 az29176.vo.msecnd.net
+192.168.122.130 www.bing.com
+192.168.122.130 www.bing.com
+192.168.122.130 az29176.vo.msecnd.net
+```
+
+### export objects in directory
+
+```bash
+$ tshark -r file.pcap --export-objects http,objects
+```
+
+(all files will be extracted in `/objects` folder)
 ## Capture with pktmon
 
 ```

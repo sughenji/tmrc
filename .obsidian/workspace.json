@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
+                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
+                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for 2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS"
             }
           },
           {
@@ -163,18 +163,32 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113113803.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250112195754.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116115040.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116114957.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116105232.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115181401.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115165104.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164952.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164610.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164449.png",
+    "networking/network_traffic_analysis/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115155033.png",
+    "networking/tshark/README.md",
+    "networking/tshark",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115125431.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/_attachment/Pasted image 20250115123614.png",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/_attachment",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS",
+    "windows/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2016",
+    "README.md",
+    "random_stuff/linux/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113113428.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113111350.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113110316.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113110227.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250112202025.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250112201919.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113105638.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250112201844.png",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment/Pasted image 20250113105134.png",
     "CTF-Walkthrough/Malware-Traffic-Analysis/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses",
@@ -186,28 +200,14 @@
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment",
     "random_stuff/github/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic",
     "random_stuff/python/crypt/README.md",
     "random_stuff/python/README.md",
-    "random_stuff/python/crypt",
     "random_stuff/python/web/README.md",
-    "random_stuff/python/web",
     "crypt/README.md",
     "windows/active_directory/lab/lab.md",
     "networking/nmap/README.md",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
-    "networking/network_traffic_analysis/README.md",
-    "random_stuff/linux/README.md",
     "windows/active_directory/event_viewer/README.md",
     "windows/active_directory/README.md",
-    "windows/active_directory/event_viewer",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2015",
-    "CTF-Walkthrough/Portswigger/README.md",
-    "web/performance/README.md",
-    "web/wordpress/hardening.md",
-    "web/README.md",
-    "networking/Cisco/VXLAN/README.md",
-    "windows/README.md",
-    "README.md"
+    "CTF-Walkthrough/Portswigger/README.md"
   ]
 }

@@ -8,6 +8,7 @@
 - [Install openssh server powershell](#install-openssh-server-powershell)
 - [Manage Firewall with powershell](#manage-firewall-with-powershell)
 - [Script to send email reminder password expiring](#script-to-send-email-reminder-password-expiring)
+- [Manage registry through CLI](#manage-registry-through-cli)
 
 ### Mount SSHFS
 
@@ -192,3 +193,22 @@ IT Staff
         } 
 }
 ```
+
+### manage registry through cli
+
+to see the current value:
+
+```powershell
+C:\Users\sugo>reg query "HKEY_USERS\S-1-5-21-00000000-1518580609-3671465160-1630\Control Panel\Desktop" /v ScreenSaveTimeOut
+
+HKEY_USERS\S-1-5-21-00000000-1518580609-3671465160-1630\Control Panel\Desktop
+    ScreenSaveTimeOut    REG_SZ    300
+```
+
+to change the value:
+
+```powershell
+C:\Users\sugo>reg add "HKEY_USERS\S-1-5-21-00000000-1518580609-3671465160-1630\Control Panel\Desktop" /v ScreenSaveTimeOut /t REG_SZ /d 3600 /f
+Operazione completata.
+```
+
