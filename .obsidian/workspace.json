@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS"
+              "title": "README"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS"
+              "title": "Backlinks for README"
             }
           },
           {
@@ -163,51 +163,51 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116115040.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116114957.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250116105232.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115181401.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115165104.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164952.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164610.png",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115164449.png",
-    "networking/network_traffic_analysis/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117200337.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195956.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195929.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195901.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195847.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195822.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195817.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195047.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117124028.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117164253.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117164106.png",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment",
+    "networking/wireshark/README.md",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie",
+    "networking/scapy/README.md",
+    "crypt/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115155033.png",
+    "networking/network_traffic_analysis/README.md",
     "networking/tshark/README.md",
     "networking/tshark",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment/Pasted image 20250115125431.png",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/_attachment",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/README.md",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/_attachment/Pasted image 20250115123614.png",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/_attachment",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS",
     "windows/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016",
     "README.md",
     "random_stuff/linux/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses",
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock",
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/_attachment",
     "random_stuff/github/README.md",
     "random_stuff/python/crypt/README.md",
     "random_stuff/python/README.md",
     "random_stuff/python/web/README.md",
-    "crypt/README.md",
     "windows/active_directory/lab/lab.md",
-    "networking/nmap/README.md",
-    "windows/active_directory/event_viewer/README.md",
-    "windows/active_directory/README.md",
-    "CTF-Walkthrough/Portswigger/README.md"
+    "networking/nmap/README.md"
   ]
 }
