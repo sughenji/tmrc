@@ -15,7 +15,7 @@
               "state": {
                 "file": "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "README"
