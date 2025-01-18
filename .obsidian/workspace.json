@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing/README.md",
                 "mode": "source",
                 "source": true
               },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
+                "file": "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,6 +163,8 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing/lab05.py",
+    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117200337.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195956.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195929.png",
@@ -172,9 +174,7 @@
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195817.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195047.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117124028.png",
-    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117164253.png",
-    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117164106.png",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/README.md",
