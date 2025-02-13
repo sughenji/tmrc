@@ -15,7 +15,7 @@
               "state": {
                 "file": "windows/README.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "README"
@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -163,8 +164,9 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "windows/active_directory/event_viewer/README.md",
+    "windows/active_directory/README.md",
     "windows/README.md",
+    "windows/active_directory/event_viewer/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/README.md",
     "networking/network_traffic_analysis/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/_attachment/Pasted image 20250119182740.png",
@@ -207,7 +209,6 @@
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock/README.md",
     "random_stuff/github/README.md",
     "random_stuff/python/crypt/README.md",
-    "random_stuff/python/README.md",
-    "random_stuff/python/web/README.md"
+    "random_stuff/python/README.md"
   ]
 }

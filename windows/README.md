@@ -213,6 +213,21 @@ C:\Users\sugo>reg add "HKEY_USERS\S-1-5-21-00000000-1518580609-3671465160-1630\C
 Operazione completata.
 ```
 
+list keys under a certain path:
+
+```powershell
+C:\Users\sugo>REG QUERY "HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client" /s
+
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services\Client
+    fEnableUsbBlockDeviceBySetupClass    REG_DWORD    0x1
+    fEnableUsbNoAckIsochWriteToDevice    REG_DWORD    0x50
+    fEnableUsbSelectDeviceByInterface    REG_DWORD    0x1
+    fClientDisableUDP    REG_DWORD    0x1
+..
+..
+..
+```
+
 ### export rdp logs
 
 

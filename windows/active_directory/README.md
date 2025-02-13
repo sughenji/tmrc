@@ -447,4 +447,24 @@ C:\Users\administrator.DOMAIN>repadmin /syncall
 C:\Users\administrator.DOMAIN>dcdiag /test:VerifyReplicas
 ```
 
+```powershell
+C:\Windows\system32>repadmin /replsummary
+Ora di inizio riepilogo replica: 2025-02-02 09:50:38
+
+Inizio raccolta dati per il riepilogo della replica. Attendere:
+  ......
+
+
+DSA di orig.     delta maggiore   op. non riuscite/tot. %% errore
+ DC1                     58m:12s    0 /  10    0
+ DC2                     57m:20s    0 /  10    0
+ DC3                     58m:12s    0 /  10    0
+
+
+DSA di destin.     delta maggiore op. non riuscite/tot. %% errore
+ DC1                     53m:41s    0 /  10    0
+ DC2                     58m:13s    0 /  10    0
+ DC3                     57m:21s    0 /  10    0
+```
+
 
