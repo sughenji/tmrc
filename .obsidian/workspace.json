@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "windows/README.md",
+                "file": "networking/tshark/README.md",
                 "mode": "source",
                 "source": true
               },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "windows/README.md",
+                "file": "networking/tshark/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -164,11 +164,18 @@
   },
   "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
-    "windows/active_directory/README.md",
-    "windows/README.md",
-    "windows/active_directory/event_viewer/README.md",
-    "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/README.md",
     "networking/network_traffic_analysis/README.md",
+    "networking/tshark/README.md",
+    "networking/tshark",
+    "networking/wireshark/README.md",
+    "networking/tcpdump/README.md",
+    "networking/tcpdump",
+    "windows/active_directory/event_viewer/README.md",
+    "windows/active_directory/event_viewer/_attachment/Pasted image 20250219095940.png",
+    "windows/active_directory/event_viewer/_attachment",
+    "windows/README.md",
+    "windows/active_directory/README.md",
+    "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/_attachment/Pasted image 20250119182740.png",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/_attachment/Pasted image 20250119182450.png",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2017/2017-01-28 - TRAFFIC ANALYSIS EXERCISE - THANKS, BRIAN/_attachment/Pasted image 20250119182300.png",
@@ -184,22 +191,16 @@
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/Username enumeration via different responses.py",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock/Username enumeration via account lock.py",
     "CTF-Walkthrough/Portswigger/Authentication/Broken brute-force protection, IP block/lab06.py",
-    "CTF-Walkthrough/Portswigger/Authentication/Broken brute-force protection, IP block",
-    "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via response timing/lab05.py",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117200337.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195956.png",
     "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195929.png",
-    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment/Pasted image 20250117195901.png",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via subtly different responses/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/2FA broken logic/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via different responses/README.md",
-    "CTF-Walkthrough/Portswigger/Authentication/Brute-forcing a stay-logged-in cookie/_attachment",
-    "networking/wireshark/README.md",
     "networking/scapy/README.md",
     "crypt/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS.md",
-    "networking/tshark/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2015/2015-02-24 - TRAFFIC ANALYSIS EXERCISE HELPING OUT AN INEXPERIENCED ANALYST.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/2016/2016-01-07 - TRAFFIC ANALYSIS EXERCISE - ALERTS ON 3 DIFFERENT HOSTS/README.md",
@@ -207,8 +208,6 @@
     "random_stuff/linux/README.md",
     "CTF-Walkthrough/Malware-Traffic-Analysis/README.md",
     "CTF-Walkthrough/Portswigger/Authentication/Username enumeration via account lock/README.md",
-    "random_stuff/github/README.md",
-    "random_stuff/python/crypt/README.md",
-    "random_stuff/python/README.md"
+    "random_stuff/github/README.md"
   ]
 }
