@@ -188,7 +188,7 @@ We will found a `200 OK` response, that means we solved the lab :)
 import base64
 import hashlib
 
-f = open("3password")
+f = open("passwords.txt")
 for l in f:
     bb = hashlib.md5(bytes(l.rstrip().encode())).hexdigest()
     fs = ("carlos"+str(":")+bb)

@@ -76,7 +76,7 @@ headers = { 'Content-Type': 'application/x-www-form-urlencoded', "X-Forwarded-Fo
 
 r = requests.post(url, data=data, headers=headers)
 
-print("Unuccessful login's (but with CORRECT username) response time: " + str(r.elapsed.total_seconds()))
+print("Unsuccessful login's (but with CORRECT username) response time: " + str(r.elapsed.total_seconds()))
 
 #print(type(r.elapsed.total_seconds()))
 time.sleep(2)
