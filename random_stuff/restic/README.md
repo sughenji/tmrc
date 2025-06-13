@@ -10,6 +10,12 @@ restic -p /root/.restic_password -r sftp://backup_username@1.2.3.4/home/backup_u
 restic -p /root/.restic_password  -r sftp://backup_username@1.2.3.4/home/backup_username/  backup /etc /var/backups
 ```
 
+## put restic password in variable
+
+```bash
+# unset HISTFILE
+export RESTIC_PASSWORD=superSecretPassword
+```
 ## restic forget
 
 Remember to actually prune data!

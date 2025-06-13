@@ -10,6 +10,7 @@
 - [Script to send email reminder password expiring](#script-to-send-email-reminder-password-expiring)
 - [Manage registry through CLI](#manage-registry-through-cli)
 - [Export RDP logs](#export-rdp-logs)
+- [Scheduled tasks](#scheduled-tasks)
 
 ### Mount SSHFS
 
@@ -310,3 +311,40 @@ Write-host "Done!" -ForegroundColor Cyan
 #End
 ```
 
+### scheduled tasks
+
+To see details of a task:
+
+```powershell
+PS C:\scripts> schtasks /query /tn "Cancella backup vecchi" /v /fo LIST
+
+Cartella: \
+Nome host:                                                    ROFL-LADY
+Nome attività:                                                \Cancella backup vecchi
+Prossima esecuzione:                                          15/04/2025 01:00:00
+Stato:                                                        Pronta
+Modalità accesso:                                             Interattivo/Background
+Ultima esecuzione:                                            30/11/1999 00:00:00
+Ultimo esito:                                                 267011
+Autore:                                                       ROFL-LADY\Administrator
+Attività da eseguire:                                         powershell.exe -File C:\scripts\cancella_backup_vecchi.ps1
+Avvio in:                                                     N/D
+Commento:                                                     N/D
+Stato attività pianificata:                                   Abilitata
+Tempo di inattività:                                          Disabilitata
+Risparmio energia:                                            Interrompi in modalità di alimentazione a batterie
+Esegui come utente:                                           SYSTEM
+Elimina l'attività se non ripianificata:                      Disabilitata
+Interrompi l'attività se è in esecuzione da X ore e X minuti: 72:00:00
+Pianificazione:                                               Dati di pianificazione non disponibili in questo formato.
+Tipo di pianificazione:                                       Ogni giorno
+Ora di avvio:                                                 01:00:00
+Data di avvio:                                                14/04/2025
+Data di fine:                                                 N/D
+giorni:                                                       Ogni 1 giorni
+mesi:                                                         N/D
+Ripeti: Ogni:                                                 Disabilitata
+Ripeti: Fino a: Ora:                                          Disabilitata
+Ripeti: Fino a: Durata:                                       Disabilitata
+Ripeti: Interrompi se ancora in esecuzione:                   Disabilitata
+```
