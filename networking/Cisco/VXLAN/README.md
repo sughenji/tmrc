@@ -1,3 +1,7 @@
+```table-of-contents
+```
+
+
 ## VLAN vs VXLAN
 
 Tramite le VXLAN è possibile estendere i confini di una rete L2 attraverso una rete sottostante (L3) definita **underlay**.

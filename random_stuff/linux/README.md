@@ -1,10 +1,15 @@
-### Compiling C code on Linux
+```table-of-contents
+```
+
+
+
+# Compiling C code on Linux
 
 ```
 i686-w64-mingw32-gcc multiplestrings.c -o  multiplestrings.exe -lws2_32
 ```
 
-NMAP:
+## NMAP
 
 https://seclists.org/nmap-dev/2017/q2/86
 
@@ -19,41 +24,41 @@ Other resource:
 
 https://github.com/kost/nmap-android/releases
 
-### TMUX
+# TMUX
 
 Session -> can contain multiple windows -> which in turn can contain multiple panels
 
-#### spawn new session
+## spawn new session
 
 ```
 tmux new -s RSYSLOG
 ```
 
-#### Resize pane down 
+## Resize pane down 
 
 ```
 :resize-pane -D
 ```
 
-#### Resize pane down 5 lines
+## Resize pane down 5 lines
 
 ```
 :resize-pane -D 5
 ```
 
-#### Toggle status bar
+## Toggle status bar
 
 ```
 :set status off
 ```
 
-#### "zoom" current pane
+## zoom current pane
 
 ```
 prefix+z
 ```
 
-#### change prefix
+## change prefix
 
 Open `.tmux.conf` and set this
 
@@ -67,7 +72,7 @@ after:
 :source-file .tmux.conf
 ```
 
-#### load plugins
+## load plugins
 
 clone repository
 
@@ -75,7 +80,7 @@ clone repository
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-```
+```bash
 sugo@server$ cat .tmux.conf 
 
 # plugins
@@ -89,9 +94,7 @@ run '~/.tmux/plugins/tpm/tpm'
 ```
 
 
-
-
-### Ansible
+# Ansible
 
 Inventory:
 
@@ -185,9 +188,7 @@ $ ansible diameters -m shell -i inventory.yaml -usugo -a "sudo yum update -y"
 ```
 
 
-
-
-### VIM
+# VIM
 
 remove all highlights:
 
@@ -195,7 +196,7 @@ remove all highlights:
 :noh
 ```
 
-### ulimit
+# ulimit
 
 ```
 # sudo -u bareos bash -c 'ulimit -n'
@@ -204,9 +205,9 @@ remove all highlights:
 
 https://woshub.com/too-many-open-files-error-linux/
 
-## bash
+# bash
 
-### process substitution
+## process substitution
 
 Useful if you want, for example, compare two directories.
 
@@ -236,7 +237,7 @@ joshua@kaligra:~$ echo <(ls dir1)
 /dev/fd/63
 ```
 
-### eval
+## eval
 
 with `eval` the commands affect the current shell
 
@@ -244,7 +245,7 @@ https://stackoverflow.com/questions/43001805/whats-the-difference-between-eval-c
 
 "If you know that a variable contains an executable command you can run it without eval. But if the variable might contain Bash code which is not simply an executable command (i.e. something you could imagine passing to the C function exec()), you need eval"
 
-### merge two text files with a common column
+## merge two text files with a common column
 
 File 1:
 
@@ -280,5 +281,11 @@ $ for i in $(cat file1); do USER=$(echo $i | awk -F ';' '{ print $1 }'); CLEARTE
 000005;Password@123;637a2b9c5880de28b39d106a50082588
 000006;p4ssw0rd;f1697e66a08b79532d5802a5cf6ffa4c
 000007;Password123;a907ac8f85bbece3069a52a39947b287
+```
+
+# tar
+
+```bash
+for i in $(ls *.log); do tar czvf $i.tar.gz $i --remove-files; done
 ```
 

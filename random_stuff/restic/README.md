@@ -1,22 +1,25 @@
-## restic create repository
+```table-of-contents
+```
+
+# restic create repository
 
 ```bash
 restic -p /root/.restic_password -r sftp://backup_username@1.2.3.4/home/backup_username/ init
 ```
 
-## restic backup
+# restic backup
 
 ```bash
 restic -p /root/.restic_password  -r sftp://backup_username@1.2.3.4/home/backup_username/  backup /etc /var/backups
 ```
 
-## put restic password in variable
+# put restic password in variable
 
 ```bash
 # unset HISTFILE
 export RESTIC_PASSWORD=superSecretPassword
 ```
-## restic forget
+# restic forget
 
 Remember to actually prune data!
 
@@ -24,7 +27,7 @@ Remember to actually prune data!
 restic -p /root/.restic_password  -r sftp://backup_username@1.2.3.4/home/backup_username/ forget --keep-daily 6 --keep-weekly 2 --prune
 ```
 
-## restic check
+# restic check
 
 ```bash
 restic -p /root/.restic_password -r ... check
@@ -32,7 +35,7 @@ restic -p /root/.restic_password -r ... check
 
 If you want a more reliable check, please add `--read-data`
  
-## restic check several repos
+# restic check several repos
 
 (Passwords are store on encrypted luks device)
 
@@ -67,7 +70,7 @@ done
 /usr/sbin/cryptsetup close myvault
 ```
 
-## restic script on gravity
+# restic script on gravity
 
 ```
 S C:\scripts> Get-Content .\restic_backup.bat
@@ -80,5 +83,18 @@ PS C:\scripts> Get-Content C:\scripts\restic_exclude.txt
 D:\tmrc\hacking\Br........
 "D:\tmrc\hacking\The .........\labs"
 D:\tmrc\hacking\wordlist
+```
+
+# restore a single folder (on windows)
+
+```powershell
+restic -r . restore e66910e7 --target d:/data/sugo/backup --include "/D/data/sugo/github_repositories/some"
+enter password for repository:
+```
+
+# restore a single file (linux)
+
+```bash
+/share/CACHEDEV1_DATA/admin/restic -r sftp://xxxxxx@xxxxxxxxx.your-storagebox.de/ restore  038fbb47 --target /share/CACHEDEV1_DATA/homes/restore --include "/share/external/DEV3301_2/databases/blah/superdatabase.sql"
 ```
 
