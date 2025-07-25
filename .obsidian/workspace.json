@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "random_stuff/linux/mount encrypted lvm from live/README.md",
+                "file": "windows/Powershell/various scripts/Backup Veeam.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Backup Veeam"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "random_stuff/linux/mount encrypted lvm from live/README.md",
+                "file": "windows/Powershell/various scripts/Backup Veeam.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for Backup Veeam"
             }
           },
           {
@@ -162,8 +162,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7ee599d897c0f00b",
+  "active": "cf708b471e4c3c49",
   "lastOpenFiles": [
+    "windows/active_directory/event_viewer/README.md",
+    "windows/Powershell/various scripts/Backup Veeam.md",
+    "windows/Event Viewer/README.md",
+    "windows/Powershell/various scripts/Estrai  IP accessi Exchange IIS.md",
+    "windows/Powershell/various scripts/README.md",
+    "windows/Powershell/various scripts",
+    "windows/Powershell",
+    "windows/Filesystem ACL/README.md",
+    "windows/active_directory/various/README.md",
+    "windows/active_directory/README.md",
+    "windows/README.md",
+    "random_stuff/python/crypt/README.md",
+    "random_stuff/python/web/README.md",
+    "random_stuff/python/README.md",
+    "random_stuff/linux/mount encrypted lvm from live/README.md",
     "random_stuff/linux/mount encrypted lvm from live/immagine.png",
     "random_stuff/linux/README.md",
     "random_stuff/linux/mount encrypted lvm from live/README (1).md",
@@ -176,38 +191,24 @@
     "random_stuff/linux/mount encrypted lvm from live/immagine 7.png",
     "random_stuff/linux/mount encrypted lvm from live/immagine 6.png",
     "random_stuff/linux/mount encrypted lvm from live/immagine 5.png",
-    "random_stuff/linux/mount encrypted lvm from live/README.md",
     "random_stuff/README.md",
     "random_stuff/linux/mount encrypted lvm from live",
     "networking/Cisco/VXLAN/README.md",
     "proxmox/README.md",
     "proxmox/_attachment",
-    "windows/Event Viewer/README.md",
     "proxmox",
     "windows/Event Viewer/_attachment",
     "random_stuff/restic/README.md",
     "windows/Event Viewer",
-    "windows/ACL/README.md",
-    "windows/README.md",
-    "windows/ACL",
+    "windows/Filesystem ACL",
     "README.md",
-    "windows/active_directory/various/README.md",
-    "windows/active_directory/event_viewer/README.md",
     "windows/active_directory/various",
     "windows/active_directory/lab/lab.md",
-    "windows/active_directory/README.md",
     "networking/network_traffic_analysis/README.md",
     "networking/tshark/README.md",
-    "windows/exchange/README.md",
     "docker/README.md",
     "windows/exchange",
-    "docker/_attachment",
     "CTF-Walkthrough/Portswigger/API testing/Exploiting a mass assignment vulnerability/README.md",
-    "CTF-Walkthrough/Portswigger/API testing/Exploiting a mass assignment vulnerability/_attachment",
-    "CTF-Walkthrough/Portswigger/API testing/README.md",
-    "CTF-Walkthrough/Portswigger/JWT/JWT authentication bypass via jwk header injection/README.md",
-    "CTF-Walkthrough/Portswigger/JWT/JWT authentication bypass via flawed signature verification/README.md",
-    "CTF-Walkthrough/Portswigger/JWT/JWT authentication bypass via unverified signature/README.md",
-    "CTF-Walkthrough/Portswigger/JWT/README.md"
+    "CTF-Walkthrough/Portswigger/API testing/README.md"
   ]
 }
