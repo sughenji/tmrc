@@ -1,8 +1,6 @@
-# tmrc
 
-...sort of cheatsheet/reference about multiple nerd topics :)
+Moved to:
 
-![](_attachment/dec.pdp-1.train_set.102649722.lg.jpg)
+https://github.com/sughenji/sysadmin-cheatsheet
 
-
-
+https://github.com/sughenji/walkthroughs
